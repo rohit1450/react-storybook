@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Meta, Story } from '@storybook/react';
+import { useState } from 'react';
+import { Meta, StoryFn } from '@storybook/react';
 import Search, { SearchProps } from './Search';
 
 export default {
@@ -7,13 +7,13 @@ export default {
     component: Search,
 } as Meta;
 
-const Template: Story<SearchProps> = (args: any) => <Search {...args} />;
+const Template: StoryFn<SearchProps> = (args: SearchProps) => <Search {...args} />;
 
-export const Single = Template.bind({});
+export const Single: StoryFn<SearchProps> = Template.bind({});
 Single.args = {};
 
-export const Multiple: Story<SearchProps> = (args: any) => {
-    const [multiple, setMultiple] = useState(true);
+export const Multiple: StoryFn<SearchProps> = (args: SearchProps) => {
+    const [multiple] = useState<boolean>(true);
 
     return (
         <Search {...args} multiple={multiple} />

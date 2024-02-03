@@ -1,6 +1,5 @@
-// import React from 'react';
-import { StoryObj, Meta } from '@storybook/react';
-import List from './List';
+import { StoryFn, Meta } from '@storybook/react';
+import List, { ListProps } from './List';
 import { useState } from 'react';
 
 const meta: Meta<typeof List> = {
@@ -10,9 +9,7 @@ const meta: Meta<typeof List> = {
 
 export default meta;
 
-type Story = StoryObj<typeof List>;
-
-export const Single: Story = (args: any) => <List {...args} />;
+export const Single: StoryFn<ListProps> = (args: ListProps) => <List {...args} />;
 
 Single.args = {
     people: [
@@ -24,8 +21,8 @@ Single.args = {
     ],
 };
 
-export const Multiple: Story = (args: any) => {
-    const [multiple, setMultiple] = useState(true);
+export const Multiple: StoryFn<ListProps> = (args: ListProps) => {
+    const [multiple] = useState(true);
 
     return (
         <List {...args} multiple={multiple} />
