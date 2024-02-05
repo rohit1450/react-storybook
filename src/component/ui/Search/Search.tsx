@@ -8,19 +8,11 @@ interface Person {
 }
 
 export interface SearchProps {
+    people: Person[];
     multiple?: boolean;
 }
 
-const people: Person[] = [
-    { id: 1, name: 'Wade Cooper' },
-    { id: 2, name: 'Arlene Mccoy' },
-    { id: 3, name: 'Devon Webb' },
-    { id: 4, name: 'Tom Cook' },
-    { id: 5, name: 'Tanya Fox' },
-    { id: 6, name: 'Hellen Schmidt' },
-];
-
-const Search: React.FC<SearchProps> = ({ multiple }) => {
+const Search: React.FC<SearchProps> = ({ people, multiple }) => {
     const [selected, setSelected] = useState<Person | Person[]>(multiple ? [] : people[0]);
     const [query, setQuery] = useState('');
     const [open, setOpen] = useState(false);
@@ -44,16 +36,16 @@ const Search: React.FC<SearchProps> = ({ multiple }) => {
     );
 
     return (
-        <div className="fixed top-16 w-96">
+        <div className="fixed top-16 sm:w-96 w-11/12">
             <Combobox value={selected} onChange={setSelected} multiple={multiple}>
-                <div className="relative mt-1 p-2" >
-                    <div className="relative p-2 w-full flex cursor-default overflow-hidden rounded-md text-left shadow-md sm:text-sm border hover:border-blue-400">
+                <div className="relative mt-1" >
+                    <div className="relative p-2 w-full flex cursor-default overflow-hidden rounded-md text-left shadow-md sm:text-sm  border border-gray hover:border-blue-prime">
                         {multiple && Array.isArray(selected) && selected.length > 0 ? (
                             <div className="flex flex-wrap items-center">
                                 {selected.map((person) => (
                                     <span
                                         key={person.id}
-                                        className="inline-block mb-1 border rounded-lg ps-2 pr-1 bg-blue-200 mr-2"
+                                        className="inline-block mb-1 rounded-lg ps-2 pr-1 bg-blue-light mr-2"
                                     >
                                         <span className="flex items-center">
                                             {person.name}
@@ -62,7 +54,7 @@ const Search: React.FC<SearchProps> = ({ multiple }) => {
                                                     e.stopPropagation();
                                                     handleRemove(person.id);
                                                 }}
-                                                className="cursor-pointer text-blue-800 ml-1 focus:outline-none"
+                                                className="cursor-pointer ml-1 focus:outline-none"
                                             >
                                                 <XMarkIcon className="h-4 w-4 pt-0.5" />
                                             </button>
@@ -71,7 +63,7 @@ const Search: React.FC<SearchProps> = ({ multiple }) => {
                                 ))}
 
                                 <Combobox.Input
-                                    className="w-full py-1 pl-3 pr-10 text-sm text-gray-900"
+                                    className="w-full py-1 pl-3 pr-10 text-sm text-blue focus:outline-none"
                                     value={query}
                                     placeholder='Search'
                                     onChange={(event) => setQuery(event.target.value)}
@@ -80,17 +72,18 @@ const Search: React.FC<SearchProps> = ({ multiple }) => {
                         ) : (
 
                             <Combobox.Input
-                                className="w-full py-1 pl-3 pr-10 text-sm text-gray-900"
+                                className="w-full py-1 pl-3 pr-10 text-sm text-blue focus:outine-none"
                                 value={(selected as Person)?.name || ''}
+                                placeholder='Search'
                                 onChange={(event) => setQuery(event.target.value)}
                             />
 
                         )}
                         <Combobox.Button className="flex  items-center right-0" onClick={handleOpen}>
                             {open ? (
-                                <ChevronUpIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                <ChevronUpIcon className="h-5 w-5" aria-hidden="true" />
                             ) : (
-                                <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
                             )}
                         </Combobox.Button>
                     </div>
@@ -101,19 +94,19 @@ const Search: React.FC<SearchProps> = ({ multiple }) => {
                         leaveTo="opacity-0"
                         afterLeave={() => setQuery('')}
                     >
-                        <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg sm:text-sm">
+                        <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-2xl sm:text-sm">
                             {filteredPeople.length === 0 && query !== '' ? (
-                                <div className="relative cursor-default select-none px-4 py-2 text-gray-700">Nothing found.</div>
+                                <div className="relative cursor-default select-none px-4 py-2">Nothing found.</div>
                             ) : (
                                 filteredPeople.map((person) => (
                                     <Combobox.Option
                                         key={person.id}
                                         className={({ active }) =>
-                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-teal-600 text-white' : 'text-gray-900'}`
+                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-light text-blue-dark' : ''}`
                                         }
                                         value={person}
                                     >
-                                        {({ selected, active }) => (
+                                        {({ selected }) => (
                                             <>
                                                 <span
                                                     className={`block truncate ${selected ? 'font-medium' : 'font-normal'
@@ -123,7 +116,7 @@ const Search: React.FC<SearchProps> = ({ multiple }) => {
                                                 </span>
                                                 {selected ? (
                                                     <span
-                                                        className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'
+                                                        className={`absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600
                                                             }`}
                                                     >
                                                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
