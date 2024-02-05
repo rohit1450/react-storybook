@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "commit": "cz"
+    "commit": "cz",
+    "chromatic": "npx chromatic --project-token=chpt_8496c051d71ece4"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -33,6 +34,7 @@
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
+    "chromatic": "^10.7.1",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
