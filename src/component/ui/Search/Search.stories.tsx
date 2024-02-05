@@ -10,7 +10,16 @@ export default {
 const Template: StoryFn<SearchProps> = (args: SearchProps) => <Search {...args} />;
 
 export const Single: StoryFn<SearchProps> = Template.bind({});
-Single.args = {};
+Single.args = {
+    people: [
+        { id: 1, name: 'Wade Cooper' },
+        { id: 2, name: 'Arlene Mccoy' },
+        { id: 3, name: 'Devon Webb' },
+        { id: 4, name: 'Tom Cook' },
+        { id: 5, name: 'Tanya Fox' },
+        { id: 6, name: 'Hellen Schmidt' },
+    ],
+};
 
 export const Multiple: StoryFn<SearchProps> = (args: SearchProps) => {
     const [multiple] = useState<boolean>(true);
@@ -20,4 +29,13 @@ export const Multiple: StoryFn<SearchProps> = (args: SearchProps) => {
     );
 };
 
-Multiple.args = {};
+Multiple.args = {
+    people: [
+        { id: 1, name: 'Wade Cooper' },
+        { id: 2, name: 'Arlene Mccoy' },
+        { id: 3, name: 'Devon Webb' },
+        { id: 4, name: 'Tom Cook' },
+        { id: 5, name: 'Tanya Fox' },
+        { id: 6, name: 'Hellen Schmidt' },
+    ],
+};
