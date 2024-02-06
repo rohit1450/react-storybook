@@ -5,6 +5,7 @@ import Toggle from './Switch';
 export default {
     title: 'Components/ui/Switch',
     component: Toggle,
+    tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn = (args) => <Toggle {...args} />;

@@ -5,6 +5,7 @@ import { useState } from 'react';
 const meta: Meta<typeof List> = {
     title: 'Components/ui/List',
     component: List,
+    tags: ['autodocs'],
 };
 
 export default meta;

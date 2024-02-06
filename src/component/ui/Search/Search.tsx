@@ -36,7 +36,7 @@ const Search: React.FC<SearchProps> = ({ people, multiple }) => {
     );
 
     return (
-        <div className="fixed top-16 sm:w-96 w-11/12">
+        <div className="py-16 sm:w-96 w-11/12">
             <Combobox value={selected} onChange={setSelected} multiple={multiple}>
                 <div className="relative mt-1" >
                     <div className="relative p-2 w-full flex cursor-default overflow-hidden rounded-md text-left shadow-md sm:text-sm  border border-gray hover:border-blue-prime">
@@ -45,7 +45,7 @@ const Search: React.FC<SearchProps> = ({ people, multiple }) => {
                                 {selected.map((person) => (
                                     <span
                                         key={person.id}
-                                        className="inline-block mb-1 rounded-lg ps-2 pr-1 bg-blue-light mr-2"
+                                        className="inline-block mb-1 rounded-lg ps-2 pr-1 bg-blue-light2 mr-2"
                                     >
                                         <span className="flex items-center">
                                             {person.name}
@@ -72,7 +72,7 @@ const Search: React.FC<SearchProps> = ({ people, multiple }) => {
                         ) : (
 
                             <Combobox.Input
-                                className="w-full py-1 pl-3 pr-10 text-sm text-blue focus:outine-none"
+                                className="w-full py-1 pl-3 pr-10 text-sm text-blue focus:outline-none"
                                 value={(selected as Person)?.name || ''}
                                 placeholder='Search'
                                 onChange={(event) => setQuery(event.target.value)}
@@ -102,7 +102,7 @@ const Search: React.FC<SearchProps> = ({ people, multiple }) => {
                                     <Combobox.Option
                                         key={person.id}
                                         className={({ active }) =>
-                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-light text-blue-dark' : ''}`
+                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-light2 text-blue-dark' : ''}`
                                         }
                                         value={person}
                                     >

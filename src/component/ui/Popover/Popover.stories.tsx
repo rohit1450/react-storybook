@@ -5,6 +5,7 @@ import Pop, { PopoverProps } from './Popover';
 export default {
     title: 'Components/ui/PopOver',
     component: Pop,
+    tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<PopoverProps> = (args: PopoverProps) => <Pop {...args} />;
