@@ -32,7 +32,7 @@ const List: React.FC<ListProps> = ({ people, multiple }) => {
     };
 
     return (
-        <div className="fixed top-16 w-11/12 sm:w-96">
+        <div className="py-16 w-11/12 sm:w-96">
             <Listbox value={selected} onChange={setSelected} multiple={multiple}>
                 <div className="relative mt-1">
                     <Listbox.Button
@@ -42,7 +42,7 @@ const List: React.FC<ListProps> = ({ people, multiple }) => {
                         <span className="block">
                             {multiple && (selected as Person[]).length > 0
                                 ? (selected as Person[]).map((person) => (
-                                    <span key={person.id} className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light">
+                                    <span key={person.id} className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2">
                                         <span className="flex items-center">
                                             {person.name}
                                             <button
@@ -79,7 +79,7 @@ const List: React.FC<ListProps> = ({ people, multiple }) => {
                                 <Listbox.Option
                                     key={personIdx}
                                     className={({ active }) =>
-                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-light text-blue-dark' : ''}`
+                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-light2 text-blue-dark' : ''}`
                                     }
                                     value={person}
                                     disabled={person.unavailable}

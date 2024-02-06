@@ -4,6 +4,7 @@ import Tabs, { TabsProps } from './Tabs';
 export default {
     title: 'Components/ui/Tabs',
     component: Tabs,
+    tags: ['autodocs'],
 } as Meta;
 
 const Template: StoryFn<TabsProps> = (args: TabsProps) => <Tabs {...args} />;
