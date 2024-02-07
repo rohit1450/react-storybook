@@ -22,10 +22,9 @@ const Overlay: React.FC<OverlayProps> = ({ isOverlayOpen, toggleOverlay, content
                         {buttonTitle1}
                     </button>)}
             </div>
-
             {
                 isOverlayOpen && (
-                    <div className="shadow-md h-screen w-1/2 p-10">
+                    <div className="shadow-sm h-{100%} w-1/2 p-10">
                         <h2>{content2}</h2>
                         <button className="border p-1 mt-8" onClick={toggleOverlay}>
                             {buttonTitle2}
