@@ -10,31 +10,30 @@ export default {
 const Template: StoryFn<ButtonProps> = (args: ButtonProps) => <Button {...args} />;
 export const Primary: StoryFn<ButtonProps> = Template.bind({});
 Primary.args = {
-    lable: 'Button',
-    primary: 'true',
+    buttonType: 'primary',
+    label: 'Button',
     color: 'white',
-    icon: IconTwo,
 };
 export const Secondary: StoryFn<ButtonProps> = Template.bind({});
 Secondary.args = {
-    lable: 'Button',
-    primary: 'false',
-    color: 'white',
-    icon: IconTwo,
+    buttonType: 'secondary',
+    label: 'Button',
+    color: 'black',
 };
 
 export const Disabled: StoryFn<ButtonProps> = Template.bind({});
 Disabled.args = {
-    lable: 'Button',
+    buttonType: 'disabled',
+    label: 'Button',
     color: 'white',
-    icon: IconOne,
     disabled: true,
+    icon: IconOne,
 };
 
 export const Loading: StoryFn<ButtonProps> = Template.bind({});
 Loading.args = {
-    lable: 'Button',
-    primary: 'false',
+    buttonType: 'loading',
+    label: 'Button',
     color: 'white',
     icon: Loader,
 };
@@ -47,21 +46,16 @@ function IconOne() {
         </svg>
     )
 }
-function IconTwo() {
-    return (
-        <p></p>
-    )
-}
 
 function Loader() {
     return (
-        <div className='pt-1 pr-1'>
+        <div className='pt-1 pr-2'>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
                 className="w-4 h-4 text-gray animate-spin"
             >
-                <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                <path fill="currentColor" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
             </svg>
         </div>
     )
