@@ -24,7 +24,7 @@ function classNames(...classes: (string | undefined | null | false)[]): string {
 
 const Tabs: React.FC<TabsProps> = ({ categories }) => {
     return (
-        <div className="fixed top-16 sm:w-96 w-11/12 px-4 ">
+        <div className="sm:w-96 w-11/12 px-4 py-16 ">
             <Tab.Group>
                 <Tab.List className="flex space-x-1 rounded-xl bg-blue-prime/[0.30] p-1">
                     {Object.keys(categories).map((category) => (

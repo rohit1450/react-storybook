@@ -16,7 +16,7 @@ export interface PopoverProps {
 
 const Pop: React.FC<PopoverProps> = ({ solutions }) => {
     return (
-        <div className="fixed top-16 sm:w-96 w-11/12 max-w-sm px-4">
+        <div className="py-16 sm:w-96 w-11/12 max-w-sm px-4">
             <Popover className="relative">
                 {({ open }) => (
                     <>

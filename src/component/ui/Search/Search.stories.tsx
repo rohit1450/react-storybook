@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import Search, { SearchProps } from './Search';
 
-export default {
+const meta: Meta<typeof Search> = {
     title: 'Components/ui/Search',
     component: Search,
-} as Meta;
+    tags: ['autodocs'],
+};
+
+export default meta;
 
 const Template: StoryFn<SearchProps> = (args: SearchProps) => <Search {...args} />;
 
@@ -22,7 +25,7 @@ Single.args = {
 };
 
 export const Multiple: StoryFn<SearchProps> = (args: SearchProps) => {
-    const [multiple] = useState<boolean>(true);
+    const [multiple] = useState(true);
 
     return (
         <Search {...args} multiple={multiple} />
