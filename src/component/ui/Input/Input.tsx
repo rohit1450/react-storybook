@@ -12,7 +12,7 @@ export interface InputProps {
 const Input: React.FC<InputProps> = ({
   type,
   placeholder = "",
-  label = "",
+  label = "label text",
   ExtraProp = "",
 }) => {
   return (

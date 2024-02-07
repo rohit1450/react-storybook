@@ -16,6 +16,7 @@ export default {
       gray: "#b3b5b5",
       "gray-dark": "#7d8282",
       "grey-light": "rgba(46,52,56,0.1)",
+      disable: "#DDDDDD",
     },
     extend: {},
   },
