@@ -1,10 +1,11 @@
 import React from "react";
 
+
 export interface InfoProps {
     title: string;
     color?: string;
     size?: number;
-    icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+    icon?: React.ElementType;
 }
 
 const Info: React.FC<InfoProps> = ({ icon: Icon, title, color, size }) => {
