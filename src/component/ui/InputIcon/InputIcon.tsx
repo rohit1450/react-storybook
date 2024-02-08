@@ -57,8 +57,8 @@ const InputIcon = ({
       ) : (
         <div className="flex flex-wrap space-x-2">
           {hasIcon && (
-            <div className="px-2 py-1 w-10 rounded-md  absolute left-6">
-              {IconOne && <IconOne className="h-12 w-12"> </IconOne>}
+            <div className="px-3 pt-2 w-10 rounded-md  absolute left-5">
+              {IconOne && <IconOne />}
             </div>
           )}
           <div>
