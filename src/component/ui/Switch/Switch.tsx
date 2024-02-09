@@ -1,18 +1,19 @@
-import { useState } from 'react'
 import { Switch } from '@headlessui/react'
+export interface ToggleProps {
+    enabled: boolean;
+    onToggle: (value: boolean) => void;
+}
 
-export default function Toggle() {
-    const [enabled, setEnabled] = useState(false)
+const Toggle: React.FC<ToggleProps> = ({ enabled, onToggle }) => {
 
     return (
         <div className="py-16">
             <Switch
                 checked={enabled}
-                onChange={setEnabled}
+                onChange={onToggle}
                 className={`${enabled ? 'bg-blue-dark/[0.70]' : 'bg-gray-dark'}
           relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-white transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white`}
             >
-                <span className="sr-only text-gray">Enabled</span>
                 <span
                     aria-hidden="true"
                     className={`${enabled ? 'translate-x-9' : 'translate-x-0'}
@@ -22,3 +23,4 @@ export default function Toggle() {
         </div>
     )
 }
+export default Toggle

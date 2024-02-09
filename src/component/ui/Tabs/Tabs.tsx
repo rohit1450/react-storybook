@@ -36,7 +36,7 @@ const Tabs: React.FC<TabsProps> = ({ categories }) => {
                                     'ring-white/60',
                                     selected
                                         ? 'bg-blue-dark text-white shadow border border-black focus:ring-2'
-                                        : 'text-gray-500 hover:bg-blue-light hover:text-white'
+                                        : 'text-gray-500  hover:text-blue'
                                 )
                             }
                         >
