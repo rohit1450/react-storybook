@@ -17,6 +17,8 @@ export default {
       "gray-dark": "#7d8282",
       "grey-light": "rgba(46,52,56,0.1)",
       disable: "#DDDDDD",
+      loaderBg: "rgb(209 213 219)",
+      loader: "rgb(37 99 235)",
     },
     extend: {},
   },
