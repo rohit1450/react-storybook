@@ -26,7 +26,7 @@ Default.args = {
     defaultValue: 50,
     value: 50,
     color: '#4299e1',
-    size: 'small',
+    size: 'medium',
     bigTheme: true,
 };
 
