@@ -17,6 +17,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onChange, defaultValue
         ? `linear-gradient(to right, ${color} ${percent}%, #a0aec0 ${percent}%)`
         : `linear-gradient(to right, #4299e1 ${percent}%, #a0aec0 ${percent}%)`;
 
+
     const getSizeStyles = () => {
         switch (size) {
             case 'small':
