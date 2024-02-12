@@ -8,6 +8,7 @@ export interface CardProps {
     aboutFontSize?: string;
     descriptionFontSize?: string;
     imgHeight?: string;
+    imagePosition?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 const Card: React.FC<CardProps> = ({ imageSrc, about, description, size, aboutFontSize, descriptionFontSize, imgHeight }) => {
@@ -31,6 +32,7 @@ const Card: React.FC<CardProps> = ({ imageSrc, about, description, size, aboutFo
         color: 'gray',
         textAlign: 'justify',
     });
+
 
     return (
         <div className={`max-w-sm rounded overflow-hidden shadow-lg ${getSizeClass()} mb-2`}>

@@ -19,6 +19,7 @@ Default.args = {
     aboutFontSize: '1.2rem',
     descriptionFontSize: '0.9rem',
     imgHeight: '16rem',
+    imagePosition: 'top',
 };
 
 
@@ -26,16 +27,19 @@ export const Small = Template.bind({});
 Small.args = {
     ...Default.args,
     size: 'small',
+    imagePosition: 'right',
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
     ...Default.args,
     size: 'medium',
+    imagePosition: 'bottom',
 };
 
 export const Large = Template.bind({});
 Large.args = {
     ...Default.args,
     size: 'large',
+    imagePosition: 'left',
 };
