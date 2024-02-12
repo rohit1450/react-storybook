@@ -20,7 +20,13 @@ export default {
       loaderBg: "rgb(209 213 219)",
       loader: "rgb(37 99 235)",
     },
-    extend: {},
+    extend: {
+      spacing: {
+        100: "20rem",
+        128: "25rem",
+        144: "36rem",
+      },
+    },
   },
   plugins: [],
 };
