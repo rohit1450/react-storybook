@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { ReactNode } from "react";
+import { useState, ReactNode } from "react";
+import { ArrowRightCircleIcon } from "@heroicons/react/20/solid";
+import { ArrowLeftCircleIcon } from "@heroicons/react/16/solid";
 
 export interface CarouselProps {
   size: string;
@@ -7,6 +8,7 @@ export interface CarouselProps {
   width?: string;
   images: string[];
   dotColor?: string;
+  hasDot: boolean;
   arrowIcon?: {
     left: ReactNode;
     right: ReactNode;
@@ -22,6 +24,7 @@ const Carousel = ({
   height,
   width,
   fullWidth,
+  hasDot,
 }: CarouselProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -60,14 +63,8 @@ const Carousel = ({
     );
   };
 
-  const noIcon = () => {
-    return arrowIcon?.right === undefined || arrowIcon?.left === undefined
-      ? { display: "none" }
-      : {};
-  };
-
   const noDots = () => {
-    return dotColor === undefined ? { display: "none" } : {};
+    return hasDot ? {} : { display: "none" };
   };
 
   const dotColorFn = (index: number) => {
@@ -102,19 +99,17 @@ const Carousel = ({
             ></span>
           ))}
         </div>
-        <div style={noIcon()}>
-          <div
-            className={`absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
-            onClick={prevImage}
-          >
-            {arrowIcon?.left}
-          </div>
-          <div
-            className={`absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
-            onClick={nextImage}
-          >
-            {arrowIcon?.right}
-          </div>
+        <div
+          className={`absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
+          onClick={prevImage}
+        >
+          {arrowIcon === undefined ? <ArrowLeftCircleIcon /> : arrowIcon.left}
+        </div>
+        <div
+          className={`absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
+          onClick={nextImage}
+        >
+          {arrowIcon === undefined ? <ArrowRightCircleIcon /> : arrowIcon.right}
         </div>
       </div>
     </div>

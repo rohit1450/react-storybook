@@ -28,6 +28,7 @@ Small.args = {
     right: <ArrowRightCircleIcon />,
   },
   fullWidth: false,
+  hasDot: true,
 };
 
 export const Medium: StoryFn<CarouselProps> = Template.bind({});
