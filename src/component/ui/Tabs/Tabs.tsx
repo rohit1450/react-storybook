@@ -24,19 +24,19 @@ function classNames(...classes: (string | undefined | null | false)[]): string {
 
 const Tabs: React.FC<TabsProps> = ({ categories }) => {
     return (
-        <div className="sm:w-96 w-11/12 px-4 py-16 ">
+        <div className="sm:w-96 w-11/12 px-4  ">
             <Tab.Group>
-                <Tab.List className="flex space-x-1 rounded-xl bg-blue-prime/[0.30] p-1">
+                <Tab.List className="flex space-x-1 rounded-xl p-1 gap-2">
                     {Object.keys(categories).map((category) => (
                         <Tab
                             key={category}
                             className={({ selected }) =>
                                 classNames(
-                                    'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-                                    'ring-white/60 ring-offset-2 ring-offset-white focus:outline-none focus:ring-2',
+                                    'w-full rounded-lg py-2.5 text-sm font-medium border border-blue-light text-blue-light leading-5',
+                                    'ring-white/60',
                                     selected
-                                        ? 'bg-white text-blue-prime shadow border border-none'
-                                        : 'text-gray-500 hover:bg-blue-dark/[0.12] hover:text-white'
+                                        ? 'bg-blue-dark text-white shadow border border-black focus:ring-2'
+                                        : 'text-gray-500  hover:text-blue'
                                 )
                             }
                         >
@@ -49,7 +49,7 @@ const Tabs: React.FC<TabsProps> = ({ categories }) => {
                         <Tab.Panel
                             key={idx}
                             className={classNames(
-                                'rounded-xl shadow-2xl bg-white p-3',
+                                'rounded-xl bg-white p-3',
                                 'ring-white/60 ring-offset-2 ring-offset-blue-light focus:outline-none focus:ring-2'
                             )}
                         >
