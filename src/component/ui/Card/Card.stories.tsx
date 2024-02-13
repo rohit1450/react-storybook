@@ -20,6 +20,12 @@ Default.args = {
     descriptionFontSize: '0.9rem',
     imgHeight: '16rem',
     imagePosition: 'top',
+    button: {
+        buttonType: 'primary',
+        color: 'white',
+        label: 'Button',
+    },
+    isButton: false,
 };
 
 
@@ -43,3 +49,16 @@ Large.args = {
     size: 'large',
     imagePosition: 'left',
 };
+export const WithButton = Template.bind({});
+WithButton.args = {
+    ...Default.args,
+    isButton: true,
+};
+
+export const MultipleCards: StoryFn<CardProps> = () => (
+    <div style={{ display: 'flex', gap: '1rem' }}>
+        <Card {...Large.args as CardProps} />
+        <Card {...Small.args as CardProps} />
+        <Card {...Medium.args as CardProps} />
+    </div>
+);

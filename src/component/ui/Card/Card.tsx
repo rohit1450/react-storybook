@@ -1,4 +1,5 @@
 import React from 'react';
+import Button, { ButtonProps } from '../Button/Button';
 
 export interface CardProps {
     size?: 'small' | 'medium' | 'large';
@@ -9,9 +10,12 @@ export interface CardProps {
     descriptionFontSize?: string;
     imgHeight?: string;
     imagePosition?: 'top' | 'right' | 'bottom' | 'left';
+    button: ButtonProps;
+    isButton?: boolean,
 }
 
-const Card: React.FC<CardProps> = ({ imageSrc, about, description, size, aboutFontSize, descriptionFontSize, imgHeight }) => {
+const Card: React.FC<CardProps> = ({ imageSrc, button, about, description, size, aboutFontSize, descriptionFontSize, imgHeight, isButton }) => {
+    const { buttonType, color, label } = button;
     const getSizeClass = () => {
         switch (size) {
             case 'small':
@@ -35,17 +39,24 @@ const Card: React.FC<CardProps> = ({ imageSrc, about, description, size, aboutFo
 
 
     return (
-        <div className={`max-w-sm rounded overflow-hidden shadow-lg ${getSizeClass()} mb-2`}>
-            <div style={{
+        <div className={`flex flex-col rounded overflow-hidden shadow-lg ${getSizeClass()}`}>
+            <div className='flex ' style={{
                 position: 'relative',
                 width: '100%',
             }}>
                 <img className={`w-full object-cover`} style={{ height: imgHeight || '16rem' }} src={imageSrc} alt="Card" />
             </div>
-            <div className="px-6 py-4">
-                <div style={getAboutStyle()} className="font-bold text-xl mb-2">{about}</div>
-                <p style={getDescriptionStyle()} className="text-gray text-base">{description}</p>
-            </div>
+            {about || description ?
+                <div className="px-6 pt-4 pb-4">
+                    <div style={getAboutStyle()} className="font-bold text-xl mb-2">{about}</div>
+                    <p style={getDescriptionStyle()} className="text-gray text-base">{description}</p>
+                </div> : ''
+            }
+            {isButton === true &&
+                <div className='px-6 pb-4 pt-2'>
+                    <Button buttonType={buttonType} color={color} label={label} />
+                </div>
+            }
         </div>
     );
 };

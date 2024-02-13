@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({ color = 'black', icon: Icon, label, but
     const commonClass = `bg-blue-dark text-${color} p-2 rounded-md`;
 
     return (
-        <div className="py-16">
+        <div className="">
             <button
                 className={`flex flex-row ${buttonType === 'primary' && !disabled ? primaryClass : commonClass}
                             ${buttonType === 'secondary' && !disabled ? secondaryClass : commonClass}
