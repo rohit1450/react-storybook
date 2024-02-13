@@ -15,6 +15,7 @@ export const Default: StoryFn<InfoProps> = Template.bind({});
 Default.args = {
     title: "This is title",
     icon: heroIcon,
+    tooltipPosition: 'top'
 };
 
 export const Red: StoryFn<InfoProps> = Template.bind({});
@@ -22,6 +23,7 @@ Red.args = {
     title: "This is a red icon",
     icon: heroIcon,
     color: "red",
+    tooltipPosition: 'bottom'
 };
 
 export const Big: StoryFn<InfoProps> = Template.bind({});
@@ -29,12 +31,11 @@ Big.args = {
     ...Default.args,
     title: "This is large icon",
     size: 10,
+    tooltipPosition: 'left'
 };
 
 function heroIcon({ title, color, size }: { title?: string; color?: string; size?: number }) {
     return (
-
         <InformationCircleIcon title={title} color={color} className={`w-${size || 5} h-${size || 5}`} />
-
     )
 }

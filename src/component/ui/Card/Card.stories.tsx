@@ -20,6 +20,7 @@ Default.args = {
     descriptionFontSize: '0.9rem',
     imgHeight: '16rem',
     imagePosition: 'top',
+    imgWidth: '200%',
     button: {
         buttonType: 'primary',
         color: 'white',
@@ -33,21 +34,18 @@ export const Small = Template.bind({});
 Small.args = {
     ...Default.args,
     size: 'small',
-    imagePosition: 'right',
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
     ...Default.args,
     size: 'medium',
-    imagePosition: 'bottom',
 };
 
 export const Large = Template.bind({});
 Large.args = {
     ...Default.args,
     size: 'large',
-    imagePosition: 'left',
 };
 export const WithButton = Template.bind({});
 WithButton.args = {
@@ -57,8 +55,8 @@ WithButton.args = {
 
 export const MultipleCards: StoryFn<CardProps> = () => (
     <div style={{ display: 'flex', gap: '1rem' }}>
-        <Card {...Large.args as CardProps} />
-        <Card {...Small.args as CardProps} />
+        <Card {...Medium.args as CardProps} />
+        <Card {...Medium.args as CardProps} />
         <Card {...Medium.args as CardProps} />
     </div>
 );
