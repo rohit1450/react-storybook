@@ -22,28 +22,22 @@ const Template: StoryFn<CarouselProps> = (args: CarouselProps) => (
 export const Small: StoryFn<CarouselProps> = Template.bind({});
 Small.args = {
   size: "small",
-  height: "48",
-  width: "72",
   dotColor: "red",
   arrowIcon: {
     left: <ArrowLeftCircleIcon />,
     right: <ArrowRightCircleIcon />,
   },
-  showText: false,
+  fullWidth: false,
 };
 
 export const Medium: StoryFn<CarouselProps> = Template.bind({});
 Medium.args = {
   ...Small.args,
   size: "medium",
-  height: "60",
-  width: "128",
 };
 
 export const Large: StoryFn<CarouselProps> = Template.bind({});
 Large.args = {
   ...Small.args,
   size: "large",
-  height: "96",
-  width: "144",
 };

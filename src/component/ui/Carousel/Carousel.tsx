@@ -2,16 +2,16 @@ import { useState } from "react";
 import { ReactNode } from "react";
 
 export interface CarouselProps {
-  size?: string;
+  size: string;
   height?: string;
   width?: string;
   images: string[];
-  dotColor: string;
+  dotColor?: string;
   arrowIcon?: {
     left: ReactNode;
     right: ReactNode;
   };
-  showText?: boolean;
+  fullWidth?: boolean;
 }
 
 const Carousel = ({
@@ -19,13 +19,30 @@ const Carousel = ({
   images,
   dotColor,
   arrowIcon,
-  showText,
+  height,
+  width,
+  fullWidth,
 }: CarouselProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const small = size === "small" && `h-40 w-60`;
-  const medium = size === "medium" && `h-56 w-128`;
-  const large = size === "large" && `h-80 w-144`;
+  const customHeightWidth = () => {
+    if (fullWidth) {
+      return { height: "100%", width: "100%" };
+    }
+    if (size === "small") {
+      return height === undefined || width === undefined
+        ? { height: "10rem", width: "15rem" }
+        : { height, width };
+    } else if (size === "medium") {
+      return height === undefined || width === undefined
+        ? { height: "14rem", width: "25rem" }
+        : { height, width };
+    } else if (size === "large") {
+      return height === undefined || width === undefined
+        ? { height: "20rem", width: "36rem" }
+        : { height, width };
+    }
+  };
 
   const smallArrow = size === "small" && `h-12 w-12`;
   const mediumArrow = size === "medium" && `h-14 w-14`;
@@ -43,55 +60,61 @@ const Carousel = ({
     );
   };
 
+  const noIcon = () => {
+    return arrowIcon?.right === undefined || arrowIcon?.left === undefined
+      ? { display: "none" }
+      : {};
+  };
+
+  const noDots = () => {
+    return dotColor === undefined ? { display: "none" } : {};
+  };
+
+  const dotColorFn = (index: number) => {
+    return index === currentImageIndex
+      ? { backgroundColor: dotColor }
+      : { backgroundColor: "black" };
+  };
+
   return (
-    <div className={`carousel ${small || medium || large} shadow-2xl`}>
+    <div className={`carousel shadow-2xl`} style={customHeightWidth()}>
       <div className="relative">
-        <div
-          className={`${size === "small" && "hidden"} absolute ${size === "large" && "top-16"} ${size === "medium" && "top-8"} left-1/2 transform -translate-x-1/2 ${showText && "hidden"}`}
-        >
-          <div className="text-center text-white">
-            <h1
-              className={`${size === "large" && "text-2xl"} ${size === "medium" && "text-lg"}`}
-            >
-              The Beauty of Nature
-            </h1>
-            <br />
-            <p className={`${size === "medium" && "text-xs"}`}>
-              It is not so much for its beauty that the forest makes a claim
-              upon men's hearts, as for that subtle something, that quality of
-              air that emanation from old trees, that so wonderfully changes
-            </p>
-          </div>
-        </div>
         <div className="overflow-hidden rounded-lg">
           <img
             src={images[currentImageIndex]}
             alt={`Image ${currentImageIndex + 1}`}
-            className={`${small || medium || large} object-cover`}
+            className={`object-cover`}
+            style={customHeightWidth()}
           />
         </div>
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+        <div
+          className="absolute bottom-4 left-0 right-0 flex justify-center"
+          style={noDots()}
+        >
           {images.map((_, index) => (
             <span
               key={index}
-              className={`${size === "small" ? "w-1 h-1" : "w-2 h-2"} mx-1 rounded-full hover:cursor-pointer hover:bg-red ${
+              className={`${size === "small" ? "w-1 h-1" : "w-2 h-2"} mx-1 rounded-full hover:cursor-pointer ${
                 index === currentImageIndex ? `bg-${dotColor}` : "bg-black"
               }`}
+              style={dotColorFn(index)}
               onClick={() => setCurrentImageIndex(index)}
             ></span>
           ))}
         </div>
-        <div
-          className={`absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
-          onClick={prevImage}
-        >
-          {arrowIcon?.left}
-        </div>
-        <div
-          className={`absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
-          onClick={nextImage}
-        >
-          {arrowIcon?.right}
+        <div style={noIcon()}>
+          <div
+            className={`absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
+            onClick={prevImage}
+          >
+            {arrowIcon?.left}
+          </div>
+          <div
+            className={`absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
+            onClick={nextImage}
+          >
+            {arrowIcon?.right}
+          </div>
         </div>
       </div>
     </div>
