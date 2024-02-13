@@ -11,7 +11,7 @@ const Template: StoryFn<ChartProps> = (args: ChartProps) => <Chart {...args} />;
 
 export const PieChart: StoryFn<ChartProps> = Template.bind({});
 PieChart.args = {
-  chartType: "pie",
+  chartType: "pie chart",
   height: "400px",
   labels: ["Housing", "Transportation", "Food"],
   datasets: [
