@@ -1,6 +1,6 @@
-
 import { Meta, StoryFn } from '@storybook/react';
-import Toggle from './Switch';
+import Toggle, { ToggleProps } from './Switch';
+import { useState } from 'react';
 
 export default {
     title: 'Components/ui/Switch',
@@ -8,10 +8,17 @@ export default {
     tags: ['autodocs'],
 } as Meta;
 
-const Template: StoryFn = (args) => <Toggle {...args} />;
+const Template: StoryFn<ToggleProps> = (args: ToggleProps) => {
+    const [enabled, setEnabled] = useState(args.enabled || false);
 
-export const Default: StoryFn = Template.bind({});
-Default.args = {
+    const handleToggle = () => {
+        setEnabled(!enabled);
+    };
 
+    return <Toggle {...args} enabled={enabled} onToggle={handleToggle} />;
 };
 
+export const Default: StoryFn<ToggleProps> = Template.bind({});
+Default.args = {
+    enabled: true,
+};
