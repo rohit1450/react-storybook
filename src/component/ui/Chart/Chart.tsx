@@ -1,12 +1,44 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
-import { Pie, Doughnut } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Filler,
+  PointElement,
+  LineElement,
+} from "chart.js";
 
-ChartJS.register(ArcElement, Tooltip, Legend, Title);
+import { Pie, Doughnut, Bar, Line } from "react-chartjs-2";
+
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Filler,
+  PointElement,
+  LineElement
+);
 
 export interface ChartProps {
   chartType: string;
   height: string;
+  width: string;
   labels: string[];
+  chartTitle: string;
+  text?: string;
+  titlePosition: "top" | "left" | "right" | "bottom";
+  dataSetPosition: "top" | "left" | "right" | "bottom";
+  axis?: "x" | "y";
+  minX?: number;
+  maxX?: number;
   datasets: {
     label: string;
     data: number[];
@@ -14,17 +46,48 @@ export interface ChartProps {
     borderColor?: string[];
     borderWidth?: number;
     hoverOffset?: number;
+    fill?: boolean;
   }[];
 }
 
-const Chart = ({ chartType, labels, datasets, height }: ChartProps) => {
+const Chart = ({
+  chartType,
+  labels,
+  datasets,
+  height,
+  chartTitle,
+  titlePosition,
+  dataSetPosition,
+  width,
+  axis,
+  minX,
+  maxX,
+}: ChartProps) => {
   if (chartType === "pie") {
+    const cc = {
+      maintainAspectRatio: false,
+      responsive: true,
+      animation: {
+        duration: 1500,
+        easing: "easeInOutQuad",
+      },
+      plugins: {
+        legend: {
+          position: dataSetPosition,
+        },
+        title: {
+          display: true,
+          text: chartTitle,
+          position: titlePosition,
+        },
+      },
+    };
+
     return (
       <Pie
         data={{ labels, datasets }}
-        redraw={true}
         height={height}
-        width="100%"
+        width={width}
         options={{
           maintainAspectRatio: false,
           responsive: true,
@@ -34,12 +97,12 @@ const Chart = ({ chartType, labels, datasets, height }: ChartProps) => {
           },
           plugins: {
             legend: {
-              position: "right",
+              position: dataSetPosition,
             },
             title: {
               display: true,
-              text: "Chart.js Pie Chart",
-              position: "right",
+              text: chartTitle,
+              position: titlePosition,
             },
           },
         }}
@@ -50,10 +113,9 @@ const Chart = ({ chartType, labels, datasets, height }: ChartProps) => {
   if (chartType === "doughnut") {
     return (
       <Doughnut
-        redraw={true}
         data={{ labels, datasets }}
         height={height}
-        width="100%"
+        width={width}
         options={{
           maintainAspectRatio: false,
           responsive: true,
@@ -62,9 +124,76 @@ const Chart = ({ chartType, labels, datasets, height }: ChartProps) => {
             easing: "easeInOutQuad",
           },
           plugins: {
+            legend: {
+              position: dataSetPosition,
+            },
             title: {
               display: true,
-              text: "Chart.js doughnut Chart",
+              text: chartTitle,
+              position: titlePosition,
+            },
+          },
+        }}
+      />
+    );
+  }
+
+  if (chartType === "bar") {
+    return (
+      <Bar
+        data={{ labels, datasets }}
+        height={height}
+        width={width}
+        options={{
+          maintainAspectRatio: false,
+          responsive: true,
+          animation: {
+            duration: 1500,
+            easing: "easeInOutQuad",
+          },
+          plugins: {
+            legend: {
+              position: dataSetPosition,
+            },
+            title: {
+              display: true,
+              text: chartTitle,
+              position: titlePosition,
+            },
+          },
+          indexAxis: axis,
+          scales: {
+            y: {
+              min: minX,
+              max: maxX,
+            },
+          },
+        }}
+      />
+    );
+  }
+
+  if (chartType === "line") {
+    return (
+      <Line
+        data={{ labels, datasets }}
+        height={height}
+        width={width}
+        options={{
+          maintainAspectRatio: false,
+          responsive: true,
+          animation: {
+            duration: 1500,
+            easing: "easeInOutQuad",
+          },
+          plugins: {
+            legend: {
+              position: dataSetPosition,
+            },
+            title: {
+              display: true,
+              text: chartTitle,
+              position: titlePosition,
             },
           },
         }}
