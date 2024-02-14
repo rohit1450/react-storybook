@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import Toaster, { ToasterProps } from './Toaster';
-
+import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'Components/ui/Toaster',
@@ -31,7 +31,7 @@ Default.args = {
         color: 'white',
         label: 'Notify',
         className: '',
-        // onClick: action('on-click'),
+        onClick: action('on-click'),
     },
 }
 

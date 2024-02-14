@@ -23,11 +23,15 @@ export interface ToasterProps {
 const Toaster: React.FC<ToasterProps> = ({ position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
     pauseOnFocusLoss, draggable, pauseOnHover, theme }) => {
     const notify = () => toast(notifyText, { type });
-    const { buttonType, color, label, className, onClick = () => notify() } = button;
+    const { buttonType, color, label, className, onClick } = button;
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        onClick && onClick(event);
+        notify();
+    };
     return (
         <div className='h-40'>
             <div>
-                <Button buttonType={buttonType} color={color} label={label} className={className} onClick={onClick} />
+                <Button buttonType={buttonType} color={color} label={label} className={className} onClick={handleClick} />
             </div>
             <ToastContainer
                 position={position}
