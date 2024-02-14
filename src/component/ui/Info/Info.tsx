@@ -4,7 +4,7 @@ import { Tooltip } from "@material-tailwind/react";
 export interface InfoProps {
     title: string;
     color?: string;
-    size?: number;
+    size?: string;
     icon?: React.ElementType;
     tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
 }

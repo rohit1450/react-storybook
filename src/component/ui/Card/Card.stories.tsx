@@ -25,6 +25,7 @@ Default.args = {
         buttonType: 'primary',
         color: 'white',
         label: 'Button',
+        className: 'bg-purple'
     },
     isButton: false,
 };

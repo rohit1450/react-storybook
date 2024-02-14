@@ -6,12 +6,13 @@ export interface ButtonProps {
     color?: 'black' | 'white';
     icon?: React.FC<React.SVGProps<SVGSVGElement>>;
     disabled?: boolean;
-    classname: string;
+    className: string;
+    onClick: React.MouseEventHandler
 }
 
-const Button: React.FC<ButtonProps> = ({ color = 'black', icon: Icon, label, buttonType, disabled, className }) => {
-    const primaryClass = `bg-blue-dark text-${color} hover:bg-blue-dark/[0.70]`;
-    const secondaryClass = 'bg-white hover:bg-gray-dark/[0.80] border border-black text-black';
+const Button: React.FC<ButtonProps> = ({ color = 'black', icon: Icon, onClick, label, buttonType, disabled, className }) => {
+    const primaryClass = `bg-blue-dark text-${color} hover:bg-blue-dark/[0.90]`;
+    const secondaryClass = 'bg-white hover:bg-gray-dark/[0.20] border border-black text-black';
     const disabledClass = `opacity-50 text-${color}`;
     const commonClass = `bg-blue-dark text-${color} p-2 rounded-md`;
 
@@ -22,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({ color = 'black', icon: Icon, label, but
                             ${buttonType === 'secondary' && !disabled ? secondaryClass : commonClass}
                             ${buttonType === 'disabled' ? disabledClass : ''}`, className)}
                 type={buttonType === 'loading' ? 'button' : undefined}
-                disabled={disabled}
+                disabled={disabled} onClick={onClick}
             >
                 {Icon ? <Icon /> : ''}
                 {label}
