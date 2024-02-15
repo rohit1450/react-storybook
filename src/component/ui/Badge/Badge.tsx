@@ -4,10 +4,11 @@ import { twMerge } from 'tailwind-merge';
 export interface BadgeProps {
     label: string;
     type: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
-    className: string
+    className: string;
+    count: number;
 }
 
-const Badge: React.FC<BadgeProps> = ({ label, type, className }) => {
+const Badge: React.FC<BadgeProps> = ({ label, type, className, count }) => {
     const getStyles = () => {
         switch (type) {
             case 'primary':
@@ -28,7 +29,7 @@ const Badge: React.FC<BadgeProps> = ({ label, type, className }) => {
         <div className={`relative inline-block bg-gray text-sm p-1 m-1 rounded-lg`} >
             <span>{label}</span>
             <span className={twMerge('absolute -top-4 -right-4 px-2 -py-1 bg-red text-white rounded-full', className)} style={getStyles()}>
-                1
+                {count}
             </span>
         </div>
     );

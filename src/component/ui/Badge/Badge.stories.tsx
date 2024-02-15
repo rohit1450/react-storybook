@@ -26,30 +26,35 @@ export const Default: StoryFn<BadgeProps> = () => (
 
 export const Primary = Template.bind({});
 Primary.args = {
+    count: 1,
     label: 'Primary',
     type: 'primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
+    count: 1,
     label: 'Secondary',
     type: 'secondary',
 };
 
 export const Success = Template.bind({});
 Success.args = {
+    count: 1,
     label: 'Success',
     type: 'success',
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
+    count: 1,
     label: 'Warning',
     type: 'warning',
 };
 
 export const Danger = Template.bind({});
 Danger.args = {
+    count: 1,
     label: 'Danger',
     type: 'danger',
 };
