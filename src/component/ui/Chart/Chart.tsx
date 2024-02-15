@@ -32,13 +32,7 @@ export interface ChartProps {
   height: string;
   width: string;
   labels: string[];
-  chartTitle: string;
   text?: string;
-  titlePosition: "top" | "left" | "right" | "bottom";
-  dataSetPosition: "top" | "left" | "right" | "bottom";
-  axis?: "x" | "y";
-  minX?: number;
-  maxX?: number;
   datasets: {
     label: string;
     data: number[];
@@ -48,6 +42,26 @@ export interface ChartProps {
     hoverOffset?: number;
     fill?: boolean;
   }[];
+  option: {
+    maintainAspectRatio: boolean;
+    responsive: boolean;
+    animation: {
+      duration: number;
+      easing: string;
+    };
+    plugins: {
+      legend: {
+        position: "top" | "bottom" | "left" | "right";
+      };
+      title: {
+        display: boolean;
+        text: string;
+        position: "top" | "bottom" | "left" | "right";
+      };
+    };
+    indexAxis?: "x" | "y";
+    scales?: {};
+  };
 }
 
 const Chart = ({
@@ -55,57 +69,16 @@ const Chart = ({
   labels,
   datasets,
   height,
-  chartTitle,
-  titlePosition,
-  dataSetPosition,
   width,
-  axis,
-  minX,
-  maxX,
+  option,
 }: ChartProps) => {
   if (chartType === "pie") {
-    const cc = {
-      maintainAspectRatio: false,
-      responsive: true,
-      animation: {
-        duration: 1500,
-        easing: "easeInOutQuad",
-      },
-      plugins: {
-        legend: {
-          position: dataSetPosition,
-        },
-        title: {
-          display: true,
-          text: chartTitle,
-          position: titlePosition,
-        },
-      },
-    };
-
     return (
       <Pie
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={{
-          maintainAspectRatio: false,
-          responsive: true,
-          animation: {
-            duration: 1500,
-            easing: "easeInOutQuad",
-          },
-          plugins: {
-            legend: {
-              position: dataSetPosition,
-            },
-            title: {
-              display: true,
-              text: chartTitle,
-              position: titlePosition,
-            },
-          },
-        }}
+        options={option}
       />
     );
   }
@@ -116,24 +89,7 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={{
-          maintainAspectRatio: false,
-          responsive: true,
-          animation: {
-            duration: 1500,
-            easing: "easeInOutQuad",
-          },
-          plugins: {
-            legend: {
-              position: dataSetPosition,
-            },
-            title: {
-              display: true,
-              text: chartTitle,
-              position: titlePosition,
-            },
-          },
-        }}
+        options={option}
       />
     );
   }
@@ -144,31 +100,7 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={{
-          maintainAspectRatio: false,
-          responsive: true,
-          animation: {
-            duration: 1500,
-            easing: "easeInOutQuad",
-          },
-          plugins: {
-            legend: {
-              position: dataSetPosition,
-            },
-            title: {
-              display: true,
-              text: chartTitle,
-              position: titlePosition,
-            },
-          },
-          indexAxis: axis,
-          scales: {
-            y: {
-              min: minX,
-              max: maxX,
-            },
-          },
-        }}
+        options={option}
       />
     );
   }
@@ -179,24 +111,7 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={{
-          maintainAspectRatio: false,
-          responsive: true,
-          animation: {
-            duration: 1500,
-            easing: "easeInOutQuad",
-          },
-          plugins: {
-            legend: {
-              position: dataSetPosition,
-            },
-            title: {
-              display: true,
-              text: chartTitle,
-              position: titlePosition,
-            },
-          },
-        }}
+        options={option}
       />
     );
   }

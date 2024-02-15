@@ -12,9 +12,6 @@ const Template: StoryFn<ChartProps> = (args: ChartProps) => <Chart {...args} />;
 export const PieChart: StoryFn<ChartProps> = Template.bind({});
 PieChart.args = {
   chartType: "pie",
-  chartTitle: "House Holding Pie Chart",
-  titlePosition: "top",
-  dataSetPosition: "top",
   height: "400px",
   width: "400px",
   labels: ["Housing", "Transportation", "Food"],
@@ -31,13 +28,30 @@ PieChart.args = {
       hoverOffset: 4,
     },
   ],
+  option: {
+    maintainAspectRatio: false,
+    responsive: true,
+    animation: {
+      duration: 1500,
+      easing: "easeInOutQuad",
+    },
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "House Holding Pie Chart",
+        position: "top",
+      },
+    },
+  },
 };
 
 export const Doughnut: StoryFn<ChartProps> = Template.bind({});
 Doughnut.args = {
   ...PieChart.args,
   chartType: "doughnut",
-  chartTitle: "Doughnut Chart",
   labels: ["Red", "Blue", "Yellow"],
   datasets: [
     {
@@ -52,16 +66,19 @@ Doughnut.args = {
       borderWidth: 1,
     },
   ],
-  text: "donot",
+  option: {
+    ...PieChart.args.option,
+    plugins: {
+      ...PieChart?.args?.option?.plugins,
+      title: { ...PieChart?.args?.option?.plugins.title, text: "doughnut" },
+    },
+  },
 };
 
 export const BarChart: StoryFn<ChartProps> = Template.bind({});
 BarChart.args = {
   ...PieChart.args,
   chartType: "bar",
-  chartTitle: "Bar Chart",
-  minX: 0,
-  maxX: 100,
   labels: ["Red", "Blue", "Yellow", "Green", "Orange", "Purple"],
   datasets: [
     {
@@ -79,13 +96,26 @@ BarChart.args = {
       borderWidth: 1,
     },
   ],
+  option: {
+    ...PieChart.args.option,
+    plugins: {
+      ...PieChart.args?.option?.plugins,
+      title: { ...PieChart.args?.option?.plugins?.title, text: "Bar chart" },
+    },
+    indexAxis: "x",
+    scales: {
+      y: {
+        min: 0,
+        max: 100,
+      },
+    },
+  },
 };
 
 export const LineChart: StoryFn<ChartProps> = Template.bind({});
 LineChart.args = {
   ...PieChart.args,
   chartType: "line",
-  chartTitle: "line Chart",
   labels: ["Red", "Blue", "Yellow", "Green", "Orange", "Purple"],
   datasets: [
     {
@@ -104,4 +134,11 @@ LineChart.args = {
       borderWidth: 1,
     },
   ],
+  option: {
+    ...PieChart.args.option,
+    plugins: {
+      ...PieChart.args?.option?.plugins,
+      title: { ...PieChart.args?.option?.plugins.title, text: "Line chart" },
+    },
+  },
 };
