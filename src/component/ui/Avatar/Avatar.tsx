@@ -4,7 +4,7 @@ import Avatar from 'react-avatar';
 export interface avatarProps {
     name: string,
     round: boolean,
-    size: number,
+    size: string,
     src: string,
     maxInitials: number,
 }

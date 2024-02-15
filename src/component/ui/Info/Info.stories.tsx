@@ -30,12 +30,13 @@ export const Big: StoryFn<InfoProps> = Template.bind({});
 Big.args = {
     ...Default.args,
     title: "This is large icon",
-    size: 10,
+    size: '5',
     tooltipPosition: 'left'
 };
 
 function heroIcon({ title, color, size }: { title?: string; color?: string; size?: number }) {
+    const iconSize = size || 2;
     return (
-        <InformationCircleIcon title={title} color={color} className={`w-${size || 5} h-${size || 5}`} />
+        <InformationCircleIcon title={title} color={color} style={{ width: `${iconSize}rem`, height: `${iconSize}rem` }} />
     )
 }
