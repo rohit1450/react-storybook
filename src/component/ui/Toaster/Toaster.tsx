@@ -28,23 +28,26 @@ const Toaster: React.FC<ToasterProps> = ({ position, notifyText, button, type, a
         onClick && onClick(event);
         notify();
     };
+
     return (
         <div className='h-40'>
             <div>
                 <Button buttonType={buttonType} color={color} label={label} className={className} onClick={handleClick} />
             </div>
-            <ToastContainer
-                position={position}
-                autoClose={autoClose}
-                hideProgressBar={hideProgressBar}
-                newestOnTop={newestOnTop}
-                closeOnClick={closeOnClick}
-                rtl={rtl}
-                pauseOnFocusLoss={pauseOnFocusLoss}
-                draggable={draggable}
-                pauseOnHover={pauseOnHover}
-                theme={theme}
-            />
+            {type &&
+                <ToastContainer
+                    position={position}
+                    autoClose={autoClose}
+                    hideProgressBar={hideProgressBar}
+                    newestOnTop={newestOnTop}
+                    closeOnClick={closeOnClick}
+                    rtl={rtl}
+                    pauseOnFocusLoss={pauseOnFocusLoss}
+                    draggable={draggable}
+                    pauseOnHover={pauseOnHover}
+                    theme={theme}
+                />
+            }
 
         </div>
     )

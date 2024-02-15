@@ -1,6 +1,7 @@
 
 import { StoryFn } from '@storybook/react';
 import Card, { CardProps } from './Card';
+import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'components/ui/Card',
@@ -25,7 +26,8 @@ Default.args = {
         buttonType: 'primary',
         color: 'white',
         label: 'Button',
-        className: 'bg-purple'
+        className: 'bg-purple',
+        onClick: action('on-click'),
     },
     isButton: false,
 };

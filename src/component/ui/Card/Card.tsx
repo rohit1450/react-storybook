@@ -13,11 +13,10 @@ export interface CardProps {
     button: ButtonProps;
     isButton?: boolean,
     imgWidth?: string,
-    className?: string,
 }
 
-const Card: React.FC<CardProps> = ({ imageSrc, className, button, about, description, size, aboutFontSize, descriptionFontSize, imgHeight, isButton, imagePosition, imgWidth }) => {
-    const { buttonType, color, label } = button;
+const Card: React.FC<CardProps> = ({ imageSrc, button, about, description, size, aboutFontSize, descriptionFontSize, imgHeight, isButton, imagePosition, imgWidth }) => {
+    const { buttonType, color, label, className, onClick } = button;
     const getSizeClass = () => {
         switch (size) {
             case 'small':
@@ -95,7 +94,7 @@ const Card: React.FC<CardProps> = ({ imageSrc, className, button, about, descrip
             }
             {isButton === true &&
                 <div className='px-6 pb-4 pt-2'>
-                    <Button buttonType={buttonType} color={color} label={label} className={className || 'bg-purple'} />
+                    <Button buttonType={buttonType} onClick={onClick} color={color} label={label} className={className || 'bg-purple'} />
                 </div>
             }
         </div>
