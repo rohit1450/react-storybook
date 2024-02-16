@@ -1,8 +1,9 @@
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Fragment } from 'react'
+import { Fragment, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge';
 
-interface Solution {
+export interface Solution {
     name: string;
     description: string;
     href: string;
@@ -11,38 +12,43 @@ interface Solution {
 
 export interface PopoverProps {
     solutions: Solution[];
-    multiple?: boolean;
+    footerTitle?: string;
+    footerText?: string;
+    btnTitle?: ReactElement | string;
+    className?: string;
+    panelClass?: string;
+    arrowClass?: string;
 }
 
-const Pop: React.FC<PopoverProps> = ({ solutions }) => {
+const Pop: React.FC<PopoverProps> = ({ className, panelClass, arrowClass, solutions, footerTitle, footerText, btnTitle }) => {
     return (
-        <div className="py-16 sm:w-96 w-11/12 max-w-sm px-4">
+        <div className="sm:w-96 w-11/12 max-w-sm ">
             <Popover className="relative">
                 {({ open }) => (
                     <>
                         <Popover.Button
-                            className={`
+                            className={twMerge(`
                 ${open ? 'text-white' : 'text-white/90'}
-                group inline-flex items-center rounded-md bg-red px-3 py-2 text-base font-medium hover:text-white`}
+                group inline-flex items-center rounded-md bg-red px-3 py-2 text-base font-medium hover:text-white`, className)}
                         >
-                            <span>Solutions</span>
+                            <span>{btnTitle}</span>
                             <ChevronDownIcon
-                                className={`ml-2 h-5 w-5 transition duration-150 ease-in-out group-hover:text-orange-300/80`}
+                                className={twMerge(`ml-1 h-5 w-5`, arrowClass)}
                                 aria-hidden="true"
                             />
                         </Popover.Button>
                         <Transition
                             as={Fragment}
                             enter="transition ease-out duration-200"
-                            enterFrom="opacity-0 translate-y-1"
+                            enterFrom="opacity-0 translate-y-0"
                             enterTo="opacity-100 translate-y-0"
                             leave="transition ease-in duration-150"
                             leaveFrom="opacity-100 translate-y-0"
                             leaveTo="opacity-0 translate-y-1"
                         >
-                            <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-full max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
-                                <div className="overflow-hidden rounded-lg shadow-2xl ">
-                                    <div className="relative grid gap-8 bg-white p-7 ">
+                            <Popover.Panel className={twMerge("absolute left-1/2 z-10 mt-3 w-full max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl", panelClass)}>
+                                <div className="overflow-hidden rounded-lg shadow-2xl">
+                                    <div className="relative grid gap-8 bg-white p-7">
                                         {solutions.map((item) => (
                                             <a
                                                 key={item.name}
@@ -70,11 +76,11 @@ const Pop: React.FC<PopoverProps> = ({ solutions }) => {
                                         >
                                             <span className="flex items-center">
                                                 <span className="text-sm font-medium text-gray-900">
-                                                    Documentation
+                                                    {footerTitle}
                                                 </span>
                                             </span>
                                             <span className="block text-sm text-gray-500">
-                                                Start integrating products and tools
+                                                {footerText}
                                             </span>
                                         </a>
                                     </div>

@@ -23,6 +23,7 @@ Red.args = {
     title: "This is a red icon",
     icon: heroIcon,
     color: "red",
+    bgColor: "red",
     tooltipPosition: 'bottom'
 };
 
