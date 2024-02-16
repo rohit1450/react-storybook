@@ -1,10 +1,12 @@
 import React from "react";
-import { Tooltip } from "@material-tailwind/react";
+// import { Tooltip } from "@material-tailwind/react";
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap.css';
 
 export interface InfoProps {
     title: string;
     color?: string;
-    size?: number;
+    size?: string;
     icon?: React.ElementType;
     tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
 }
@@ -13,7 +15,7 @@ const Info: React.FC<InfoProps> = ({ icon: Icon, title, color, size, tooltipPosi
     return (
         <div>
             {Icon && (
-                <Tooltip content={title}
+                <Tooltip overlay={title}
                     placement={tooltipPosition}>
                     <button disabled>
                         <Icon color={color} size={size} />

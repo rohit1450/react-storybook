@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSProperties } from 'react';
 import Button, { ButtonProps } from '../Button/Button';
 export interface CardProps {
     size?: 'small' | 'medium' | 'large';
@@ -15,7 +16,7 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ imageSrc, button, about, description, size, aboutFontSize, descriptionFontSize, imgHeight, isButton, imagePosition, imgWidth }) => {
-    const { buttonType, color, label } = button;
+    const { buttonType, color, label, className, onClick } = button;
     const getSizeClass = () => {
         switch (size) {
             case 'small':
@@ -31,14 +32,14 @@ const Card: React.FC<CardProps> = ({ imageSrc, button, about, description, size,
         fontSize: aboutFontSize || '1.2rem',
         fontWeight: 'bold',
     });
-    const getDescriptionStyle = () => ({
+    const getDescriptionStyle = (): CSSProperties => ({
         fontSize: descriptionFontSize || '1rem',
         color: 'gray',
         textAlign: 'justify',
     });
 
-    const getContainerStyle = () => {
-        const baseStyle = {
+    const getContainerStyle = (): CSSProperties => {
+        const baseStyle: CSSProperties = {
             position: 'relative',
             width: '100%',
         };
@@ -74,7 +75,8 @@ const Card: React.FC<CardProps> = ({ imageSrc, button, about, description, size,
                 return baseStyle;
         }
     };
-    const getImageStyle = () => ({
+
+    const getImageStyle = (): CSSProperties => ({
         width: '100%',
         height: imgHeight || '16rem',
         objectFit: 'cover',
@@ -92,7 +94,7 @@ const Card: React.FC<CardProps> = ({ imageSrc, button, about, description, size,
             }
             {isButton === true &&
                 <div className='px-6 pb-4 pt-2'>
-                    <Button buttonType={buttonType} color={color} label={label} className='bg-purple' />
+                    <Button buttonType={buttonType} onClick={onClick} color={color} label={label} className={className || 'bg-purple'} />
                 </div>
             }
         </div>

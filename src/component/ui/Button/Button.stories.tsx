@@ -1,9 +1,13 @@
 import { Meta, StoryFn } from '@storybook/react';
 import Button, { ButtonProps } from './Button';
+import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'Components/ui/Button',
     component: Button,
+    args: {
+        onClick: action('on-click'),
+    },
     tags: ['autodocs'],
 } as Meta;
 
@@ -13,9 +17,11 @@ Primary.args = {
     buttonType: 'primary',
     label: 'Button',
     color: 'white',
+    className: ''
 };
 export const Secondary: StoryFn<ButtonProps> = Template.bind({});
 Secondary.args = {
+    ...Primary.args,
     buttonType: 'secondary',
     label: 'Button',
     color: 'black',
@@ -23,6 +29,7 @@ Secondary.args = {
 
 export const Disabled: StoryFn<ButtonProps> = Template.bind({});
 Disabled.args = {
+    ...Primary.args,
     buttonType: 'disabled',
     label: 'Button',
     color: 'white',
@@ -32,6 +39,7 @@ Disabled.args = {
 
 export const Loading: StoryFn<ButtonProps> = Template.bind({});
 Loading.args = {
+    ...Primary.args,
     buttonType: 'loading',
     label: 'Button',
     color: 'white',
