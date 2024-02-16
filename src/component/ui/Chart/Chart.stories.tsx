@@ -28,24 +28,8 @@ PieChart.args = {
       hoverOffset: 4,
     },
   ],
-  option: {
-    maintainAspectRatio: false,
-    responsive: true,
-    animation: {
-      duration: 1500,
-      easing: "easeInOutQuad",
-    },
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "House Holding Pie Chart",
-        position: "top",
-      },
-    },
-  },
+  customPosition: "top",
+  customText: "House holding",
 };
 
 export const Doughnut: StoryFn<ChartProps> = Template.bind({});
@@ -66,13 +50,15 @@ Doughnut.args = {
       borderWidth: 1,
     },
   ],
-  option: {
-    ...PieChart.args.option,
-    plugins: {
-      ...PieChart?.args?.option?.plugins,
-      title: { ...PieChart?.args?.option?.plugins.title, text: "doughnut" },
-    },
-  },
+  customPosition: "top",
+  customText: "Colors Data",
+  // option: {
+  //   ...PieChart.args.option,
+  //   plugins: {
+  //     ...PieChart.args?.option?.plugins,
+  //     title: { ...PieChart.args?.option?.plugins.title, text: "doughnut" },
+  //   },
+  // },
 };
 
 export const BarChart: StoryFn<ChartProps> = Template.bind({});
@@ -96,49 +82,65 @@ BarChart.args = {
       borderWidth: 1,
     },
   ],
-  option: {
-    ...PieChart.args.option,
-    plugins: {
-      ...PieChart.args?.option?.plugins,
-      title: { ...PieChart.args?.option?.plugins?.title, text: "Bar chart" },
-    },
-    indexAxis: "x",
-    scales: {
-      y: {
-        min: 0,
-        max: 100,
-      },
-    },
-  },
+  customPosition: "top",
+  customText: "Colors Data",
+  axis: "x",
+  // option: {
+  //   ...PieChart.args.option,
+  //   plugins: {
+  //     ...PieChart.args?.option?.plugins,
+  //     title: { ...PieChart.args?.option?.plugins?.title, text: "Bar chart" },
+  //   },
+  //   indexAxis: "x",
+  //   scales: {
+  //     y: {
+  //       min: 0,
+  //       max: 100,
+  //     },
+  //   },
+  // },
 };
 
 export const LineChart: StoryFn<ChartProps> = Template.bind({});
 LineChart.args = {
   ...PieChart.args,
   chartType: "line",
-  labels: ["Red", "Blue", "Yellow", "Green", "Orange", "Purple"],
+  labels: ["2003", "2005", "2008", "2010", "2015", "2020"],
   datasets: [
     {
-      fill: true,
-      label: "Area",
-      data: [77, 25, 88, 45, 60, 70],
-      backgroundColor: [
-        "rgb(255, 99, 132)",
-        "rgb(54, 162, 235)",
-        "rgb(255, 205, 86)",
-        "rgb(75, 192, 192)",
-        "rgb(153, 102, 255)",
-        "rgb(255, 159, 64)",
-      ],
+      label: "country 1",
+      fill: false,
+      data: [77, 25, 88, 45, 60, 95],
       hoverOffset: 4,
-      borderWidth: 1,
+      borderWidth: 3,
+      borderColor: "red",
+    },
+    {
+      label: "country 2",
+      fill: false,
+      data: [70, 43, 57, 31, 45, 63],
+      hoverOffset: 4,
+      borderWidth: 3,
+      borderColor: "blue",
     },
   ],
-  option: {
-    ...PieChart.args.option,
-    plugins: {
-      ...PieChart.args?.option?.plugins,
-      title: { ...PieChart.args?.option?.plugins.title, text: "Line chart" },
-    },
-  },
+  customPosition: "top",
+  customText: "Country Comparison",
+  min: 0,
+  max: 100,
+  axis: "x",
+  // option: {
+  //   ...PieChart.args.option,
+  //   plugins: {
+  //     ...PieChart.args?.option?.plugins,
+  //     title: { ...PieChart.args?.option?.plugins.title, text: "Line chart" },
+  //   },
+  //   indexAxis: "x",
+  //   scales: {
+  //     y: {
+  //       min: 0,
+  //       max: 100,
+  //     },
+  //   },
+  // },
 };
