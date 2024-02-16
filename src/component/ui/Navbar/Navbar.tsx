@@ -31,7 +31,7 @@ const Navbar: React.FC<NavProps> = ({ title, name, round, size, src, icon, maxIn
                     </span>
                     <a className="text-lg font-bold" href="#">{title}</a>
                 </div>
-                <ul className="flex space-x-5 mr-20">
+                <ul className="flex space-x-5 mr-36">
                     <li><a href="#" className="text-white">Sign Up</a></li>
                     <li><a href="#" className="text-white">Login</a></li>
                     <li className="absolute right-20">
