@@ -86,19 +86,19 @@ const Navbar: React.FC<NavProps> = ({
                 <div className="sm:hidden">
                     <button
                         onClick={toggleMenu}
-                        className=" focus:outline-none fixed right-10 top-9 text-black"
+                        className=" focus:outline-none fixed right-10 top-7 text-black"
                     >
                         ☰
                     </button>
                     {menuOpen && (
-                        <ul className={`bg-${bgColor} list-none absolute top-20 right-4 flex flex-col items-center space-y-2 bg-gray-800 p-4`}>
+                        <ul className={`bg-white shadow list-none absolute top-16 right-4 flex flex-col items-center space-y-2 bg-gray-800 p-4`}>
                             <li>
-                                <a href="#" className="text-white">
+                                <a href="#" className="text-black">
                                     Sign Up
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="text-white">
+                                <a href="#" className="text-black">
                                     Login
                                 </a>
                             </li>
