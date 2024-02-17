@@ -19,6 +19,7 @@ module.exports = {
       disable: "#DDDDDD",
       loaderBg: "rgb(209 213 219)",
       loader: "rgb(37 99 235)",
+      amber: "#ffbf00",
     },
     extend: {
       spacing: {
