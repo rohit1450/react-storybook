@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import Navbar, { NavProps } from './Navbar';
 import { BugAntIcon } from "@heroicons/react/20/solid";
+import { useState } from 'react';
 
 export default {
     title: 'Components/ui/Navbar',
@@ -8,7 +9,13 @@ export default {
     tags: ['autodocs'],
 } as Meta;
 
-const Template: StoryFn<NavProps> = (args: NavProps) => <Navbar {...args} />;
+const Template: StoryFn<NavProps> = (args: NavProps) => {
+    const [isOn, setIsOn] = useState<boolean>(false);
+    const handleToggle = () => {
+        setIsOn(!isOn);
+    };
+    return <Navbar {...args} isOn={isOn} onToggle={handleToggle} />;
+}
 
 export const Default: StoryFn<NavProps> = Template.bind({});
 Default.args = {
