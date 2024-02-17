@@ -26,6 +26,7 @@ Default.args = {
     theme: 'light',
     transition: 'Bounce',
     notifyText: "Wow! So easy",
+    classContainer: '',
     button: {
         buttonType: 'primary',
         color: 'white',

@@ -1,46 +1,124 @@
-import React, { ReactElement } from "react"
-import Avatar from "react-avatar";
+import React, { ReactElement, useState } from "react";
 import Pop, { Solution } from "../Popover/Popover";
+import Avatars from "../Avatar/Avatar";
 
 export interface NavProps {
     title: string;
     name: string;
-    round?: boolean;
-    size?: string;
-    src?: string;
+    round: boolean;
+    size: string;
+    src: string;
     maxInitials: number;
-    bgColor: string
+    bgColor: string;
     icon?: React.ReactNode;
     btnTitle: ReactElement;
     footerTitle?: string;
     footerText?: string;
     solutions: Solution[];
+    padding: string;
 }
 
-const Navbar: React.FC<NavProps> = ({ title, name, round, size, src, icon, maxInitials, bgColor, footerTitle, footerText, solutions }) => {
-    const btnTitle = <Avatar name={name} round={round} size={size} src={src} maxInitials={maxInitials} />
-    const className = `realtive bg-red/[0] flex focus-outline-none absolute right-20 text-opacity-0 hover:text-opacity-0 hover:shadow-none h-0 w-0 top-3 p-0 m-0 rounded-full shandow-none`
-    const panelClass = 'top-12 m-auto'
-    const arrowClass = 'h-0 w-0'
+const Navbar: React.FC<NavProps> = ({
+    title,
+    name,
+    round,
+    size,
+    src,
+    icon,
+    maxInitials,
+    bgColor,
+    footerTitle,
+    footerText,
+    solutions,
+    padding
+}) => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const btnTitle = (
+        <Avatars
+            name={name}
+            round={round}
+            size={size}
+            src={src}
+            maxInitials={maxInitials}
+        />
+    );
+
     return (
-        <div className='p-4 ' style={{ backgroundColor: `${bgColor}` }} >
-            <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
-                <div className="text-white flex space-x-2">
-                    <span className="h-8 w-8 text-white">
-                        {icon}
-                    </span>
-                    <a className="text-lg font-bold" href="#">{title}</a>
+        <div className={`p-${padding} px-14 mx-auto lg:w-full`} style={{ backgroundColor: `${bgColor}` }}>
+            <div className="container flex flex-col sm:flex-row items-center justify-between pr-6">
+                <div className="text-white flex items-center space-x-2">
+                    <span className="h-8 w-8 text-white">{icon}</span>
+                    <a className="text-lg font-bold" href="#">
+                        {title}
+                    </a>
                 </div>
-                <ul className="flex space-x-5 mr-36">
-                    <li><a href="#" className="text-white">Sign Up</a></li>
-                    <li><a href="#" className="text-white">Login</a></li>
-                    <li className="absolute right-20">
-                        <Pop solutions={solutions} footerTitle={footerTitle} footerText={footerText} btnTitle={btnTitle} className={className} panelClass={panelClass} arrowClass={arrowClass} />
-                    </li>
-                </ul>
+                <div className="hidden sm:flex items-center space-x-5 ml-auto">
+                    <ul className="absolute -right-60 flex items-center space-x-5 ml-auto">
+                        <li>
+                            <a href="#" className="text-white">
+                                Sign Up
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-white">
+                                Login
+                            </a>
+                        </li>
+                        <li>
+                            <Pop
+                                solutions={solutions}
+                                footerTitle={footerTitle}
+                                footerText={footerText}
+                                btnTitle={btnTitle}
+                                className="flex focus-outline-none relative h-0 w-0 p-0 m-0 px-0 py-0 rounded-full shadow-none"
+                                panelClass="absolute top-12 -left-40 m-auto"
+                                arrowClass="h-0 w-0 opacity-0"
+                            />
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="sm:hidden">
+                    <button
+                        onClick={toggleMenu}
+                        className=" focus:outline-none fixed right-10 top-9 text-black"
+                    >
+                        ☰
+                    </button>
+                    {menuOpen && (
+                        <ul className={`bg-${bgColor} list-none absolute top-20 right-4 flex flex-col items-center space-y-2 bg-gray-800 p-4`}>
+                            <li>
+                                <a href="#" className="text-white">
+                                    Sign Up
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="text-white">
+                                    Login
+                                </a>
+                            </li>
+                            <li>
+                                <Pop
+                                    solutions={solutions}
+                                    footerTitle={footerTitle}
+                                    footerText={footerText}
+                                    btnTitle={btnTitle}
+                                    className="flex focus-outline-none relative w-0 top-2 right-4  m-0 px-0 py-0 rounded-full shadow-none"
+                                    panelClass="h-60 w-80 absolute -top-20 -left-24 mr-auto"
+                                    arrowClass="h-0 w-0 opacity-0"
+                                />
+                            </li>
+                        </ul>
+                    )}
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

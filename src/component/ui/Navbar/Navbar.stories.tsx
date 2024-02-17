@@ -20,6 +20,7 @@ Default.args = {
     icon: Icon(),
     maxInitials: 2,
     bgColor: 'blue',
+    padding: '2',
     footerTitle: 'Documentation',
     footerText: 'Start integrating products and tools',
     solutions: [

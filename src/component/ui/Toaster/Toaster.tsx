@@ -2,6 +2,7 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button, { ButtonProps } from '../Button/Button';
+import { twMerge } from 'tailwind-merge';
 
 export interface ToasterProps {
     type: 'info' | 'success' | 'warning' | 'error' | 'default';
@@ -18,9 +19,10 @@ export interface ToasterProps {
     theme: 'light' | 'dark' | 'colored';
     transition: string;
     notifyText: string;
+    classContainer: string;
 }
 
-const Toaster: React.FC<ToasterProps> = ({ position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
+const Toaster: React.FC<ToasterProps> = ({ classContainer, position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
     pauseOnFocusLoss, draggable, pauseOnHover, theme }) => {
     const notify = () => toast(notifyText, { type });
     const getStyles = () => {
@@ -47,7 +49,7 @@ const Toaster: React.FC<ToasterProps> = ({ position, notifyText, button, type, a
     };
 
     return (
-        <div className='h-40'>
+        <div className={twMerge('h-40', classContainer)}>
             <div>
                 <Button buttonType={buttonType} color={color} label={label} className={buttonClassName} onClick={handleClick} />
             </div>
