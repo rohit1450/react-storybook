@@ -10,9 +10,12 @@ import {
   Filler,
   PointElement,
   LineElement,
+  scales,
 } from "chart.js";
+import { useRef } from "react";
+import "@storybook/addon-console";
 
-import { Pie, Doughnut, Bar, Line } from "react-chartjs-2";
+import { Pie, Doughnut, Bar, Line, getElementAtEvent } from "react-chartjs-2";
 
 ChartJS.register(
   ArcElement,
@@ -32,36 +35,21 @@ export interface ChartProps {
   height: string;
   width: string;
   labels: string[];
-  text?: string;
+  customText: string;
   datasets: {
     label: string;
     data: number[];
     backgroundColor?: string[];
-    borderColor?: string[];
+    borderColor?: string[] | string;
     borderWidth?: number;
     hoverOffset?: number;
     fill?: boolean;
   }[];
-  option: {
-    maintainAspectRatio: boolean;
-    responsive: boolean;
-    animation: {
-      duration: number;
-      easing: string;
-    };
-    plugins: {
-      legend: {
-        position: "top" | "bottom" | "left" | "right";
-      };
-      title: {
-        display: boolean;
-        text: string;
-        position: "top" | "bottom" | "left" | "right";
-      };
-    };
-    indexAxis?: "x" | "y";
-    scales?: {};
-  };
+  customPosition: string;
+  min?: number;
+  max?: number;
+  axis?: string;
+  onClick?: (event: MouseEvent) => void;
 }
 
 const Chart = ({
@@ -70,15 +58,62 @@ const Chart = ({
   datasets,
   height,
   width,
-  option,
+  customPosition,
+  customText,
+  min,
+  max,
+  axis,
 }: ChartProps) => {
+  const chartRef = useRef(null);
+
+  const handleData = (event: Event) => {
+    const requiredIndex: number | undefined = getElementAtEvent(
+      chartRef.current,
+      event
+    )[0]?.index;
+    if (requiredIndex !== undefined) {
+      console.log(
+        `country 2 year: ${labels[requiredIndex]} => ${datasets[1].data[requiredIndex]}%`
+      );
+      console.log(
+        `country 1 year: ${labels[requiredIndex]} => ${datasets[0].data[requiredIndex]}%`
+      );
+    }
+  };
+
+  const customOption: object = {
+    maintainAspectRatio: false,
+    responsive: true,
+    animation: {
+      duration: 1500,
+      easing: "easeInOutQuad",
+    },
+    plugins: {
+      legend: {
+        position: customPosition,
+      },
+      title: {
+        display: true,
+        text: customText,
+        position: customPosition,
+      },
+    },
+    indexAxis: axis,
+    scales: {
+      y: {
+        min,
+        max,
+      },
+    },
+  };
+
   if (chartType === "pie") {
     return (
       <Pie
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={option}
+        options={customOption}
       />
     );
   }
@@ -89,7 +124,7 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={option}
+        options={customOption}
       />
     );
   }
@@ -100,7 +135,7 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={option}
+        options={customOption}
       />
     );
   }
@@ -111,7 +146,9 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={option}
+        options={customOption}
+        ref={chartRef}
+        onClick={handleData}
       />
     );
   }

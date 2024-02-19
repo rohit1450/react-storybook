@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
@@ -19,6 +19,7 @@ export default {
       disable: "#DDDDDD",
       loaderBg: "rgb(209 213 219)",
       loader: "rgb(37 99 235)",
+      amber: "#ffbf00",
     },
     extend: {
       spacing: {
