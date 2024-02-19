@@ -13,10 +13,15 @@ export default {
 
 const Template: StoryFn<NavProps> = (args: NavProps) => {
     const [isOn, setIsOn] = useState<boolean>(false);
+    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+
     const handleToggle = () => {
         setIsOn(!isOn);
     };
-    return <Navbar {...args} isOn={isOn} onToggle={handleToggle} />;
+    const toggleOverlay = () => {
+        setIsOverlayOpen(!isOverlayOpen);
+    };
+    return <Navbar {...args} isOn={isOn} onToggle={handleToggle} isOverlayOpen={isOverlayOpen} toggleOverlay={toggleOverlay} />;
 }
 
 export const Default: StoryFn<NavProps> = Template.bind({});
@@ -31,10 +36,10 @@ Default.args = {
     signUpIcon: Signup(),
     maxInitials: 2,
     bgColor: 'blue',
-    padding: '2',
+    padding: '4',
     menuClass: '',
     smallScreenMenuClass: '',
-};
+}
 
 function Icon() {
     return (
