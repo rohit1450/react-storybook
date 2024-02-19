@@ -20,8 +20,8 @@ const Template: StoryFn<SwitchProps> = (args: SwitchProps) => {
 export const Default = Template.bind({});
 Default.args = {
     label: '',
-    containerSize: 'large',
-    thumbSize: 'large',
+    containerSize: 'small',
+    thumbSize: 'small',
     switchClass: '',
     thumbClass: '',
 };

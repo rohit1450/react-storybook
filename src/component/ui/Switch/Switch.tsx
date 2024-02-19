@@ -40,7 +40,7 @@ const Switch: React.FC<SwitchProps> = ({ isOn, onToggle, label, containerSize, t
             thumbSizeClass = 'w-[25px] h-[25px]';
             break;
         default:
-            thumbSizeClass = 'w-[0px] h-[4px]';
+            thumbSizeClass = 'w-[16px] h-[16px]';
     }
 
     return (

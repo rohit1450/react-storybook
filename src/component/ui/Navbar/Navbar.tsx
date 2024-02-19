@@ -1,7 +1,7 @@
-import React, { ReactElement, useState } from "react";
-import Pop, { Solution } from "../Popover/Popover";
+import React, { useEffect, useRef, useState } from "react";
 import Avatars from "../Avatar/Avatar";
 import Switch from "../Switch/Switch";
+import { twMerge } from "tailwind-merge";
 
 export interface NavProps {
     title: string;
@@ -12,13 +12,13 @@ export interface NavProps {
     maxInitials: number;
     bgColor: string;
     icon?: React.ReactNode;
-    btnTitle: ReactElement;
-    footerTitle?: string;
-    footerText?: string;
-    solutions: Solution[];
+    loginIcon?: React.ReactNode;
+    signUpIcon?: React.ReactNode;
     padding: string;
     onToggle: () => void;
     isOn: boolean;
+    menuClass: string;
+    smallScreenMenuClass: string;
     containerSize?: 'small' | 'medium' | 'large';
     thumbSize?: 'small' | 'medium' | 'large';
 }
@@ -30,14 +30,15 @@ const Navbar: React.FC<NavProps> = ({
     size,
     src,
     icon,
+    loginIcon,
+    signUpIcon,
     maxInitials,
     bgColor,
-    footerTitle,
-    footerText,
-    solutions,
     padding,
     containerSize,
     thumbSize,
+    menuClass,
+    smallScreenMenuClass,
     onToggle,
     isOn,
 }) => {
@@ -47,54 +48,71 @@ const Navbar: React.FC<NavProps> = ({
         setMenuOpen(!menuOpen);
     };
 
-    const btnTitle = (
-        <Avatars
-            name={name}
-            round={round}
-            size={size}
-            src={src}
-            maxInitials={maxInitials}
-        />
-    );
+    const overlayRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
+                toggleMenu();
+            }
+        };
 
+        window.addEventListener('mousedown', handleClickOutside);
 
+        return () => {
+            window.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [toggleMenu]);
     return (
-        <div className={`p-${padding} px-14 mx-auto lg:w-full `} style={{ backgroundColor: `${isOn ? 'black' : `${bgColor}`}` }}>
-            <div className="container flex flex-col sm:flex-row items-center justify-between pr-6">
+        <div className={`p-${padding} sm:px-14 px-4 mx-auto lg:w-full `} style={{ backgroundColor: `${isOn ? 'black' : `${bgColor}`}` }}>
+            <div className="container flex flex-col sm:flex-row justify-between pr-6">
                 <div className="text-white flex items-center space-x-2">
                     <span className="h-8 w-8 text-white">{icon}</span>
                     <a className="text-lg font-bold" href="#">
                         {title}
                     </a>
                 </div>
+                {menuOpen && (
+                    <div ref={overlayRef} className="hidden sm:flex">
+                        <ul className={twMerge(`${isOn ? 'bg-black' : 'bg-white'} shadow-2xl rounded-md list-none absolute top-20 right-20 flex flex-col p-4`, menuClass)}>
+                            <li>
+                                <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                    <span className="h-4 w-4">{signUpIcon}</span>
+                                    <span>
+                                        Sign Up
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                    <span className="h-4 w-4">{loginIcon}</span>
+                                    <span>Login</span>
+                                </a>
+                            </li>
 
-                <ul className=" absolute -right-60 hidden sm:flex  items-center space-x-5 ml-auto">
+                        </ul>
+                    </div>
+                )}
+                <ul className="hidden sm:flex items-center space-x-5">
                     <li>
                         <Switch isOn={isOn} onToggle={onToggle} switchClass={`mt-2 bg-white`} thumbClass={` ${isOn ? 'bg-black' : 'bg-warning/[0.8]'}`} thumbSize={thumbSize} containerSize={containerSize} />
                     </li>
                     <li>
-                        <a href="#" className="text-white">
-                            Sign Up
-                        </a>
+                        <button
+                            onClick={toggleMenu}
+                            className="focus:outline-none text-white"
+                        >
+                            <Avatars
+                                name={name}
+                                round={round}
+                                size={size}
+                                src={src}
+                                maxInitials={maxInitials}
+                            />
+                        </button>
                     </li>
-                    <li>
-                        <a href="#" className="text-white">
-                            Login
-                        </a>
-                    </li>
-                    <li>
-                        <Pop
-                            solutions={solutions}
-                            footerTitle={footerTitle}
-                            footerText={footerText}
-                            btnTitle={btnTitle}
-                            className="flex focus-outline-none absolute h-0 w-0 p-0 m-0 px-0 py-0 rounded-full shadow-none"
-                            panelClass={`absolute top-12 -left-40 rounded-lg m-auto ${isOn ? 'bg-black/[0.8] text-white' : 'bg-white text-black'}`}
-                            arrowClass="h-0 w-0 opacity-0"
-                        />
-                    </li>
-
                 </ul>
+
+
 
 
                 <div className="sm:hidden">
@@ -102,35 +120,40 @@ const Navbar: React.FC<NavProps> = ({
                         onClick={toggleMenu}
                         className=" focus:outline-none fixed right-10 top-7 text-white"
                     >
-                        ☰
+                        <Avatars
+                            name={name}
+                            round={round}
+                            size={size}
+                            src={src}
+                            maxInitials={maxInitials}
+                        />
                     </button>
                     {menuOpen && (
-                        <ul className={`${isOn ? 'bg-black' : 'bg-white'} shadow list-none absolute top-16 right-4 flex flex-col items-center space-y-2  p-4`}>
-                            <li>
-                                <Switch isOn={isOn} onToggle={onToggle} switchClass={`mt-2 ${isOn ? 'bg-white' : 'bg-gray/[0.2]'}`} thumbClass={`${isOn ? 'bg-black' : 'bg-warning/[0.8]'}`} thumbSize={thumbSize} containerSize={containerSize} />
-                            </li>
-                            <li>
-                                <a href="#" className={`${isOn ? 'text-white' : 'text-black'}`}>
-                                    Sign Up
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className={`${isOn ? 'text-white' : 'text-black'}`}>
-                                    Login
-                                </a>
-                            </li>
-                            <li>
-                                <Pop
-                                    solutions={solutions}
-                                    footerTitle={footerTitle}
-                                    footerText={footerText}
-                                    btnTitle={btnTitle}
-                                    className="flex focus-outline-none relative w-0 top-2 right-4  m-0 px-0 py-0 rounded-full shadow-none"
-                                    panelClass={`h-auto w-auto absolute -top-20 -left-12  mr-auto ${isOn ? 'bg-black text-white' : 'bg-white text-black'} `}
-                                    arrowClass="h-0 w-0 opacity-0"
-                                />
-                            </li>
-                        </ul>
+                        <div ref={overlayRef}>
+
+                            <ul className={twMerge(`${isOn ? 'bg-black' : 'bg-white'} shadow-2xl rounded-md list-none absolute top-16 right-4 flex flex-col items-left space-y-2 p-4`, smallScreenMenuClass)}>
+                                <div className="flex justify-center">
+                                    <li>
+                                        <Switch isOn={isOn} onToggle={onToggle} switchClass={`mt-2 ${isOn ? 'bg-white' : 'bg-gray/[0.2]'}`} thumbClass={`${isOn ? 'bg-black' : 'bg-warning/[0.8]'}`} thumbSize={thumbSize} containerSize={containerSize} />
+                                    </li>
+                                </div>
+                                <li>
+                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                        <span className="h-4 w-4">{signUpIcon}</span>
+                                        <span>
+                                            Sign Up
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                        <span className="h-4 w-4 pl-0">{loginIcon}</span>
+                                        <span>Login</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
                     )}
                 </div>
             </div>
