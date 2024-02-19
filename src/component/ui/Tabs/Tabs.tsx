@@ -8,7 +8,7 @@ interface Post {
     shareCount: number;
 }
 
-interface Categories {
+export interface Categories {
     Recent: Post[];
     Popular: Post[];
     Trending: Post[];

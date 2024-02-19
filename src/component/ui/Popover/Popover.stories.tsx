@@ -31,7 +31,13 @@ Default.args = {
             href: '##',
             icon: IconThree,
         },
-    ]
+    ],
+    btnTitle: 'PopOver',
+    footerTitle: "Documentation",
+    footerText: "Start integrating products and tools",
+    className: '',
+    panelClass: '',
+    arrowClass: '',
 };
 
 
