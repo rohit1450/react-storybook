@@ -1,5 +1,5 @@
 import { Bars3Icon, ChartBarIcon } from '@heroicons/react/20/solid';
-import React, { useState, useEffect, ReactElement, useRef } from 'react';
+import React, { useState, useEffect, ReactElement, useRef, Children } from 'react';
 
 interface Post {
     title: string,
@@ -37,9 +37,10 @@ export interface SidebarProps {
     colorPrimary: string,
     isOverlayOpen: boolean;
     toggleOverlay: () => void;
+    children: ReactElement;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, width, iconSize, textWidth, imgURL, imgHeight, imgWidth, colorPrimary }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, width, iconSize, textWidth, imgURL, imgHeight, imgWidth, colorPrimary, children }) => {
     const overlayRef = useRef<HTMLDivElement>(null);
     const [isTablet, setIsTablet] = useState<boolean>(false);
 
@@ -73,11 +74,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, 
 
 
     return (
-        <div className='w-30 min-h-screen'>
+        <div className=''>
             {!isOverlayOpen &&
                 <button
                     onClick={toggleOverlay}
-                    className="inline-flex items-center p-2 mt-2 ms-3  text-gray rounded-lg sm:hidden ">
+                    className="inline-flex items-center p-2 mt-2 ms-3 text-gray rounded-lg sm:hidden ">
                     <Bars3Icon className='w-10 h-10 text-black' />
                 </button>
             }
@@ -90,10 +91,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, 
                                 <a href={page.link}>
                                     <div className='w-full mb-2 flex flex-col items-center '>
                                         {/* <ImportIcon iconName={page.icon} /> */}
-                                        <div className=' text-gray' style={{ width: iconSize, height: iconSize }} >
+                                        <div className=' text-white' style={{ width: iconSize, height: iconSize }} >
                                             {page.icon}
                                         </div>
-                                        <p className="text-gray" style={{ fontSize: textWidth }}>{page.title} </p>
+                                        <p className="text-white" style={{ fontSize: textWidth }}>{page.title} </p>
                                     </div>
                                 </a>
                             </li>
@@ -101,7 +102,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, 
                     </ul>
                 </div>
             </div>}
-            <footer className="fixed bottom-5 bg-black z-10 w-full ">
+            {children}
+            <footer className={`fixed bottom-0 bg-black z-10 w-full -ml-4 ${isOverlayOpen && 'opacity-30 sm:opacity-100'}`}>
                 <div className="flex justify-center">
                     <p className="text-gray py-3">All rights reserved.</p>
                 </div>
