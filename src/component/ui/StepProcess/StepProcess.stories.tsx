@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import StepProcess, { stepProcessProps } from "./StepProcess";
-import detailComponent from "./ProcessComponent";
+
 import {
   UserCircleIcon,
   UserPlusIcon,
@@ -13,6 +13,24 @@ export default {
   tags: ["autodocs"],
 } as Meta;
 
+const detailComponents = [
+  {
+    heading: "Start Payment",
+    content:
+      "Welcome to our payment process! Before we proceed, let's ensure everything in your cart is accurate. Take a moment to review your selected items, quantities, and prices. Once you're satisfied, click the Proceed to Payment button below to initiate the secure transaction process.",
+  },
+  {
+    heading: "Process Payment",
+    content:
+      "Thank you for proceeding with the payment. We are currently processing your transaction securely. This might take a few moments, so please be patient. Rest assured, your payment details are safe with us. Once the process is complete, you'll be notified of the status.",
+  },
+  {
+    heading: "Finished Payment",
+    content:
+      " Congratulations on successfully completing your payment! We're delighted to confirm that your transaction has been processed securely. You will receive an email confirmation shortly, detailing your purchase. Thank you for choosing us!",
+  },
+];
+
 const Template: StoryFn<stepProcessProps> = (args: stepProcessProps) => (
   <StepProcess {...args} />
 );
@@ -24,8 +42,12 @@ Default.args = {
   lineColor: "blue",
   hasIcons: false,
   lineThickness: "1px",
-  detailComponent,
   vertical: false,
+  measure: "2rem",
+  detailComponents,
+  headingSize: "1.1rem",
+  contentSize: "14px",
+  stepSize: "1.1rem",
 };
 
 export const StepperIcon: StoryFn<stepProcessProps> = (
@@ -41,5 +63,4 @@ export const StepperIcon: StoryFn<stepProcessProps> = (
 StepperIcon.args = {
   ...Default.args,
   hasIcons: true,
-  detailComponent,
 };
