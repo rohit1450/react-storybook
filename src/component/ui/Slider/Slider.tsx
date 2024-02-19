@@ -40,7 +40,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, value, onChange, defaultValue
                 value={value}
                 defaultValue={defaultValue}
                 onChange={(e) => onChange(Number(e.target.value))}
-                className={`slider-thumb appearance-none ${size === 'large' && 'w-full h-${height}'} ${bigTheme === true && `w-${width} h-2`} w-${width} h-${height} outline-none rounded-full`}
+                className={`slider-thumb appearance-none ${size === 'large' && `w-full h-${height}`} ${bigTheme === true && `w-${width} h-2`} w-${width} h-${height} outline-none rounded-full`}
                 style={{ background: gradientColor, accentColor: color }}
             />
             <span>{value}</span>

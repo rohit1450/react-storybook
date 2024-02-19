@@ -2,6 +2,7 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button, { ButtonProps } from '../Button/Button';
+import { twMerge } from 'tailwind-merge';
 
 export interface ToasterProps {
     type: 'info' | 'success' | 'warning' | 'error' | 'default';
@@ -18,21 +19,39 @@ export interface ToasterProps {
     theme: 'light' | 'dark' | 'colored';
     transition: string;
     notifyText: string;
+    classContainer: string;
 }
 
-const Toaster: React.FC<ToasterProps> = ({ position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
+const Toaster: React.FC<ToasterProps> = ({ classContainer, position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
     pauseOnFocusLoss, draggable, pauseOnHover, theme }) => {
     const notify = () => toast(notifyText, { type });
-    const { buttonType, color, label, className, onClick } = button;
+    const getStyles = () => {
+        switch (type) {
+            case 'info':
+                return 'bg-Primary text-white';
+            case 'error':
+                return 'bg-danger text-white';
+            case 'success':
+                return 'bg-success text-white';
+            case 'warning':
+                return 'bg-warning text-black hover:text-white';
+            case 'default':
+                return 'bg-secondary text-white';
+            default:
+                return 'bg-red text-white';
+        }
+    };
+    const { buttonType, color, label, onClick } = button;
+    const buttonClassName = getStyles();
     const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         onClick && onClick(event);
         notify();
     };
 
     return (
-        <div className='h-40'>
+        <div className={twMerge('h-40', classContainer)}>
             <div>
-                <Button buttonType={buttonType} color={color} label={label} className={className} onClick={handleClick} />
+                <Button buttonType={buttonType} color={color} label={label} className={buttonClassName} onClick={handleClick} />
             </div>
             {type &&
                 <ToastContainer
