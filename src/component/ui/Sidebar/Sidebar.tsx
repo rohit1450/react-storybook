@@ -72,9 +72,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, 
     }, [toggleOverlay]);
 
 
-    console.log(isOverlayOpen, isTablet);
-
-
     return (
         <div className='w-30 min-h-screen'>
             {!isOverlayOpen &&
@@ -104,7 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, toggleOverlay, pages, 
                     </ul>
                 </div>
             </div>}
-            <footer className="fixed bottom-5 bg-black z-10 w-full   ">
+            <footer className="fixed bottom-5 bg-black z-10 w-full ">
                 <div className="flex justify-center">
                     <p className="text-gray py-3">All rights reserved.</p>
                 </div>
