@@ -46,5 +46,3 @@ const detailComponent = [
   <ProcessComponentTwo />,
   <ProcessComponentThree />,
 ];
-
-export default detailComponent;
