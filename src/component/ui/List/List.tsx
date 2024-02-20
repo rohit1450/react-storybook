@@ -6,23 +6,23 @@ import {
   ChevronUpIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
+import "@storybook/addon-console";
 
 interface Person {
   id: number;
   name: string;
   unavailable: boolean;
+  icon: React.ReactNode;
 }
 
 export interface ListProps {
   people: Person[];
   multiple?: boolean;
-  icons?: React.ReactNode[];
+  labelIcon?: boolean;
 }
 
-const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
-  const [selected, setSelected] = useState<Person | Person[]>(
-    multiple ? [] : []
-  );
+const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
+  const [selected, setSelected] = useState<Person | Person[]>([]);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -38,6 +38,8 @@ const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
       }
     });
   };
+
+  console.log("selected", selected);
 
   return (
     <div className="py-16 w-11/12 sm:w-96">
@@ -58,14 +60,15 @@ const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
             }}
           >
             <span className="block">
+              {!multiple && labelIcon && <span>{selected.icon}</span>}
               {multiple && (selected as Person[]).length > 0
-                ? (selected as Person[]).map((person, i) => (
+                ? (selected as Person[]).map((person) => (
                     <span
                       key={person.id}
                       className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2"
                     >
                       <span className="flex items-center">
-                        {selected && icons[i]}
+                        {labelIcon && person.icon}
                         {person.name}
                         <button
                           onClick={(e) => {
@@ -115,6 +118,7 @@ const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
                       <span
                         className={`block truncate ${selected ? "font-medium" : "font-normal"}`}
                       >
+                        {labelIcon && person.icon}
                         {person.name}
                       </span>
                       {selected ? (

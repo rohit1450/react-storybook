@@ -52,13 +52,6 @@ Doughnut.args = {
   ],
   customPosition: "top",
   customText: "Colors Data",
-  // option: {
-  //   ...PieChart.args.option,
-  //   plugins: {
-  //     ...PieChart.args?.option?.plugins,
-  //     title: { ...PieChart.args?.option?.plugins.title, text: "doughnut" },
-  //   },
-  // },
 };
 
 export const BarChart: StoryFn<ChartProps> = Template.bind({});
@@ -85,20 +78,6 @@ BarChart.args = {
   customPosition: "top",
   customText: "Colors Data",
   axis: "x",
-  // option: {
-  //   ...PieChart.args.option,
-  //   plugins: {
-  //     ...PieChart.args?.option?.plugins,
-  //     title: { ...PieChart.args?.option?.plugins?.title, text: "Bar chart" },
-  //   },
-  //   indexAxis: "x",
-  //   scales: {
-  //     y: {
-  //       min: 0,
-  //       max: 100,
-  //     },
-  //   },
-  // },
 };
 
 export const LineChart: StoryFn<ChartProps> = Template.bind({});
@@ -129,18 +108,4 @@ LineChart.args = {
   min: 0,
   max: 100,
   axis: "x",
-  // option: {
-  //   ...PieChart.args.option,
-  //   plugins: {
-  //     ...PieChart.args?.option?.plugins,
-  //     title: { ...PieChart.args?.option?.plugins.title, text: "Line chart" },
-  //   },
-  //   indexAxis: "x",
-  //   scales: {
-  //     y: {
-  //       min: 0,
-  //       max: 100,
-  //     },
-  //   },
-  // },
 };
