@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
@@ -30,6 +30,8 @@ module.exports = {
         100: "20rem",
         128: "25rem",
         144: "36rem",
+        "2p": "2px",
+        "1p": "1px",
       },
     },
   },

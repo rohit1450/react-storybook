@@ -31,7 +31,10 @@ const Progress = ({
         )}
         <div
           className="bg-white relative h-4 w-full rounded-2xl border-2 border-black"
-          style={{ height: `${height}`, width: `${sizeWidth}%` }}
+          style={{
+            height: `${height || "1rem"}`,
+            width: `${sizeWidth || 100}%`,
+          }}
         >
           <div
             className={`absolute top-0 left-0 h-full rounded-2xl bg-${progressColor}`}

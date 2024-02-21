@@ -14,7 +14,6 @@ const meta: Meta<typeof List> = {
   component: List,
   tags: ["autodocs"],
 };
-
 export default meta;
 
 export const Single: StoryFn<ListProps> = (args: ListProps) => (
@@ -23,27 +22,56 @@ export const Single: StoryFn<ListProps> = (args: ListProps) => (
 
 Single.args = {
   people: [
-    { id: 1, name: "Durward Reynolds", unavailable: false },
-    { id: 2, name: "Kenton Towne", unavailable: false },
-    { id: 3, name: "Therese Wunsch", unavailable: false },
-    { id: 4, name: "Benedict Kessler", unavailable: false },
-    { id: 5, name: "Katelyn Rohan", unavailable: false },
+    {
+      id: 1,
+      name: `Durward Reynolds`,
+      unavailable: false,
+      icon: <UserCircleIcon className="h-4 w-4 inline-block me-1" />,
+    },
+    {
+      id: 2,
+      name: "Kenton Towne",
+      unavailable: false,
+      icon: <UserPlusIcon className="h-4 w-4 inline-block me-1" />,
+    },
+    {
+      id: 3,
+      name: "Therese Wunsch",
+      unavailable: false,
+      icon: <UserMinusIcon className="h-4 w-4 inline-block me-1" />,
+    },
+    {
+      id: 4,
+      name: "Benedict Kessler",
+      unavailable: false,
+      icon: <UserCircleIcon className="h-4 w-4 inline-block me-1" />,
+    },
+    {
+      id: 5,
+      name: "Katelyn Rohan",
+      unavailable: false,
+      icon: <RocketLaunchIcon className="h-4 w-4 inline-block me-1" />,
+    },
   ],
+  labelIcon: false,
 };
 
 export const Multiple: StoryFn<ListProps> = (args: ListProps) => {
   const [multiple] = useState(true);
-  const icons = [
-    <UserCircleIcon className="h-4 w-4" />,
-    <UserPlusIcon className="h-4 w-4" />,
-    <UserMinusIcon className="h-4 w-4" />,
-    <RocketLaunchIcon className="h-4 w-4" />,
-    <UserCircleIcon className="h-4 w-4" />,
-  ];
 
-  return <List {...args} multiple={multiple} icons={icons} />;
+  return <List {...args} multiple={multiple} />;
 };
 
 Multiple.args = {
   ...Single.args,
+};
+
+export const MultipleIcon: StoryFn<ListProps> = (args: ListProps) => {
+  const [multiple] = useState(true);
+  return <List {...args} multiple={multiple} />;
+};
+
+MultipleIcon.args = {
+  ...Single.args,
+  labelIcon: true,
 };
