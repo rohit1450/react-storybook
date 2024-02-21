@@ -1,5 +1,5 @@
 
-import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import React, { useState, useEffect, ReactElement, useRef } from 'react';
 
 interface Sub {
