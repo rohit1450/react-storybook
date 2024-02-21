@@ -1,14 +1,19 @@
 import React, { useState } from "react"
 import Sidebar, { SidebarProps } from "../Sidebar/Sidebar";
 import Navbar, { NavProps } from "../Navbar/Navbar";
-import Dashboard from "../Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
 
 export interface webProps {
     sideBar: SidebarProps;
     nav: NavProps;
+    heading: string;
+    content: string;
+    iconSize: string;
+    width: string;
+    onToggle: () => void
 }
 
-const Webpage: React.FC<webProps> = ({ sideBar, nav }) => {
+const Webpage: React.FC<webProps> = ({ sideBar, nav, heading, content, iconSize = '25px', width }) => {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [isOn, setIsOn] = useState<boolean>(false);
 
@@ -20,8 +25,17 @@ const Webpage: React.FC<webProps> = ({ sideBar, nav }) => {
         setIsOverlayOpen(!isOverlayOpen);
     };
 
-    const { width, imgURL, colorPrimary, imgWidth, imgHeight, textWidth, iconSize, pages } = sideBar;
+    const { imgURL, colorPrimary, imgWidth, imgHeight, textWidth, pages, children } = sideBar;
     const { title, name, round, size, src, loginIcon, signUpIcon, maxInitials, bgColor, padding, menuClass, smallScreenMenuClass } = nav;
+
+
+    // useEffect(() => {
+    //     if (isOverlayOpen) {
+    //         document.body.classList.add('overflow-hidden')
+    //     } else (
+    //         document.body.classList.remove('overflow-hidden')
+    //     )
+    // }, [isOverlayOpen])
 
     return (
         <>
@@ -57,11 +71,21 @@ const Webpage: React.FC<webProps> = ({ sideBar, nav }) => {
                     isOverlayOpen={isOverlayOpen}
                     toggleOverlay={toggleOverlay}
                 >
-                    <div className="flex items-center absolute top-20 left-40 text-justify w-96">
-                        <Dashboard />
+                    <div className={`sm:pl-12 pt-16 w-full ${isOverlayOpen && 'opacity-50 sm:opacity-90'}`}>
+                        {children}
+                        {pages.map((page, index) => (
+                            <div key={index}>
+                                {page.link === '/dashboard' &&
+                                    <Dashboard
+                                        heading={heading}
+                                        content={content}
+                                    />
+                                }
+                            </div>
+                        ))}
                     </div>
-                </Sidebar>
-            </div>
+                </Sidebar >
+            </div >
         </>
     )
 }
