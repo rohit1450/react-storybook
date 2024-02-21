@@ -32,7 +32,7 @@ Single.args = {
       id: 2,
       name: "Kenton Towne",
       unavailable: false,
-      icon: <UserPlusIcon className="h-4 w-4 inline-block me-1 " />,
+      icon: <UserPlusIcon className="h-4 w-4 inline-block me-1" />,
     },
     {
       id: 3,

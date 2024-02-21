@@ -39,8 +39,6 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
     });
   };
 
-  console.log("selected", selected);
-
   return (
     <div className="py-16 w-11/12 sm:w-96">
       <Listbox
@@ -53,14 +51,16 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
       >
         <div className="relative mt-1">
           <Listbox.Button
-            className="relative p-2 w-full rounded-lg py-2 pl-3 pr-10 text-left shadow-md border border-gray hover:border-blue-prime sm:text-sm"
+            className="flex items-center relative p-2 w-full rounded-lg py-2 pl-3 pr-10 text-left shadow-md border border-gray hover:border-blue-prime sm:text-sm"
             onClick={handleOpen}
             onFocus={() => {
               multiple && setOpen(false);
             }}
           >
+            {!multiple && labelIcon && (
+              <span className={`mb-2p`}>{selected.icon}</span>
+            )}
             <span className="block">
-              {!multiple && labelIcon && <span>{selected.icon}</span>}
               {multiple && (selected as Person[]).length > 0
                 ? (selected as Person[]).map((person) => (
                     <span
@@ -115,12 +115,12 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
                 >
                   {({ selected }) => (
                     <>
-                      <span
-                        className={`block truncate ${selected ? "font-medium" : "font-normal"}`}
+                      <div
+                        className={`flex items-center truncate ${selected ? "font-medium" : "font-normal"}`}
                       >
-                        {labelIcon && person.icon}
-                        {person.name}
-                      </span>
+                        <div>{labelIcon && person.icon}</div>
+                        <div>{person.name}</div>
+                      </div>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
