@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
-import "@storybook/addon-console";
 
 export interface TablePaginationProps {
   dataSet: {
