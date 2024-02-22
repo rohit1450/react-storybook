@@ -20,6 +20,7 @@ export default {
       gray: "#b3b5b5",
       "gray-dark": "#7d8282",
       "grey-light": "rgba(46,52,56,0.1)",
+      tableGray: "#C2C2C2",
       disable: "#DDDDDD",
       loaderBg: "rgb(209 213 219)",
       loader: "rgb(37 99 235)",
