@@ -3,9 +3,6 @@ import Sidebar, { SidebarProps } from "../Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import Navbar, { NavProps } from "../Navbar/Navbar";
 import Dashboard from "../Dashboard/Dashboard";
-import AboutUs from "../AboutUs/AboutUs";
-import Services from "../Services/Services";
-import Contact from "../ContactUs/ContactUs";
 
 export interface webProps {
     sideBar: SidebarProps;
@@ -19,14 +16,14 @@ export interface webProps {
     toggleOverlay: () => void;
 }
 
-const Webpage: React.FC<webProps> = ({ sideBar, nav, heading, content, iconSize = '25px', width, isOn, onToggle }) => {
+const Webpage: React.FC<webProps> = ({ sideBar, nav, heading, content, iconSize = '18px', isOn, onToggle }) => {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
     const toggleOverlay = () => {
         setIsOverlayOpen(!isOverlayOpen);
     };
 
-    const { imgURL, imgWidth, imgHeight, textWidth, pages, children } = sideBar;
+    const { imgURL, imgWidth, imgHeight, textWidth, pages, width, children } = sideBar;
     const { title, name, round, size, src, loginIcon, signUpIcon, maxInitials, bgColor, padding, menuClass, smallScreenMenuClass } = nav;
 
 
@@ -77,7 +74,7 @@ const Webpage: React.FC<webProps> = ({ sideBar, nav, heading, content, iconSize 
                     <div className={`pt-16 w-full  ${isOverlayOpen && 'opacity-50 sm:opacity-90'}`}>
                         {children}
 
-                        <div className={`sm:pl-12 w-full  ${isOverlayOpen && 'opacity-50 sm:opacity-90'}`}>
+                        <div className={`sm:pl-60 w-full  ${isOverlayOpen && 'opacity-50 sm:opacity-90'}`}>
                             <Routes>
                                 <Route
                                     path="/dashboard"
@@ -87,30 +84,21 @@ const Webpage: React.FC<webProps> = ({ sideBar, nav, heading, content, iconSize 
                                         dashClass={`${isOn === true && 'bg-gray-dark text-white'}`}
                                     />}
                                 />
-                                <Route
-                                    path="/about"
-                                    element={<AboutUs
-                                        heading='About Us'
-                                        content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id neque auctor tellus mattis accumsan.Curabitur vestibulum mauris sit amet velit fermentum consequat.Vivamus vehicula eu felis vitae dictum.'
-                                        aboutClass={`${isOn === true && 'bg-gray-dark text-white'}`}
-                                    />}
-                                />
+
                                 <Route
                                     path="/services"
-                                    element={<Services
-                                        heading='Our Services'
-                                        service1='Lorem ipsum dolor sit amet'
-                                        service2='Consectetur adipiscing elit'
-                                        service3='Aenean id neque auctor tellus mattis accumsan'
-                                        servClass={`${isOn === true && 'bg-gray-dark text-white'}`}
+                                    element={<Dashboard
+                                        heading='Services page'
+                                        content={content}
+                                        dashClass={`${isOn === true && 'bg-gray-dark text-white'}`}
                                     />}
                                 />
                                 <Route
                                     path="/contact"
-                                    element={<Contact
-                                        heading='Contact Us'
-                                        content='If you have any questions or inquiries, please feel free to contact us using the information below:'
-                                        contactClass={`${isOn === true && 'bg-gray-dark text-white'}`}
+                                    element={<Dashboard
+                                        heading='Contact page'
+                                        content={content}
+                                        dashClass={`${isOn === true && 'bg-gray-dark text-white'}`}
                                     />}
                                 />
 

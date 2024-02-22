@@ -32,7 +32,7 @@ const Template: StoryFn<SidebarProps> = (args: SidebarProps) => {
 export const Primary = Template.bind({});
 
 Primary.args = {
-    width: "",
+    width: "200px",
     imgURL: "https://w7.pngwing.com/pngs/925/348/png-transparent-logo-online-and-offline-e-online-design-text-logo-online-and-offline.png",
     imgWidth: "80px",
     imgHeight: "50px",

@@ -34,7 +34,6 @@ const Navbar: React.FC<NavProps> = ({
     src,
     icon,
     loginIcon,
-    signUpIcon,
     maxInitials,
     bgColor,
     padding,
@@ -89,7 +88,7 @@ const Navbar: React.FC<NavProps> = ({
                         <button
                             onClick={toggleOverlay}
                             className="inline-flex items-center text-gray rounded-lg sm:hidden ">
-                            <Bars3Icon className={`w-8 h-8 ${isOn ? 'text-white' : 'text-black'}`} />
+                            <Bars3Icon className={`w-6 h-6 ${isOn ? 'text-white' : 'text-black'}`} />
                         </button>
 
                         <span className="h-8 w-8 text-white">{icon}</span>
@@ -102,16 +101,17 @@ const Navbar: React.FC<NavProps> = ({
                             <ul className={twMerge(`${isOn ? 'bg-black' : 'bg-white'} shadow-2xl rounded-md list-none absolute top-16 right-6 flex flex-col p-4`, menuClass)}>
                                 <li>
                                     <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
-                                        <span className="h-4 w-4">{signUpIcon}</span>
+                                        {/* <span className="h-4 w-4">{signUpIcon}</span> */}
                                         <span>
-                                            Sign Up
+                                            Account
                                         </span>
                                     </a>
                                 </li>
+
                                 <li>
-                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                    <a href="#" className={` border border-gray border-b-0 border-r-0 border-l-0 mt-2 font-semibold pt-2 ${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
                                         <span className="h-4 w-4">{loginIcon}</span>
-                                        <span>Login</span>
+                                        <span>Log out</span>
                                     </a>
                                 </li>
 
@@ -161,16 +161,16 @@ const Navbar: React.FC<NavProps> = ({
                                     </div>
                                     <li>
                                         <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
-                                            <span className="h-4 w-4">{signUpIcon}</span>
+                                            {/* <span className="h-4 w-4">{signUpIcon}</span> */}
                                             <span>
-                                                Sign Up
+                                                Account
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                        <a href="#" className={` border border-gray border-b-0 border-r-0 border-l-0 mt-2 font-semibold ${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
                                             <span className="h-4 w-4 pl-0">{loginIcon}</span>
-                                            <span>Login</span>
+                                            <span>Log out</span>
                                         </a>
                                     </li>
 
