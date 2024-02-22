@@ -16,4 +16,5 @@ Default.args = {
     service1: 'Lorem ipsum dolor sit amet',
     service2: 'Consectetur adipiscing elit',
     service3: 'Aenean id neque auctor tellus mattis accumsan',
+    servClass: '',
 };

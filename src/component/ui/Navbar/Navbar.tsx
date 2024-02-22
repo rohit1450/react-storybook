@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Avatars from "../Avatar/Avatar";
 import Switch from "../Switch/Switch";
 import { twMerge } from "tailwind-merge";
@@ -48,9 +48,9 @@ const Navbar: React.FC<NavProps> = ({
     toggleOverlay,
 }) => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
+    const toggleMenu = useCallback(() => {
+        setMenuOpen((prevMenuOpen) => !prevMenuOpen);
+    }, [])
 
     const overlayRef = useRef<HTMLDivElement>(null);
     useEffect(() => {

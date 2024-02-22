@@ -15,4 +15,5 @@ export const Default = Template.bind({});
 Default.args = {
     heading: 'About Us',
     content: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id neque auctor tellus mattis accumsan.Curabitur vestibulum mauris sit amet velit fermentum consequat.Vivamus vehicula eu felis vitae dictum.',
+    aboutClass: '',
 };

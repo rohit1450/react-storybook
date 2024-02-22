@@ -13,5 +13,6 @@ const Template: StoryFn<contactProps> = (args: contactProps) => <Contact {...arg
 export const Default = Template.bind({});
 Default.args = {
     heading: 'Contact Us',
-    content: ' If you have any questions or inquiries, please feel free to contact us using the information below:'
+    content: ' If you have any questions or inquiries, please feel free to contact us using the information below:',
+    contactClass: ''
 };

@@ -2,7 +2,9 @@
 import { StoryFn, Meta } from '@storybook/react';
 import Webpage, { webProps } from './Webpage';
 import { UserPlusIcon } from '@heroicons/react/16/solid';
-import { DevicePhoneMobileIcon, ServerIcon, Squares2X2Icon, UserIcon } from '@heroicons/react/20/solid';
+import { BookOpenIcon, DevicePhoneMobileIcon, ServerIcon, Squares2X2Icon, UserGroupIcon, UserIcon } from '@heroicons/react/20/solid';
+import { useState } from 'react';
+
 
 export default {
     title: 'Components/ui/Webpage',
@@ -10,7 +12,13 @@ export default {
     tags: ['autodocs'],
 } as Meta;
 
-const Template: StoryFn<webProps> = (args) => <Webpage {...args} />;
+const Template: StoryFn<webProps> = (args) => {
+    const [isOn, setIsOn] = useState<boolean>(false);
+    const handleToggle = () => {
+        setIsOn(!isOn);
+    };
+    return <Webpage {...args} isOn={isOn} onToggle={handleToggle} />;
+}
 
 export const Default = Template.bind({});
 Default.args = {
@@ -31,45 +39,39 @@ Default.args = {
         padding: '4',
         menuClass: '',
         smallScreenMenuClass: '',
+        isOn: false,
         onToggle: () => { },
+        toggleOverlay: () => { },
+        isOverlayOpen: false,
     },
     sideBar: {
         width: "",
         imgURL: "https://w7.pngwing.com/pngs/925/348/png-transparent-logo-online-and-offline-e-online-design-text-logo-online-and-offline.png",
-        colorPrimary: "gray",
         imgWidth: "80px",
         imgHeight: "50px",
         textWidth: "15px",
         iconSize: "50px",
+        containerClass: '',
         pages: [
             {
                 title: 'Dashboard',
                 link: '/dashboard',
-                sub: [
-                    {
-                        title: 'Sub1',
-                        link: '#',
-                    },
-                    {
-                        title: 'Sub2',
-                        link: '#sublink2',
-                    },
-                ],
                 icon: <Squares2X2Icon />,
             },
             {
                 title: 'About us',
-                link: '/about',
+                link: '#',
                 sub: [
                     {
                         title: 'edu',
-                        link: '#',
+                        link: '/about',
+                        icon: <BookOpenIcon />,
 
                     },
                     {
                         title: 'family',
-                        link: '#',
-
+                        link: '/about',
+                        icon: <UserGroupIcon />,
                     },
                 ],
                 icon: <UserIcon />
@@ -77,9 +79,6 @@ Default.args = {
             {
                 title: 'Services',
                 link: '/services',
-                sub: [
-
-                ],
                 icon: <ServerIcon />
             },
             {
@@ -89,6 +88,7 @@ Default.args = {
             },
 
         ],
+        toggleOverlay: () => { },
     },
 };
 
