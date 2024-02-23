@@ -40,6 +40,9 @@ Primary.args = {
     iconSize: "30px",
     containerClass: '',
     childClass: '',
+    logoClass: '',
+    parentListClass: '',
+    childListClass: '',
     pages: [
         {
             title: 'Dashboard',

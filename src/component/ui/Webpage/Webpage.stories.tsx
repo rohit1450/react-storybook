@@ -34,7 +34,7 @@ Default.args = {
         loginIcon: <UserIcon />,
         signUpIcon: <UserPlusIcon />,
         maxInitials: 2,
-        bgColor: 'gray',
+        bgColor: '#0078d4',
         padding: '4',
         menuClass: '',
         smallScreenMenuClass: '',
@@ -45,12 +45,12 @@ Default.args = {
     },
     sideBar: {
         width: "250px",
-        imgURL: "https://w7.pngwing.com/pngs/925/348/png-transparent-logo-online-and-offline-e-online-design-text-logo-online-and-offline.png",
+        imgURL: "",
         imgWidth: "60px",
         imgHeight: "50px",
         textWidth: "16px",
         iconSize: "20px",
-        containerClass: '',
+        containerClass: 'bg-Primary',
         pages: [
             {
                 title: 'Dashboard',
@@ -62,14 +62,14 @@ Default.args = {
                 link: '#',
                 sub: [
                     {
-                        title: 'edu',
-                        link: '/about',
+                        title: 'Edu',
+                        link: '/aboutEdu',
                         icon: <BookOpenIcon />,
 
                     },
                     {
-                        title: 'family',
-                        link: '/about',
+                        title: 'Family',
+                        link: '/aboutFamily',
                         icon: <UserGroupIcon />,
                     },
                 ],

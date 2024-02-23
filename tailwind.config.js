@@ -9,6 +9,7 @@ module.exports = {
       warning: "#ffc107",
       danger: "#dc3545",
       black: "#000000",
+      "black-light": "#121413",
       blue: "#2a6a75",
       "blue-light": "#4299e1",
       "blue-light2": "#a5d4d0",

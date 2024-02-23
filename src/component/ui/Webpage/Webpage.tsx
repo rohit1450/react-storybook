@@ -70,16 +70,35 @@ const Webpage: React.FC<webProps> = ({ sideBar, nav, heading, content, iconSize 
                     toggleOverlay={toggleOverlay}
                     containerClass={`${isOn === true && 'bg-black'}`}
                     childClass={`${isOn === true && 'bg-gray-dark'}`}
+                    // logoClass={`${isOn === true && 'bg-black-light'}`}
+                    parentListClass={`${isOn === true && 'hover:bg-gray-dark'}`}
+                    childListClass={`${isOn === true && 'hover:bg-black'}`}
                 >
-                    <div className={`pt-16 w-full  ${isOverlayOpen && 'opacity-50 sm:opacity-90'}`}>
+                    <div className={`sm:min-w-100  ${isOverlayOpen === true ? 'opacity-50 sm:opacity-90 mt-16' : 'mt-16'}`}>
                         {children}
 
-                        <div className={`sm:pl-60 w-full  ${isOverlayOpen && 'opacity-50 sm:opacity-90'}`}>
+                        <div className={` w-min-100 sm:mr-4 ${isOverlayOpen === true ? 'opacity-50 sm:opacity-100 sm:ml-64' : 'sm:ml-64'}`}>
                             <Routes>
                                 <Route
                                     path="/dashboard"
                                     element={<Dashboard
                                         heading={heading}
+                                        content={content}
+                                        dashClass={`${isOn === true && 'bg-gray-dark text-white'}`}
+                                    />}
+                                />
+                                <Route
+                                    path="/aboutEdu"
+                                    element={<Dashboard
+                                        heading='About Education'
+                                        content={content}
+                                        dashClass={`${isOn === true && 'bg-gray-dark text-white'}`}
+                                    />}
+                                />
+                                <Route
+                                    path="/aboutFamily"
+                                    element={<Dashboard
+                                        heading='About Family'
                                         content={content}
                                         dashClass={`${isOn === true && 'bg-gray-dark text-white'}`}
                                     />}
