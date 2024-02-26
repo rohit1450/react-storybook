@@ -73,11 +73,11 @@ const Accordion = ({
               <h5 className={`text-sm md:text-base`}>{faq.header}</h5>
               <div>
                 {active === faq.id ? (
-                  <span className="inline-block h-6 w-6 rotate-180 transition-all duration-300">
+                  <span className="inline-block h-6 w-6 -rotate-180 transition-all duration-500">
                     {icons}
                   </span>
                 ) : (
-                  <span className="inline-block h-6 w-6 transition-all duration-300">
+                  <span className="inline-block h-6 w-6 transition-all duration-500">
                     {icons}
                   </span>
                 )}
@@ -87,7 +87,7 @@ const Accordion = ({
               className={`${active === faq.id ? " max-h-40" : "max-h-0"} overflow-hidden transition-[max-height] duration-500 ease-in`}
             >
               <div className={`${contentActive} px-4 py-2`}>
-                <h5 className="text-base md:text-md">{faq.content.heading}</h5>
+                <h5 className="text-base md:text-md">{faq?.content.heading}</h5>
                 <p className={`text-xs md:text-sm`}>
                   {faq.content?.description}
                 </p>
