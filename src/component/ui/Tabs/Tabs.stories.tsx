@@ -5,6 +5,11 @@ export default {
     title: 'Components/ui/Tabs',
     component: Tabs,
     tags: ['autodocs'],
+    argTypes: {
+        categories: {
+            description: "An object consist of heading and object woth content for tabs"
+        }
+    }
 } as Meta;
 
 const Template: StoryFn<TabsProps> = (args: TabsProps) => <Tabs {...args} />;

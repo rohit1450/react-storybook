@@ -6,6 +6,29 @@ export default {
     title: 'Components/ui/PopOver',
     component: Pop,
     tags: ['autodocs'],
+    argTypes: {
+        solutions: {
+            description: "An array of object containing list of content and icon for popover"
+        },
+        footerTitle: {
+            description: "Defines title of the footer of the popover"
+        },
+        footerText: {
+            description: "Defines content of the footer of popover"
+        },
+        btnTitle: {
+            description: "Defines text for button to open popover"
+        },
+        className: {
+            description: "Custom classname for tailwind merge"
+        },
+        panelClass: {
+            description: "Custom classname for tailwind merge"
+        },
+        arrowClass: {
+            description: "Custom classname for tailwind merge"
+        },
+    }
 } as Meta;
 
 const Template: StoryFn<PopoverProps> = (args: PopoverProps) => <Pop {...args} />;

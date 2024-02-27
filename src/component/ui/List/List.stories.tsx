@@ -13,6 +13,18 @@ const meta: Meta<typeof List> = {
   title: "Components/ui/List",
   component: List,
   tags: ["autodocs"],
+  argTypes: {
+    people: {
+      description:
+        "An array of object contains people information to be rendered on list",
+    },
+    labelIcon: {
+      description: "Boolean to specify need of icons",
+    },
+    multiple: {
+      description: "Boolean value to select multiple people in list",
+    },
+  },
 };
 export default meta;
 

@@ -8,6 +8,26 @@ export default {
     className: ''
   },
   tags: ["autodocs"],
+  argTypes: {
+    type: {
+      description: "Defines the type of the inputbox"
+    },
+    placeholder: {
+      description: "Defines placehodler text for inputbox"
+    },
+    className: {
+      description: "Custom class for tailwind merge"
+    },
+    src: {
+      description: "Source of the image for image type input"
+    },
+    height: {
+      description: "Defines height of the inputbox"
+    },
+    width: {
+      description: "Defines iwdth of the inputbox"
+    },
+  }
 } as Meta;
 
 const Template: StoryFn<InputProps> = (args: InputProps) => <Input {...args} />;

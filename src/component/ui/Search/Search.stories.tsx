@@ -6,6 +6,11 @@ const meta: Meta<typeof Search> = {
     title: 'Components/ui/Search',
     component: Search,
     tags: ['autodocs'],
+    argTypes: {
+        people: {
+            description: "An array of object for list of search"
+        }
+    }
 };
 
 export default meta;

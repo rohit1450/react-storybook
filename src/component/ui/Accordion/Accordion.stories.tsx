@@ -6,6 +6,27 @@ export default {
   title: "Components/ui/Accordion",
   component: Accordion,
   tags: ["autodocs"],
+  argTypes: {
+    accordionTitle: {
+      description: "Title of the accordion",
+    },
+    headingColor: {
+      description: "Color of heading",
+    },
+    faqs: {
+      description: "An array of object contains heading and content of faqs",
+    },
+    icons: {
+      description: "Icon for the accordion",
+    },
+    opened: {
+      description:
+        "An object containing required and number for particular accordion to be opened by default",
+    },
+    gap: {
+      description: "Apply gap of 1rem into accordion",
+    },
+  },
 } as Meta;
 
 const faqs = [

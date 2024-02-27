@@ -6,6 +6,17 @@ export default {
     title: 'Components/ui/Contact',
     component: Contact,
     tags: ['autodocs'],
+    argTypes: {
+        heading: {
+            description: "Defines heading of the section"
+        },
+        content: {
+            description: "Define content of the section"
+        },
+        contactClass: {
+            description: "Custom class for tailwind merge"
+        },
+    }
 };
 
 const Template: StoryFn<contactProps> = (args: contactProps) => <Contact {...args} />;

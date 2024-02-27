@@ -6,6 +6,50 @@ export default {
     title: 'Components/ui/Toaster',
     component: Toaster,
     tags: ['autodocs'],
+    argTypes: {
+        type: {
+            description: "Defines type of toaster"
+        },
+        position: {
+            description: "Defines position of toaster"
+        },
+        theme: {
+            description: "Defines theme of toaster"
+        },
+        notifyText: {
+            description: "Defines text render inside toaster"
+        },
+        autoClose: {
+            description: "Defines time in ms to autoclose"
+        },
+        hideProgressBar: {
+            description: "Boolean value to hide progress bar inside toaster"
+        },
+        transition: {
+            description: "Defines transition for toaster"
+        },
+        rtl: {
+            description: "Boolean value to rtl"
+        },
+        pauseOnFocusLoss: {
+            description: "Boolean value to stop toaster on hover"
+        },
+        button: {
+            description: "Button props"
+        },
+        newestOnTop: {
+            description: "Boolean value to render new toaster on top"
+        },
+        classContainer: {
+            description: "Custom classname for tailwind merge"
+        },
+        pauseOnHover: {
+            description: "Boolean value to pause toaster on hover"
+        },
+        closeOnClick: {
+            description: "Boolean value to close toaster on click"
+        },
+    }
 } as Meta;
 
 
