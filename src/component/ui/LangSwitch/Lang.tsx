@@ -1,7 +1,7 @@
 import React from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
-import Select, { StylesConfig, defaultTheme } from 'react-select';
+import Select, { StylesConfig, defaultTheme, GetOptionLabel } from 'react-select';
 import english from '../../../assets/english.png';
 import arabic from '../../../assets/arabic.png';
 
@@ -24,7 +24,7 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
     const { t } = useTranslation();
 
     const [selectedLanguage, setSelectedLanguage] = React.useState<Option | null>(null);
-    
+
     const languages: Option[] = [
         { label: 'English', value: 'en', switch: { src: english } },
         { label: 'Arabic', value: 'ar', switch: { src: arabic } },
@@ -74,23 +74,26 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
         },
     });
 
-    const getOptionLabel = (option: Option) => (
+    type GetOptionLabel<Option> = (option: Option) => JSX.Element;
+
+    const getOptionLabel: GetOptionLabel<Option> = (option: Option) => (
         <div className='flex items-center'>
             <img className='w-7 h-7 mr-2' src={option.switch.src} alt={option.label} />
-            {/* <span>{option.label}</span> */}
         </div>
     );
 
     return (
         <div>
-            <Select
-                value={selectedLanguage}
-                onChange={changeLanguage}
-                options={languages}
-                styles={customStyles}
-                theme={customTheme}
-                getOptionLabel={getOptionLabel}
-            />
+            <div className='inline-block'>
+                <Select
+                    value={selectedLanguage}
+                    onChange={changeLanguage}
+                    options={languages}
+                    styles={customStyles}
+                    theme={customTheme}
+                    getOptionLabel={getOptionLabel}
+                />
+            </div>
             <h1 className='text-2xl py-3 font-semibold text-blue-light underline'>{t('Language Changer')}</h1>
             {solutions.map((solution, index) => (
                 <div key={index} className='my-5 flex justify-start items-center gap-5'>
