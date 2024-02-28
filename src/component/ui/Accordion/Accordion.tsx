@@ -16,7 +16,7 @@ export interface accordionProps {
     require: boolean;
     id: number;
   };
-  icons: React.ReactNode;
+  icons: React.ElementType;
 }
 
 type faq = {
@@ -31,7 +31,7 @@ type faq = {
 const Accordion = ({
   accordionTitle,
   faqs,
-  icons,
+  icons: IconOne,
   opened,
   gap,
   headingColor,
@@ -73,11 +73,11 @@ const Accordion = ({
               <div>
                 {active === faq.id ? (
                   <span className="inline-block h-6 w-6 -rotate-180 transition-all duration-500">
-                    {icons}
+                    <IconOne />
                   </span>
                 ) : (
                   <span className="inline-block h-6 w-6 transition-all duration-500">
-                    {icons}
+                    <IconOne />
                   </span>
                 )}
               </div>

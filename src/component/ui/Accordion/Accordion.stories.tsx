@@ -76,7 +76,7 @@ export const Default: StoryFn<accordionProps> = Template.bind({});
 Default.args = {
   accordionTitle: "react accordion",
   faqs,
-  icons: <ChevronDownIcon />,
+  icons: IconOne,
   gap: true,
   headingColor: "Primary",
 };
@@ -89,3 +89,8 @@ OpenedDefault.args = {
     id: 3,
   },
 };
+
+function IconOne() {
+  return <ChevronDownIcon className="h-5 w-5" />;
+}
+

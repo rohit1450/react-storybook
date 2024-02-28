@@ -50,8 +50,8 @@ Small.args = {
   size: "small",
   dotColor: "red",
   arrowIcon: {
-    left: <ArrowLeftCircleIcon />,
-    right: <ArrowRightCircleIcon />,
+    left: IconOne,
+    right: IconTwe
   },
   fullWidth: false,
   hasDot: true,
@@ -68,3 +68,11 @@ Large.args = {
   ...Small.args,
   size: "large",
 };
+
+function IconOne(){
+  return <ArrowLeftCircleIcon />
+}
+
+function IconTwe(){
+  return <ArrowRightCircleIcon />
+}

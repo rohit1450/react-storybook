@@ -38,31 +38,31 @@ Single.args = {
       id: 1,
       name: `Durward Reynolds`,
       unavailable: false,
-      icon: <UserCircleIcon className="h-4 w-4 inline-block me-1" />,
+      icon: IconOne,
     },
     {
       id: 2,
       name: "Kenton Towne",
       unavailable: false,
-      icon: <UserPlusIcon className="h-4 w-4 inline-block me-1" />,
+      icon: IconTwo,
     },
     {
       id: 3,
       name: "Therese Wunsch",
       unavailable: false,
-      icon: <UserMinusIcon className="h-4 w-4 inline-block me-1" />,
+      icon: IconThree,
     },
     {
       id: 4,
       name: "Benedict Kessler",
       unavailable: false,
-      icon: <UserCircleIcon className="h-4 w-4 inline-block me-1" />,
+      icon: IconFour,
     },
     {
       id: 5,
       name: "Katelyn Rohan",
       unavailable: false,
-      icon: <RocketLaunchIcon className="h-4 w-4 inline-block me-1" />,
+      icon: IconFive,
     },
   ],
   labelIcon: false,
@@ -87,3 +87,19 @@ MultipleIcon.args = {
   ...Single.args,
   labelIcon: true,
 };
+
+function IconOne(){
+  return <UserCircleIcon className="h-4 w-4 inline-block me-1" />
+}
+function IconTwo(){
+  return <UserPlusIcon className="h-4 w-4 inline-block me-1" />
+}
+function IconThree(){
+  return <UserMinusIcon className="h-4 w-4 inline-block me-1" />
+}
+function IconFour(){
+  return <UserCircleIcon className="h-4 w-4 inline-block me-1" />
+}
+function IconFive(){
+  return <RocketLaunchIcon className="h-4 w-4 inline-block me-1" />
+}

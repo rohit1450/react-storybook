@@ -12,7 +12,7 @@ interface Person {
   id: number;
   name: string;
   unavailable: boolean;
-  icon: React.ReactNode;
+  icon: React.ElementType;
 }
 
 export interface ListProps {
@@ -58,7 +58,7 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
             }}
           >
             {!multiple && labelIcon && (
-              <span className={`mb-2p`}>{selected.icon}</span>
+              <span className={`mb-2p`}><selected.icon /></span>
             )}
             <span className="block">
               {multiple && (selected as Person[]).length > 0
@@ -68,7 +68,7 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
                       className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2"
                     >
                       <span className="flex items-center">
-                        {labelIcon && person.icon}
+                        {labelIcon && <person.icon />}
                         {person.name}
                         <button
                           onClick={(e) => {
@@ -118,7 +118,7 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
                       <div
                         className={`flex items-center truncate ${selected ? "font-medium" : "font-normal"}`}
                       >
-                        <div>{labelIcon && person.icon}</div>
+                        <div>{labelIcon && <person.icon />}</div>
                         <div>{person.name}</div>
                       </div>
                       {selected ? (
