@@ -15,6 +15,7 @@ interface Option {
     label: string;
     value: string;
     switch: { src: string };
+    locale: string;
 }
 
 export interface LangProps {
@@ -28,8 +29,8 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
     const [open, setOpen] = React.useState(false);
 
     const languages: Option[] = [
-        { label: 'En', value: 'en', switch: { src: english } },
-        { label: 'Ar', value: 'ar', switch: { src: arabic } },
+        { label: 'En', value: 'en', switch: { src: english }, locale: 'en-US' },
+        { label: 'Ar', value: 'ar', switch: { src: arabic }, locale: 'ar-SA' },
     ];
 
     React.useEffect(() => {
@@ -48,8 +49,6 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
         }
     };
 
-    console.log(selectedLanguage?.label);
-    
     return (
         <div>
             <div className='inline-block'>
@@ -71,6 +70,7 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
                             <Menu.Item key={index}>
                                 {({ active }) => (
                                     <button
+                                        type="button"
                                         className={`${active ? 'bg-blue-light text-white' : ''} group flex items-center w-full px-1 py-1 text-base`}
                                         onClick={() => changeLanguage(language)}
                                     >
