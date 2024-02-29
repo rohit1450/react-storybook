@@ -12,9 +12,9 @@ export interface NavProps {
     src: string;
     maxInitials: number;
     bgColor: string;
-    icon?: React.ReactNode;
-    loginIcon?: React.ReactNode;
-    signUpIcon?: React.ReactNode;
+    icon?: React.ReactElement;
+    loginIcon?: React.ReactElement;
+    signUpIcon?: React.ReactElement;
     padding: string;
     onToggle: () => void;
     toggleOverlay: () => void;

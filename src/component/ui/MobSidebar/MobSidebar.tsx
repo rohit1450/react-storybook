@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 export interface MobSidebarProps {
   isOpen: boolean;
@@ -7,24 +7,8 @@ export interface MobSidebarProps {
 
 export const MobSidebar: React.FC<MobSidebarProps> = ({ isOpen, toggleMenu }) => {
   
-  const overlayRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
-        toggleMenu();
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [toggleMenu]);
-
   return (
-    <nav className="container h-screen bg-secondary" ref={overlayRef}>
+    <nav className="container h-screen bg-secondary">
       <div className="px-5 py-4 flex justify-between items-center bg-Primary">
         <div className="flex items-center">
           <a href="/" className="text-white text-2xl font-bold">Logo</a>
