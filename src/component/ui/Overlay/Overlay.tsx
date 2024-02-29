@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 
 export interface OverlayProps {
@@ -33,23 +32,28 @@ const Overlay: React.FC<OverlayProps> = ({ isOverlayOpen, toggleOverlay, size, c
                 <div>
                     <h1>{content1}</h1>
                 </div>
-                {!isOverlayOpen && (
-                    <button className="absolute right-4 p-2" onClick={toggleOverlay}>
+                {!isOverlayOpen ? (
+                    <button
+                        type='button'
+                        className="absolute right-4 top-1/3 p-2"
+                        onClick={toggleOverlay}>
                         {Icon1 && <Icon1 size={size} />}
-                    </button>)}
+                    </button>
+                ) : null}
             </div>
-            {
-                isOverlayOpen && (
-                    <div className="shadow-lg h-full w-1/2 p-10 fixed right-0" ref={overlayRef} >
-                        <h2>{content2}</h2>
-                        <button className="absolute p-2 -left-7 top-1/2 transform -translate-y-1/2" onClick={toggleOverlay}>
-                            {Icon2 && <Icon2 size={size} />}
-                        </button>
-                    </div>
-                )
-            }
+            <div className={`shadow-lg h-full w-1/2 p-10 fixed right-0 ${isOverlayOpen ? 'open' : 'hidden close'}`}
+             ref={overlayRef}>
+                <h2>{content2}</h2>
+                <button
+                    type='button'
+                    className="absolute p-2 -left-7 top-1/2 transform -translate-y-1/2"
+                    onClick={toggleOverlay}>
+                    {Icon2 && <Icon2 size={size} />}
+                </button>
+            </div>
         </div>
     );
+    
 };
 
 export default Overlay;
