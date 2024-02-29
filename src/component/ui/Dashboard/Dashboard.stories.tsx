@@ -5,6 +5,18 @@ import Dashboard, { dashProps } from './Dashboard';
 export default {
     title: 'Components/ui/Dashboard',
     component: Dashboard,
+    tags: ['autodocs'],
+    argTypes: {
+        heading: {
+            description: "Defines heading of the section"
+        },
+        content: {
+            description: "Defines content text of the section"
+        },
+        dashClass: {
+            description: "Custom class for tailwind merge"
+        },
+    }
 };
 
 const Template: StoryFn<dashProps> = (args: dashProps) => <Dashboard {...args} />;

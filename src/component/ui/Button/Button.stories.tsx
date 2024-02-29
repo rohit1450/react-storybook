@@ -28,6 +28,9 @@ export default {
         className: {
             description: "Custom class for tailwind merge"
         },
+        onClick: {
+            description: "Defines on click event for button"
+        }
     }
 } as Meta;
 

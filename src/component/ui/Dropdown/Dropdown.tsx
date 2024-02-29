@@ -12,16 +12,16 @@ interface Person {
   id: number;
   name: string;
   unavailable: boolean;
-  icon: React.ElementType;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-export interface ListProps {
+export interface DropdownProps {
   people: Person[];
   multiple?: boolean;
   labelIcon?: boolean;
 }
 
-const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
+const Dropdown: React.FC<DropdownProps> = ({ people, multiple, labelIcon }) => {
   const [selected, setSelected] = useState<Person | Person[]>([]);
   const [open, setOpen] = useState(false);
 
@@ -57,9 +57,7 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
               multiple && setOpen(false);
             }}
           >
-            {!multiple && labelIcon && (
-              <span className={`mb-2p`}><selected.icon /></span>
-            )}
+            {labelIcon && !Array.isArray(selected) && selected.icon && <selected.icon />}
             <span className="block">
               {multiple && (selected as Person[]).length > 0
                 ? (selected as Person[]).map((person) => (
@@ -118,7 +116,7 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
                       <div
                         className={`flex items-center truncate ${selected ? "font-medium" : "font-normal"}`}
                       >
-                        <div>{labelIcon && <person.icon />}</div>
+                        <div>{labelIcon && person.icon && <person.icon />}</div>
                         <div>{person.name}</div>
                       </div>
                       {selected ? (
@@ -138,4 +136,4 @@ const List: React.FC<ListProps> = ({ people, multiple, labelIcon }) => {
   );
 };
 
-export default List;
+export default Dropdown;

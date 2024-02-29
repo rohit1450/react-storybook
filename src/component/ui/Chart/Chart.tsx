@@ -10,7 +10,6 @@ import {
   Filler,
   PointElement,
   LineElement,
-  scales,
 } from "chart.js";
 import { useRef } from "react";
 import "@storybook/addon-console";

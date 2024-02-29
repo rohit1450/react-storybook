@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/react";
-import List, { ListProps } from "./List";
+import Dropdown , {DropdownProps} from "./Dropdown";
 import { useState } from "react";
 
 import {
@@ -9,9 +9,9 @@ import {
   RocketLaunchIcon,
 } from "@heroicons/react/24/outline";
 
-const meta: Meta<typeof List> = {
+const meta: Meta<typeof Dropdown> = {
   title: "Components/ui/List",
-  component: List,
+  component: Dropdown,
   tags: ["autodocs"],
   argTypes: {
     people: {
@@ -28,8 +28,8 @@ const meta: Meta<typeof List> = {
 };
 export default meta;
 
-export const Single: StoryFn<ListProps> = (args: ListProps) => (
-  <List {...args} />
+export const Single: StoryFn<DropdownProps> = (args: DropdownProps) => (
+  <Dropdown {...args} />
 );
 
 Single.args = {
@@ -68,19 +68,19 @@ Single.args = {
   labelIcon: false,
 };
 
-export const Multiple: StoryFn<ListProps> = (args: ListProps) => {
+export const Multiple: StoryFn<DropdownProps> = (args: DropdownProps) => {
   const [multiple] = useState(true);
 
-  return <List {...args} multiple={multiple} />;
+  return <Dropdown {...args} multiple={multiple} />;
 };
 
 Multiple.args = {
   ...Single.args,
 };
 
-export const MultipleIcon: StoryFn<ListProps> = (args: ListProps) => {
+export const MultipleIcon: StoryFn<DropdownProps> = (args: DropdownProps) => {
   const [multiple] = useState(true);
-  return <List {...args} multiple={multiple} />;
+  return <Dropdown {...args} multiple={multiple} />;
 };
 
 MultipleIcon.args = {
@@ -103,3 +103,5 @@ function IconFour(){
 function IconFive(){
   return <RocketLaunchIcon className="h-4 w-4 inline-block me-1" />
 }
+
+

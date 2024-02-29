@@ -11,10 +11,10 @@ export default {
             description: "Button props for button"
         },
         handleOpen: {
-            description: "Handle open function"
+            description: "Handle open function for modal to open"
         },
         handleClose: {
-            description: "Handle close function"
+            description: "Handle close function to close modal"
         },
         initialIsOpen: {
             description: "Boolean value to initial open modal"

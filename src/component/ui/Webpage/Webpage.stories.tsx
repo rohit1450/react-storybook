@@ -10,6 +10,17 @@ export default {
     title: 'Components/ui/Webpage',
     component: Webpage,
     tags: ['autodocs'],
+    argTypes: {
+        sideBar: { description: "Props for the sidebar component" },
+        nav: { description: "Props for the navbar component" },
+        heading: { description: "Heading/title of the webpage" },
+        content: { description: "Main content of the webpage" },
+        iconSize: { description: "Size of the icons in the sidebar" },
+        width: { description: "Width of the sidebar" },
+        onToggle: { description: "Event handler for toggling the sidebar" },
+        isOn: { description: "Boolean value indicating whether the sidebar is on" },
+        toggleOverlay: { description: "Event handler for toggling the overlay" },
+    },
 } as Meta;
 
 const Template: StoryFn<webProps> = (args) => {
@@ -32,8 +43,8 @@ Default.args = {
         round: true,
         size: '30',
         src: 'http://www.gravatar.com/avatar/a16a38cdfe8b2cbd38e8a56ab93238d3',
-        loginIcon: <UserIcon />,
-        signUpIcon: <UserPlusIcon />,
+        loginIcon: IconOne,
+        signUpIcon: IconTwo,
         maxInitials: 2,
         bgColor: 'blue',
         padding: '4',
@@ -56,7 +67,7 @@ Default.args = {
             {
                 title: 'Dashboard',
                 link: '/dashboard',
-                icon: <Squares2X2Icon />,
+                icon: IconThree,
             },
             {
                 title: 'About us',
@@ -65,26 +76,26 @@ Default.args = {
                     {
                         title: 'edu',
                         link: '/about',
-                        icon: <BookOpenIcon />,
+                        icon: IconFour,
 
                     },
                     {
                         title: 'family',
                         link: '/about',
-                        icon: <UserGroupIcon />,
+                        icon: IconFive,
                     },
                 ],
-                icon: <UserIcon />
+                icon: IconSix
             },
             {
                 title: 'Services',
                 link: '/services',
-                icon: <ServerIcon />
+                icon: IconSeven 
             },
             {
                 title: 'Contact us',
                 link: '/contact',
-                icon: <DevicePhoneMobileIcon />
+                icon: IconEight
             },
 
         ],
@@ -92,4 +103,28 @@ Default.args = {
     },
 };
 
+function IconOne(){
+    return <UserIcon />;
+    } 
+function IconTwo() {
+        return <UserPlusIcon />;
+    } 
+    function IconThree() {
+        return <Squares2X2Icon />;
+    } 
+    function IconFour() {
+        return <BookOpenIcon />;
+    } 
+    function IconFive() {
+        return <UserGroupIcon />;
+    } 
+    function IconSix() {
+        return <UserIcon />;
+    } 
+    function IconSeven() {
+        return <ServerIcon />;
+    } 
+    function IconEight() {
+        return <DevicePhoneMobileIcon />;
+    } 
 

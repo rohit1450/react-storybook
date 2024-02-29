@@ -7,12 +7,12 @@ import { twMerge } from 'tailwind-merge';
 interface Sub {
     title: string,
     link: string,
-    icon: React.ReactNode,
+    icon: React.ElementType,
 }
 interface Post {
     title: string,
     link: string,
-    icon: React.ReactNode,
+    icon: React.ElementType,
     sub?: Sub[];
 }
 
@@ -123,7 +123,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childClass, containerC
                                                 {page.sub ? (
                                                     <div className='w-full flex flex-row  justify-start space-x-2' onClick={handleDown}>
                                                         <div className='text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                            {page.icon}
+                                                            <page.icon />
                                                         </div>
                                                         {isSlim === false && (
                                                             <div className='text-white' style={{ fontSize: textWidth }} >
@@ -140,7 +140,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childClass, containerC
                                                     <Link to={page.link}>
                                                         <div className='w-full flex flex-row justify-start space-x-2'>
                                                             <div className=' text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                                {page.icon}
+                                                                <page.icon />
                                                             </div>
                                                             {isSlim === false &&
                                                                 <p className='text-white' style={{ fontSize: textWidth }}>
@@ -157,7 +157,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childClass, containerC
                                                                 {page.sub.map((subLink, subIndex) => {
                                                                     return (
                                                                         <li key={subIndex} className='flex space-x-2 shadow ml-8 justify-start items-center'>
-                                                                            <div className='text-white h-5 w-5 flex justify-center items-center'>{subLink.icon}</div>
+                                                                            <div className='text-white h-5 w-5 flex justify-center items-center'><subLink.icon /></div>
                                                                             <Link to={subLink.link} className='text-white'>
                                                                                 <p className='text-white'>{subLink.title}</p>
                                                                             </Link>

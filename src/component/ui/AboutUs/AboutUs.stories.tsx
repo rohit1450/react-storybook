@@ -11,7 +11,10 @@ export default {
     },
     content: {
       description: "Defines Content of the section",
-    },
+    }, 
+    aboutClass: {
+      description: "Custom class for tailwind merge"
+    }
   },
 };
 
