@@ -41,7 +41,7 @@ const Input: React.FC<InputProps> = ({
   height,
   width,
   icon,
-  title,
+  title="",
   size,
   bgcolor = "black",
   tooltipPosition,
@@ -57,7 +57,7 @@ const Input: React.FC<InputProps> = ({
   const [renterChangeEyeColor, setRenterEyeColor] = useState<string>("");
   const [reset, setReset] = useState<boolean>(false);
 
-  const getImageStyle = (height: string, width: string): CSSProperties => ({
+  const getImageStyle = (height: string="", width: string=""): CSSProperties => ({
     height: height ? `${height}px` : "",
     width: width ? `${width}px` : "",
     border: "none",
@@ -264,7 +264,7 @@ const Input: React.FC<InputProps> = ({
             setError("");
             setEyeColor(false);
             setRenterEyeColor("black");
-            setReset(true);
+            setReset((prevState) => !prevState); 
           }}
           buttonType="primary"
           label="Reset Password"

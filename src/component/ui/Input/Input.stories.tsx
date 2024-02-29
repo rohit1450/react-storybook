@@ -40,21 +40,21 @@ export default {
     tooltipPosition: {
       description: "Position of any tooltip associated with the input field."
     },
-    icon:{
-      description:""
+    icon: {
+      description: "Icon inside input tag."
     },
-    iconeye:{
-      description:""
+    iconeye: {
+      description: "Icon for the eye."
     },
-    iconOffeye:{
-      description:""
-    },label:{
-      description:""
+    iconOffeye: {
+      description: "Icon for the eye when off."
+    },
+    label: {
+      description: "Label for the input field."
     },
     labelName: {
-      desc:''
+      description: "Name of the label."
     }
-
   }
 } as Meta;
 
@@ -90,8 +90,6 @@ PasswordInput.args = {
   iconOffeye:offeyeIcon,
   label: "Password",
   labelName:"Label"
-  
- 
 };
 
 export const DateInput: StoryFn<InputProps> = Template.bind({});
