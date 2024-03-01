@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export interface OverlayProps {
     content1: string;
@@ -10,8 +10,15 @@ export interface OverlayProps {
     toggleOverlay: () => void;
 }
 
-const Overlay: React.FC<OverlayProps> = ({ isOverlayOpen, toggleOverlay, size, content1, content2, openIcon: Icon1, closeIcon: Icon2 }) => {
+const Overlay: React.FC<OverlayProps> = ({ size, content1, content2, openIcon: Icon1, closeIcon: Icon2 }) => {
     const overlayRef = useRef<HTMLDivElement>(null);
+    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+
+    const toggleOverlay = () => {
+        setIsOverlayOpen(!isOverlayOpen);
+        console.log("clicked");
+    };
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
