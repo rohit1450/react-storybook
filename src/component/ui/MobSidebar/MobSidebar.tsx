@@ -1,83 +1,58 @@
-import React, { useEffect, useRef } from "react";
-import Overlay from "../Overlay/Overlay";
-import { AiFillCloseSquare } from "react-icons/ai";
+import React, { useEffect, useRef, useState } from "react";
 import Lang from "../LangSwitch/Lang";
 import './mobsiderbar.css'
-
-
-interface Solution {
-  name: string;
-  description: string;
-}
 
 export interface MobSidebarProps {
   isOpen: boolean;
   setIsOpen: any;
   toggleMenu: () => void;
-  isOverlayOpen: boolean;
-  toggleOverlay: () => void;
-  setIsOverlayOpen: (value: boolean) => void;
-  size?: number;
-  content1: string;
-  content2: string;
-  openIcon?: React.ElementType;
-  closeIcon?: React.ElementType;
-  name: string;
-  description: string;
-  label: string;
-  value: string;
-  switch: { src: string };
-  locale: string;
-  solutions: Solution[];
 }
-
 
 export const MobSidebar: React.FC<MobSidebarProps> = ({
   isOpen,
   setIsOpen,
   toggleMenu,
-  isOverlayOpen,
-  toggleOverlay,
-  size,
-  content1,
-  content2,
-  openIcon,
-  closeIcon,
-  solutions
 }) => {
-
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
+  const [condition, setCondition] = useState(false);
+
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isOpen) {
-        toggleMenu();
-      }
-    };
+    const LangDir = localStorage.getItem('language');
+    if (LangDir === 'ar') {
+      setCondition(true);
+    } else {
+      setCondition(false);
+    }
+  }, []);
 
+  const handleClickOutside = (event: any) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isOpen) {
+      toggleMenu();
+    }
+  };
+
+  useEffect(() => {
     window.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       window.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 
   const handleClose = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   return (
     <div className="container h-screen bg-disable">
       <nav>
-        <div className="px-5 py-4 flex justify-between items-center bg-Primary">
+        <div className="sticky top-7 w-full px-5 py-4 flex justify-between items-center bg-Primary">
           <div className="flex items-center">
             <a href="/" className="text-white text-2xl font-bold">Logo</a>
           </div>
-          <div className="flex items-center gap-5">
-            <div className="absolute right-24 top-7">
-              <Lang
-                solutions={solutions}
-              />
+          <div className="flex gap-5">
+            <div className={`absolute top-4 ${condition ? 'left-20' : 'right-20'}`}>
+              <Lang />
             </div>
             <button
               type="button"
@@ -97,11 +72,8 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
             </button>
           </div>
         </div>
-        <div onClick={handleClose} ref={sidebarRef} className={`flex flex-col bg-gray p-4 rounded fixed z-20 top-4 right-4 w-1/3 h-screen ${isOpen ? 'open' : 'close hidden'}`}>
-          <div className="text-3xl absolute top-0 left-0 cursor-pointer">
-            <AiFillCloseSquare onClick={handleClose} />
-          </div>
-          <div className="p-2 m-2 rounded-md bg-Primary text-white h-screen">
+        <div onClick={handleClose} ref={sidebarRef} className={`flex flex-col bg-white p-4 rounded fixed z-20 top-4 right-4 w-1/3 h-screen ${isOpen ? 'open' : 'close hidden'}`}>
+          <div className="rounded-md text-black h-screen">
             <div className="my-1 py-1">
               <a className="text-lg hover:text-red" href="#">Home</a>
             </div>
@@ -114,18 +86,6 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
           </div>
         </div>
       </nav>
-      <div className="container mx-5 mt-2">
-
-        <Overlay
-          isOverlayOpen={isOverlayOpen}
-          toggleOverlay={toggleOverlay}
-          size={size}
-          content1={content1}
-          content2={content2}
-          openIcon={openIcon}
-          closeIcon={closeIcon}
-        />
-      </div>
     </div>
   );
 };

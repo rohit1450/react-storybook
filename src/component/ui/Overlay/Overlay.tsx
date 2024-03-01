@@ -16,7 +16,6 @@ const Overlay: React.FC<OverlayProps> = ({ size, content1, content2, openIcon: I
 
     const toggleOverlay = () => {
         setIsOverlayOpen(!isOverlayOpen);
-        console.log("clicked");
     };
 
     useEffect(() => {
