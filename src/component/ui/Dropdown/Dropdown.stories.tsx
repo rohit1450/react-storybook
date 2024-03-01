@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const meta: Meta<typeof Dropdown> = {
-  title: "Components/ui/List",
+  title: "Components/ui/Dropdown",
   component: Dropdown,
   tags: ["autodocs"],
   argTypes: {

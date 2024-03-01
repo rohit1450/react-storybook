@@ -14,6 +14,7 @@ export interface CarouselProps {
     right: React.ElementType;
   };
   fullWidth?: boolean;
+  arrowPoistion: "top" | "middle" | "bottom";
 }
 
 const Carousel = ({
@@ -25,6 +26,7 @@ const Carousel = ({
   width,
   fullWidth,
   hasDot,
+  arrowPoistion
 }: CarouselProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -73,6 +75,26 @@ const Carousel = ({
       : { backgroundColor: "black" };
   };
 
+  let leftArrowPosition = "";
+  let rightArrowPosition = "";
+
+
+    switch(arrowPoistion){
+      case "top":
+        leftArrowPosition = "absolute top-1 left-0";
+        rightArrowPosition = "absolute top-1 right-0";
+        break;
+      case "middle":
+        leftArrowPosition = "absolute top-1/2 left-0 transform -translate-y-1/2";
+        rightArrowPosition = "absolute top-1/2 right-0 transform -translate-y-1/2";
+        break;
+      case "bottom":
+        leftArrowPosition = "absolute bottom-1 left-0";
+        rightArrowPosition = "absolute bottom-1 right-0";
+          break;
+    }
+
+
   return (
     <div className={`carousel shadow-2xl`} style={customHeightWidth()}>
       <div className="relative">
@@ -100,13 +122,13 @@ const Carousel = ({
           ))}
         </div>
         <div
-          className={`absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
+          className={`${leftArrowPosition} ${arrowPoistion ?? "absolute top-1/2 left-0 transform -translate-y-1/2"} text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
           onClick={prevImage}
         >
           {arrowIcon === undefined ? <ArrowLeftCircleIcon /> : <arrowIcon.left />}
         </div>
         <div
-          className={`absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
+          className={`${rightArrowPosition} ${arrowPoistion ?? "absolute top-1/2 right-0 transform -translate-y-1/2"} text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
           onClick={nextImage}
         >
           {arrowIcon === undefined ? <ArrowRightCircleIcon /> : <arrowIcon.right />}

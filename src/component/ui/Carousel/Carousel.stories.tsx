@@ -55,6 +55,7 @@ Small.args = {
   },
   fullWidth: false,
   hasDot: true,
+  arrowPoistion: "bottom"
 };
 
 export const Medium: StoryFn<CarouselProps> = Template.bind({});

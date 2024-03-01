@@ -63,7 +63,7 @@ const Dropdown: React.FC<DropdownProps> = ({ people, multiple, labelIcon }) => {
                 ? (selected as Person[]).map((person) => (
                     <span
                       key={person.id}
-                      className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2"
+                      className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2 py-1"
                     >
                       <span className="flex items-center">
                         {labelIcon && <person.icon />}

@@ -7,6 +7,9 @@ export default {
     component: Toaster,
     tags: ['autodocs'],
     argTypes: {
+        id: {
+            description: "The id to be passed for toaster container"
+        },
         type: {
             description: "Defines type of toaster"
         },
@@ -49,6 +52,9 @@ export default {
         closeOnClick: {
             description: "Boolean value to close toaster on click"
         },
+        draggable: {
+            description: "On dragging toast it will close"
+        }
     }
 } as Meta;
 
@@ -57,6 +63,7 @@ const Template: StoryFn<ToasterProps> = (args: ToasterProps) => <Toaster {...arg
 export const Default = Template.bind({})
 
 Default.args = {
+    id: "toaster-notify",
     type: 'default',
     position: 'top-right',
     autoClose: 5000,
@@ -92,6 +99,7 @@ Success.args = {
         onClick: action('on-click'),
     },
     type: 'success',
+    id: "toaster-success",
 }
 
 export const Info = Template.bind({})
@@ -106,6 +114,7 @@ Info.args = {
         onClick: action('on-click'),
     },
     type: 'info',
+    id: "toaster-info",
 }
 
 export const Warning = Template.bind({})
@@ -120,6 +129,7 @@ Warning.args = {
         onClick: action('on-click'),
     },
     type: 'warning',
+    id: "toaster-warning",
 }
 
 export const Error = Template.bind({})
@@ -134,13 +144,5 @@ Error.args = {
         onClick: action('on-click'),
     },
     type: 'error',
+    id: "toaster-error",
 }
-export const MultipleToast: StoryFn<ToasterProps> = () => (
-    <div style={{ display: 'flex', gap: '1rem' }}>
-        <Toaster {...Default.args as ToasterProps} />
-        <Toaster {...Success.args as ToasterProps} />
-        <Toaster {...Info.args as ToasterProps} />
-        <Toaster {...Warning.args as ToasterProps} />
-        <Toaster {...Error.args as ToasterProps} />
-    </div>
-);

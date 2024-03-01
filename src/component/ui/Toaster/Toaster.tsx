@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 export interface ToasterProps {
     type: 'info' | 'success' | 'warning' | 'error' | 'default';
+    id: string;
     position: 'top-right' | 'top-left' | 'top-center' | 'bottom-left' | 'bottom-center' | 'bottom-right';
     autoClose: number;
     hideProgressBar: boolean;
@@ -22,9 +23,9 @@ export interface ToasterProps {
     classContainer: string;
 }
 
-const Toaster: React.FC<ToasterProps> = ({ classContainer, position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
+const Toaster: React.FC<ToasterProps> = ({ id,classContainer, position, notifyText, button, type, autoClose, hideProgressBar, newestOnTop, closeOnClick, rtl,
     pauseOnFocusLoss, draggable, pauseOnHover, theme }) => {
-    const notify = () => toast(notifyText, { type });
+    const notify = () => toast(notifyText, { type ,  containerId: id });
     const getStyles = () => {
         switch (type) {
             case 'info':
@@ -53,8 +54,7 @@ const Toaster: React.FC<ToasterProps> = ({ classContainer, position, notifyText,
             <div>
                 <Button buttonType={buttonType} color={color} label={label} className={buttonClassName} onClick={handleClick} />
             </div>
-            {type &&
-                <ToastContainer
+            <ToastContainer
                     position={position}
                     autoClose={autoClose}
                     hideProgressBar={hideProgressBar}
@@ -65,9 +65,8 @@ const Toaster: React.FC<ToasterProps> = ({ classContainer, position, notifyText,
                     draggable={draggable}
                     pauseOnHover={pauseOnHover}
                     theme={theme}
+                    containerId={id}
                 />
-            }
-
         </div>
     )
 }
