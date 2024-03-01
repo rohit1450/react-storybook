@@ -1,7 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import Overlay from "../Overlay/Overlay";
-import './mobsiderbar.css'
 import { AiFillCloseSquare } from "react-icons/ai";
+import Lang from "../LangSwitch/Lang";
+import './mobsiderbar.css'
+
+
+interface Solution {
+  name: string;
+  description: string;
+}
 
 export interface MobSidebarProps {
   isOpen: boolean;
@@ -15,7 +22,15 @@ export interface MobSidebarProps {
   content2: string;
   openIcon?: React.ElementType;
   closeIcon?: React.ElementType;
+  name: string;
+  description: string;
+  label: string;
+  value: string;
+  switch: { src: string };
+  locale: string;
+  solutions: Solution[];
 }
+
 
 export const MobSidebar: React.FC<MobSidebarProps> = ({
   isOpen,
@@ -28,6 +43,7 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
   content2,
   openIcon,
   closeIcon,
+  solutions
 }) => {
 
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -57,7 +73,12 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
           <div className="flex items-center">
             <a href="/" className="text-white text-2xl font-bold">Logo</a>
           </div>
-          <div>
+          <div className="flex items-center gap-5">
+            <div className="absolute right-24 top-7">
+              <Lang
+                solutions={solutions}
+              />
+            </div>
             <button
               type="button"
               onClick={toggleMenu}
@@ -94,6 +115,7 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
         </div>
       </nav>
       <div className="container mx-5 mt-2">
+
         <Overlay
           isOverlayOpen={isOverlayOpen}
           toggleOverlay={toggleOverlay}

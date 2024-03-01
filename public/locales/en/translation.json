@@ -5,5 +5,7 @@
     "Automations": "Automations",
     "Create your own targeted content": "Create your own targeted content",
     "Reports": "Reports",
-    "Keep track of your growth": "Keep track of your growth"
+    "Keep track of your growth": "Keep track of your growth",
+    "Internationalization (i18n) is crucial for software to adapt to diverse linguistic and cultural contexts. It involves designing applications to support multiple languages and locales. By employing i18n techniques, developers ensure their software can seamlessly switch between languages, catering to a global audience. This enhances user experience and accessibility, making the software more inclusive and user-friendly.":"Internationalization (i18n) is crucial for software to adapt to diverse linguistic and cultural contexts. It involves designing applications to support multiple languages and locales. By employing i18n techniques, developers ensure their software can seamlessly switch between languages, catering to a global audience. This enhances user experience and accessibility, making the software more inclusive and user-friendly.",
+    "Internationalization (i18n) is crucial for software to adapt to diverse linguistic and cultural contexts.":"يعد التدويل (i18n) أمرًا بالغ الأهمية للبرمجيات للتكيف مع السياقات اللغوية والثقافية المتنوعة."
 }

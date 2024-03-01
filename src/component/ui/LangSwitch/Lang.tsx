@@ -84,8 +84,7 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
                 </Menu>
             </div>
 
-            <h1 className='text-2xl py-3 font-semibold text-blue-light underline'>{t('Language Changer')}</h1>
-            {solutions.map((solution, index) => (
+            {/* {solutions?.map((solution, index) => (
                 <div key={index} className='my-5 flex justify-start items-center gap-5'>
                     <div className='text-4xl font-semibold'>{index + 1}.</div>
                     <div>
@@ -93,7 +92,7 @@ const Lang: React.FC<LangProps> = ({ solutions }) => {
                         <p>{t(solution.description)}</p>
                     </div>
                 </div>
-            ))}
+            ))} */}
         </div>
     );
 };
