@@ -12,9 +12,9 @@ export interface NavProps {
     src: string;
     maxInitials: number;
     bgColor: string;
-    icon?: React.ReactElement;
-    loginIcon?: React.ReactElement;
-    signUpIcon?: React.ReactElement;
+    icon?: React.ReactNode;
+    loginIcon?: React.ReactNode;
+    signUpIcon?: React.ReactNode;
     padding: string;
     onToggle: () => void;
     toggleOverlay: () => void;
@@ -34,7 +34,6 @@ const Navbar: React.FC<NavProps> = ({
     src,
     icon,
     loginIcon,
-    signUpIcon,
     maxInitials,
     bgColor,
     padding,
@@ -48,14 +47,17 @@ const Navbar: React.FC<NavProps> = ({
     toggleOverlay,
 }) => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const toggleMenu = useCallback(() => {
-        setMenuOpen((prevMenuOpen) => !prevMenuOpen);
-    }, [])
 
     const overlayRef = useRef<HTMLDivElement>(null);
+    const avatarButtonRef = useRef<HTMLButtonElement>(null);
+    const toggleMenu = useCallback(() => {
+        setMenuOpen((prevMenuOpen) => !prevMenuOpen);
+    }, []);
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
+            if (overlayRef.current && !overlayRef.current.contains(event.target as Node) &&
+                avatarButtonRef.current &&
+                !avatarButtonRef.current.contains(event.target as Node)) {
                 toggleMenu();
             }
         };
@@ -83,13 +85,13 @@ const Navbar: React.FC<NavProps> = ({
 
     return (
         <>
-            <div className={`p-${padding} ${isOverlayOpen && 'opacity-30 sm:opacity-100'} z-10 fixed -ml-4 top-0 sm:px-14 px-4 w-full`} style={{ backgroundColor: `${isOn ? 'black' : `${bgColor}`}` }}>
-                <div className="container flex flex-col sm:flex-row justify-between pr-6">
+            <div className={`p-${padding} ${isOverlayOpen && 'opacity-30 sm:opacity-100'} shadow z-10 fixed -ml-4 top-0 sm:px-14 px-4 w-full`} style={{ backgroundColor: `${isOn ? 'black' : `${bgColor}`}` }}>
+                <div className="container flex flex-col sm:flex-row justify-between">
                     <div className="text-white flex items-center space-x-2">
                         <button
                             onClick={toggleOverlay}
-                            className="inline-flex items-center text-gray rounded-lg sm:hidden ">
-                            <Bars3Icon className={`w-8 h-8 ${isOn ? 'text-white' : 'text-black'}`} />
+                            className="inline-flex items-center text-gray rounded-lg z-50 sm:hidden">
+                            <Bars3Icon className={`w-6 h-6 ${isOn ? 'text-white' : 'text-black'}`} />
                         </button>
 
                         <span className="h-8 w-8 text-white">{icon}</span>
@@ -102,16 +104,17 @@ const Navbar: React.FC<NavProps> = ({
                             <ul className={twMerge(`${isOn ? 'bg-black' : 'bg-white'} shadow-2xl rounded-md list-none absolute top-16 right-6 flex flex-col p-4`, menuClass)}>
                                 <li>
                                     <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
-                                        <span className="h-4 w-4">{signUpIcon}</span>
+                                        {/* <span className="h-4 w-4">{signUpIcon}</span> */}
                                         <span>
-                                            Sign Up
+                                            Account
                                         </span>
                                     </a>
                                 </li>
+
                                 <li>
-                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                    <a href="#" className={` border border-gray border-b-0 border-r-0 border-l-0 mt-2 font-semibold pt-2 ${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
                                         <span className="h-4 w-4">{loginIcon}</span>
-                                        <span>Login</span>
+                                        <span>Log out</span>
                                     </a>
                                 </li>
 
@@ -124,6 +127,7 @@ const Navbar: React.FC<NavProps> = ({
                         </li>
                         <li>
                             <button
+                                ref={avatarButtonRef}
                                 onClick={toggleMenu}
                                 className="focus:outline-none text-white"
                             >
@@ -161,16 +165,16 @@ const Navbar: React.FC<NavProps> = ({
                                     </div>
                                     <li>
                                         <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
-                                            <span className="h-4 w-4">{signUpIcon}</span>
+                                            {/* <span className="h-4 w-4">{signUpIcon}</span> */}
                                             <span>
-                                                Sign Up
+                                                Account
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                        <a href="#" className={` border border-gray border-b-0 border-r-0 border-l-0 pt-2 font-semibold ${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
                                             <span className="h-4 w-4 pl-0">{loginIcon}</span>
-                                            <span>Login</span>
+                                            <span>Log out</span>
                                         </a>
                                     </li>
 
