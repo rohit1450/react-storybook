@@ -42,13 +42,13 @@ const Overlay: React.FC<OverlayProps> = ({ size, content1, content2, openIcon: I
                 {!isOverlayOpen ? (
                     <button
                         type='button'
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2"
+                        className="absolute right-4 transform -translate-y-1/2 p-2"
                         onClick={toggleOverlay}>
                         {Icon1 && <Icon1 size={size} />}
                     </button>
                 ) : null}
             </div>
-            <div className={`shadow-lg h-1/2 w-1/2 p-2 fixed right-0 top-1/2 transform -translate-y-1/2 ${isOverlayOpen ? 'open' : 'hidden close'}`}
+            <div className={`shadow-lg w-1/2 p-2 relative right-0 top-1/2 transform -translate-y-1/2 ${isOverlayOpen ? 'open' : 'hidden close'}`}
              ref={overlayRef}>
                 <h2>{content2}</h2>
                 <button
