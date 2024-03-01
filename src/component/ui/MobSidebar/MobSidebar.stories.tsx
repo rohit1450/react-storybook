@@ -11,15 +11,16 @@ export default {
 
 const Template: StoryFn<MobSidebarProps> = (args: any) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  
 
   return (
     <>
       <MobSidebar
         isOpen={isOpen}
+        setIsOpen={setIsOpen}
         toggleMenu={toggleMenu}
         {...args}
       />

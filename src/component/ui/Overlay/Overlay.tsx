@@ -4,7 +4,7 @@ export interface OverlayProps {
     content1: string;
     content2: string;
     openIcon?: React.ElementType;
-    closeIcon?: React.ElementType;
+    closeIcon?: React.ElementType;  
     size?: number;
     isOverlayOpen: boolean;
     toggleOverlay: () => void;
@@ -20,8 +20,8 @@ const Overlay: React.FC<OverlayProps> = ({ size, content1, content2, openIcon: I
     };
 
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
+        const handleClickOutside = (event:any) => {
+            if (overlayRef.current && !overlayRef.current.contains(event.target) && isOverlayOpen) {
                 toggleOverlay();
             }
         };
@@ -31,7 +31,7 @@ const Overlay: React.FC<OverlayProps> = ({ size, content1, content2, openIcon: I
         return () => {
             window.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [toggleOverlay]);
+    }, [isOverlayOpen]);
 
     return (
         <div className='flex'>
