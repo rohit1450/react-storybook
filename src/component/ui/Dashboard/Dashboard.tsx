@@ -13,7 +13,7 @@ export interface dashProps {
 const Dashboard: React.FC<dashProps> = ({ heading, content, dashClass }) => {
     return (
         <div className={twMerge('flex flex-col text-justify', dashClass)}>
-            <h1 className='text-4xl mb-4'>{heading}</h1>
+            <h1 className='text-4xl mb-4 font-bold'>{heading}</h1>
             <p className='text-base'>{content}
             </p>
         </div>

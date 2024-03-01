@@ -7,23 +7,26 @@ export interface disclosureProps {
     title2: string,
     content1: string,
     content2: string,
+    bgColor: string,
+    btnTextColor: string,
+    panelTextColor: string,
 }
 
-const Disclose: React.FC<disclosureProps> = ({ title1, title2, content1, content2 }) => {
+const Disclose: React.FC<disclosureProps> = ({ title1, title2, content1, content2, bgColor, btnTextColor, panelTextColor }) => {
     return (
         <div className="py-16 sm:w-96 w-11/12">
-            <div className="mx-auto w-full max-w-md rounded-2xl bg-gray/[0.50] shadow-2xl p-2">
+            <div className="mx-auto w-full max-w-md rounded-2xl shadow-2xl p-2">
                 <Disclosure>
                     {({ open }) => (
                         <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg bg-blue-dark/[0.40] px-4 py-2 text-left text-sm font-medium text-white/[0.80] hover:bg-blue-dark/[0.20]">
+                            <Disclosure.Button className={`flex w-full justify-between rounded-lg bg-${bgColor} px-4 py-2 text-left text-sm font-medium`} style={{ backgroundColor: `${bgColor}`, color: `${btnTextColor}` }}>
                                 <span>{title1}</span>
                                 <ChevronUpIcon
                                     className={`${open ? 'rotate-180 transform' : ''
                                         } h-5 w-5 text-purple-500`}
                                 />
                             </Disclosure.Button>
-                            <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-black/[0.85]">
+                            <Disclosure.Panel className={`px-4 pb-2 pt-4 text-sm text-${panelTextColor}`}>
                                 {content1}
                             </Disclosure.Panel>
                         </>
@@ -32,14 +35,14 @@ const Disclose: React.FC<disclosureProps> = ({ title1, title2, content1, content
                 <Disclosure as="div" className="mt-2">
                     {({ open }) => (
                         <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg bg-blue-dark/[0.40] px-4 py-2 text-left text-sm font-medium text-white/[0.80] hover:bg-blue-dark/[0.20] focus:outline-none focus-visible:ring focus-visible:ring-purple-500/75">
+                            <Disclosure.Button className={`flex w-full justify-between rounded-lg bg-${bgColor} px-4 py-2 text-left text-sm font-medium`} style={{ backgroundColor: `${bgColor}`, color: `${btnTextColor}` }}>
                                 <span>{title2}</span>
                                 <ChevronUpIcon
                                     className={`${open ? 'rotate-180 transform' : ''
-                                        } h-5 w-5 text-purple-500`}
+                                        } h-5 w-5`}
                                 />
                             </Disclosure.Button>
-                            <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-black/[0.85] ">
+                            <Disclosure.Panel className={`px-4 pb-2 pt-4 text-sm text-${panelTextColor}`}>
                                 {content2}
                             </Disclosure.Panel>
                         </>
