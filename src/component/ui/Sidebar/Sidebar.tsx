@@ -7,12 +7,12 @@ import { twMerge } from 'tailwind-merge';
 interface Sub {
     title: string,
     link: string,
-    icon: React.ElementType,
+    icon: React.ReactNode,
 }
 interface Post {
     title: string,
     link: string,
-    icon: React.ElementType,
+    icon: React.ReactNode,
     sub?: Sub[];
 }
 
@@ -155,13 +155,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                         <li key={index} className={twMerge(`hover:bg-blue-light p-2 rounded-md ${index === isActive && 'bg-blue-light'}`, parentListClass)} onClick={() => handleActive(index)}>
                                             <div className='flex flex-col'>
                                                 {page.sub ? (
-                                                    <div className='w-full flex flex-row  justify-start space-x-2' onClick={handleDown}>
-                                                        <div className='text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                            <page.icon />
-                                                        </div>
-                                                        {isSlim === false && (
-                                                            <div className='text-white' style={{ fontSize: textWidth }} >
-                                                                {page.title}
+                                                    <div className='w-full flex flex-row justify-start items-center space-x-2' onClick={handleDown}>
+                                                        <div className='w-full flex space-x-2'>
+
+                                                            <div className='pt-2 text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                                {page.icon}
                                                             </div>
                                                             {isSlim === false && (
                                                                 <div className='text-white' style={{ fontSize: textWidth }} >
@@ -178,8 +176,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                                 ) : (
                                                     <Link to={page.link}>
                                                         <div className='w-full flex flex-row justify-start space-x-2'>
-                                                            <div className=' text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                                <page.icon />
+                                                            <div className='pt-2 text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                                {page.icon}
                                                             </div>
                                                             {isSlim === false &&
                                                                 <p className='text-white' style={{ fontSize: textWidth }}>
@@ -195,8 +193,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                                             <ul className='mt-4'>
                                                                 {page.sub.map((subLink, subIndex) => {
                                                                     return (
-                                                                        <li key={subIndex} className='flex space-x-2 shadow ml-8 justify-start items-center'>
-                                                                            <div className='text-white h-5 w-5 flex justify-center items-center'><subLink.icon /></div>
+                                                                        <li key={subIndex} className={twMerge(`flex space-x-2 hover:bg-Primary p-2 pl-6 rounded-md  justify-start items-center ${subIndex === activeSubIndex && 'bg-Primary'}`, childListClass)} onClick={() => handleActive(subIndex)}>
+                                                                            <div className='text-white h-5 w-5 flex justify-center items-center'>{subLink.icon}</div>
                                                                             <Link to={subLink.link} className='text-white'>
                                                                                 <p className='text-white'>{subLink.title}</p>
                                                                             </Link>
