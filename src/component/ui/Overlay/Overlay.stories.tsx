@@ -13,6 +13,7 @@ const Template: StoryFn<OverlayProps> = (args: OverlayProps) => {
 
     const toggleOverlay = () => {
         setIsOverlayOpen(!isOverlayOpen);
+        console.log("clicked");
     };
 
     return (

@@ -28,20 +28,20 @@ const Overlay: React.FC<OverlayProps> = ({ isOverlayOpen, toggleOverlay, size, c
 
     return (
         <div className='flex'>
-            <div className={`flex justify-between w-96 m-10 ${isOverlayOpen ? 'opacity-40' : ''}`}>
-                <div>
+            <div className={`flex justify-between items-center p-2 w-96 m-10 ${isOverlayOpen ? 'opacity-40' : ''}`}>
+                <div className='flex items-center '>
                     <h1>{content1}</h1>
                 </div>
                 {!isOverlayOpen ? (
                     <button
                         type='button'
-                        className="absolute right-4 top-1/3 p-2"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2"
                         onClick={toggleOverlay}>
                         {Icon1 && <Icon1 size={size} />}
                     </button>
                 ) : null}
             </div>
-            <div className={`shadow-lg h-full w-1/2 p-10 fixed right-0 ${isOverlayOpen ? 'open' : 'hidden close'}`}
+            <div className={`shadow-lg h-1/2 w-1/2 p-2 fixed right-0 top-1/2 transform -translate-y-1/2 ${isOverlayOpen ? 'open' : 'hidden close'}`}
              ref={overlayRef}>
                 <h2>{content2}</h2>
                 <button
