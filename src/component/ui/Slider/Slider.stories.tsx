@@ -6,7 +6,17 @@ import Slider, { SliderProps } from './Slider';
 export default {
     title: 'Components/ui/Slider',
     component: Slider,
-    tags: ['autodocs']
+    tags: ['autodocs'],
+    argTypes: {
+        min: { description: "Minimum value of the slider" },
+        max: { description: "Maximum value of the slider" },
+        value: { description: "Current value of the slider" },
+        defaultValue: { description: "Default value of the slider if no value is provided" },
+        onChange: { description: "Event handler called when the slider value changes" },
+        color: { description: "Color of the slider track (optional)" },
+        size: { description: "Size of the slider ('small', 'medium', 'large')" },
+        bigTheme: { description: "Boolean indicating whether to use a big theme for the slider" },
+    }    
 } as Meta;
 
 const Template: StoryFn<SliderProps> = (args: SliderProps) => {

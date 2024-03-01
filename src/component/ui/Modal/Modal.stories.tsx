@@ -6,6 +6,30 @@ export default {
     title: 'Components/ui/Modal',
     component: Modal,
     tags: ['autodocs'],
+    argTypes: {
+        button: {
+            description: "Button props for button"
+        },
+        handleOpen: {
+            description: "Handle open function for modal to open"
+        },
+        handleClose: {
+            description: "Handle close function to close modal"
+        },
+        initialIsOpen: {
+            description: "Boolean value to initial open modal"
+        },
+        title: {
+            description: "Defines title inside modal"
+        },
+        content: {
+            description: "Defines content inside modal"
+        },
+        buttonName: {
+            description: "Defines text for the modal open button"
+        },
+
+    }
 } as Meta;
 
 const Template: StoryFn<ModalProps> = (args: ModalProps) => {

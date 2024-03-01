@@ -9,6 +9,20 @@ const meta: Meta<typeof Sidebar> = {
     title: 'Components/ui/Sidebar',
     component: Sidebar,
     tags: ['autodocs'],
+    argTypes: {
+        width: { description: "Width of the sidebar" },
+        textWidth: { description: "Width of the text in the sidebar" },
+        iconSize: { description: "Size of the icons in the sidebar" },
+        imgURL: { description: "URL of the image/logo displayed in the sidebar" },
+        imgHeight: { description: "Height of the image/logo displayed in the sidebar" },
+        imgWidth: { description: "Width of the image/logo displayed in the sidebar" },
+        isOverlayOpen: { description: "Boolean value indicating whether the overlay is open" },
+        toggleOverlay: { description: "Event handler for toggling the overlay" },
+        containerClass: { description: "Class name for custom styling of the container" },
+        childClass: { description: "Class name for custom styling of the children elements" },
+        pages: { description: "Array of objects representing pages in the sidebar" },
+    }
+    
 };
 export default meta;
 const Template: StoryFn<SidebarProps> = (args: SidebarProps) => {
@@ -26,8 +40,6 @@ const Template: StoryFn<SidebarProps> = (args: SidebarProps) => {
         />
     );
 }
-
-
 
 export const Primary = Template.bind({});
 
@@ -47,7 +59,7 @@ Primary.args = {
         {
             title: 'Dashboard',
             link: '#',
-            icon: <Squares2X2Icon />,
+            icon: IconOne
         },
         {
             title: 'About us',
@@ -56,28 +68,48 @@ Primary.args = {
                 {
                     title: 'edu',
                     link: '/about',
-                    icon: <BookOpenIcon />,
+                    icon: IconTwo,
 
                 },
                 {
                     title: 'family',
                     link: '/about',
-                    icon: <UserGroupIcon />,
+                    icon: IconThree,
                 },
             ],
-            icon: <UserIcon />
+            icon: IconFour
         },
         {
             title: 'Services',
             link: '#',
-            icon: <ServerIcon />
+            icon: IconFive
         },
         {
             title: 'Contact us',
             link: '#',
-            icon: <DevicePhoneMobileIcon />
+            icon: IconSix
         },
 
     ],
 };
+
+function IconOne(){
+return <Squares2X2Icon />;
+} 
+function IconTwo() {
+    return <BookOpenIcon />;
+} 
+function IconThree() {
+    return <UserGroupIcon />;
+} 
+function IconFour() {
+    return <UserIcon />;
+} 
+function IconFive() {
+    return <ServerIcon />;
+} 
+function IconSix() {
+    return <DevicePhoneMobileIcon />;
+} 
+
 

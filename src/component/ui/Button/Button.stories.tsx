@@ -9,6 +9,29 @@ export default {
         onClick: action('on-click'),
     },
     tags: ['autodocs'],
+    argTypes: {
+        label: {
+            description: "Defines the text into button"
+        },
+        buttonType: {
+            description: "Defines the text into button"
+        },
+        color: {
+            description: "Defines the background color of button"
+        },
+        icon: {
+            description: "Icon to be render in the button"
+        },
+        disabled: {
+            description: "Disanle an button"
+        },
+        className: {
+            description: "Custom class for tailwind merge"
+        },
+        onClick: {
+            description: "Defines on click event for button"
+        }
+    }
 } as Meta;
 
 const Template: StoryFn<ButtonProps> = (args: ButtonProps) => <Button {...args} />;

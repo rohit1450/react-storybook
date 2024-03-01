@@ -5,6 +5,15 @@ export default {
   title: "Components/ui/Loader",
   component: Loader,
   tags: ["autodocs"],
+  argTypes: {
+    size: {
+      description: "Define size of the loader",
+      defaultValue: "default",
+    },
+    color: {
+      description: "Define color of the loader line",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<LoaderProps> = (args: LoaderProps) => (

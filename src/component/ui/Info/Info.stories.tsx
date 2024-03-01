@@ -7,6 +7,27 @@ export default {
     title: 'Components/ui/Info',
     component: Info,
     tags: ['autodocs'],
+    argTypes: {
+        title: {
+            description: "Defines title for tooltip"
+        },
+        color: {
+            description: "Defines color for icon"
+        },
+        bgColor: {
+            description: "Defines color for icon"
+        },
+        size: {
+            description: "Defines size of the icon"
+        },
+        icon: {
+            description: "Icon for the tooltip"
+        },
+        tooltipPosition: {
+            description: "Defines position of the tooltip"
+        },
+      
+    }
 } as Meta;
 
 const Template: StoryFn<InfoProps> = (args: InfoProps) => <Info {...args} />;

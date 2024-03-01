@@ -6,6 +6,38 @@ export default {
   title: "Components/ui/InputIcon",
   component: InputIcon,
   tags: ["autodocs"],
+  argTypes: {
+    type: {
+      description: "Type of the input box",
+    },
+    placeholder: {
+      description: "Value of placeholder of input box",
+    },
+    hasIcon: {
+      description: "Need icon or not in inside input box",
+    },
+    animate: {
+      description: "Disable float label",
+    },
+    disable: {
+      description: "Disable an input box",
+    },
+    animateLabel: {
+      description: "Value of text of float input box",
+    },
+    value: {
+      description: "Text for input box",
+    },
+    defaultBorder: {
+      description: "Removes border of the input box",
+    },
+    textarea: {
+      description: "Return textarea box",
+    },
+    icon: {
+      description: "Icon for the input box",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<InputIconProps> = (args: InputIconProps) => (
