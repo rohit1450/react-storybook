@@ -4,7 +4,7 @@ export interface ButtonProps {
     label: string;
     buttonType: 'primary' | 'secondary' | 'disabled' | 'loading';
     color?: 'black' | 'white';
-    icon: React.FC<React.SVGProps<SVGSVGElement>>;
+    icon?: React.FC<React.SVGProps<SVGSVGElement>>;
     disabled?: boolean;
     className: string;
     onClick: React.MouseEventHandler
@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({ color = 'black', icon: Icon, onClick, l
                 type={buttonType === 'loading' ? 'button' : undefined}
                 disabled={disabled} onClick={onClick}
             >
-                {disabled ? <Icon /> : null}
+                {Icon ? <Icon /> : null}
                 {label}
             </button>
         </div>
