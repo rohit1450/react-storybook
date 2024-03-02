@@ -11,6 +11,45 @@ export default {
   title: "Components/ui/StepProcess",
   component: StepProcess,
   tags: ["autodocs"],
+  argTypes: {
+    steps: {
+      description: "An array of string defines text of each step",
+    },
+    activeColor: {
+      description: "Color of active step",
+    },
+    lineThickness: {
+      description: "Tickness of line between steps",
+    },
+    vertical: {
+      description: "Need vertical steps or not",
+    },
+    measure: {
+      description: "Mesaure of each step number or icon",
+    },
+    detailComponents: {
+      description:
+        "An array of object contains name and description of each step",
+    },
+    headingSize: {
+      description: "Size of heading of each step",
+    },
+    contentSize: {
+      description: "Size of content of each step",
+    },
+    stepSize: {
+      description: "Font size of each step",
+    },
+    hasIcons: {
+      description: "Applies icon instead of number for step",
+    },
+    icons: {
+      description: "An array of icons for steps",
+    },
+    lineColor: {
+      description: "Color of completed steps line",
+    },
+  },
 } as Meta;
 
 const detailComponents = [

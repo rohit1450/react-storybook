@@ -6,6 +6,29 @@ export default {
     title: 'Components/ui/Switch',
     component: Switch,
     tags: ['autodocs'],
+    argTypes: {
+        isOn: {
+            description: "Boolean value for switch box"
+        },
+        onToggle: {
+            description: "Boolean value for swicth"
+        },
+        label: {
+            description: "Defines label for the switch"
+        },
+        containerSize: {
+            description: "Defines container size of the switch"
+        },
+        thumbSize: {
+            description: "Defines button size inside swicth"
+        },
+        switchClass: {
+            description: "Custom class for tailwind merge"
+        },
+        thumbClass: {
+            description: "Custom class for tailwind merge"
+        },
+    }
 } as Meta;
 
 const Template: StoryFn<SwitchProps> = (args: SwitchProps) => {

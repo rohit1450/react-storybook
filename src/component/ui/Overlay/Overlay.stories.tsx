@@ -5,6 +5,29 @@ export default {
     title: 'Components/ui/Overlay',
     component: Overlay,
     tags: ['autodocs'],
+    argTypes: {
+        content1: {
+            description: "Defines default text on the sceen"
+        },
+        content2: {
+            description: "Defines text for overlay"
+        },
+        openIcon: {
+            description: "Icon to open overplay"
+        },
+        closeIcon: {
+            description: "Icon to close overplay"
+        },
+        size: {
+            description: "Defines size of the icon for open/close overlay "
+        },
+        isOverlayOpen: {
+            description: "Boolean value to open/close overlay"
+        },
+        toggleOverlay: {
+            description: "Defines function for toggle overlay"
+        },
+    }
 } as Meta;
 
 const Template: StoryFn<OverlayProps> = (args: OverlayProps) => {

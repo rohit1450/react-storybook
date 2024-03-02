@@ -7,6 +7,32 @@ export default {
   title: "Components/ui/Carousel",
   component: Carousel,
   tags: ["autodocs"],
+  argTypes: {
+    images: {
+      description: "An array of images for carousel",
+    },
+    dotColor: {
+      description: "Color of active dot corresponding to image in the carousel",
+    },
+    hasDot: {
+      description: "Specify need of dots onto the carousel",
+    },
+    arrowIcon: {
+      description: "An object consist of icons for carousel",
+    },
+    size: {
+      description: "Defines size of carousel",
+    },
+    fullWidth: {
+      description: "Boolean value for full width of carousel",
+    },
+    height: {
+      description: "Custom height for carousel",
+    },
+    width: {
+      description: "Custom width for carousel",
+    },
+  },
 } as Meta;
 
 const images = [
@@ -24,11 +50,12 @@ Small.args = {
   size: "small",
   dotColor: "red",
   arrowIcon: {
-    left: <ArrowLeftCircleIcon />,
-    right: <ArrowRightCircleIcon />,
+    left: IconOne,
+    right: IconTwe
   },
   fullWidth: false,
   hasDot: true,
+  arrowPoistion: "bottom"
 };
 
 export const Medium: StoryFn<CarouselProps> = Template.bind({});
@@ -42,3 +69,11 @@ Large.args = {
   ...Small.args,
   size: "large",
 };
+
+function IconOne(){
+  return <ArrowLeftCircleIcon />
+}
+
+function IconTwe(){
+  return <ArrowRightCircleIcon />
+}

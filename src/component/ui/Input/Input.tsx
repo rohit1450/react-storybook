@@ -3,20 +3,38 @@ import { twMerge } from "tailwind-merge";
 import { CSSProperties } from "react";
 
 export interface InputProps {
-  type: "text" | "number" | "email" | "password" | "date" | "time" | "datetime-local" | "file" | "image";
+  type:
+    | "text"
+    | "number"
+    | "email"
+    | "password"
+    | "date"
+    | "time"
+    | "datetime-local"
+    | "file"
+    | "image";
   placeholder?: string;
   className?: string;
   src?: string;
   height?: string;
   width?: string;
+  title?: string;
+  size?: string;
+  bgcolor?: string;
+  tooltipPosition?: "top" | "bottom" | "left" | "right";
+  icon?: React.ElementType;
+  iconeye?: React.ElementType;
+  iconOffeye?: React.ElementType;
+  label?: string;
+  labelName?: string;
 }
 
-const getImageStyle = (height: string, width: string): CSSProperties => ({
-  height: height ? `${height}px` : '',
-  width: width ? `${width}px` : '',
-  border: 'none',
-  boxShadow: 'none'
-});
+  const getImageStyle = (height: string="", width: string=""): CSSProperties => ({
+    height: height ? `${height}px` : "",
+    width: width ? `${width}px` : "",
+    border: "none",
+    boxShadow: "none",
+  });
 
 const Input: React.FC<InputProps> = ({ type, placeholder = "", className = '', src, height, width }) => {
 

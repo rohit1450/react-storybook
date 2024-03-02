@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({ color = 'black', icon: Icon, onClick, l
                 type={buttonType === 'loading' ? 'button' : undefined}
                 disabled={disabled} onClick={onClick}
             >
-                {Icon ? <Icon /> : ''}
+                {Icon ? <Icon /> : null}
                 {label}
             </button>
         </div>

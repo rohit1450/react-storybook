@@ -6,6 +6,20 @@ export default {
     title: 'Components/ui/Disclosure',
     component: Disclose,
     tags: ['autodocs'],
+    argTypes: {
+        title1: {
+            description: "Defines text of accordion one"
+        },
+        title2: {
+            description: "Defines text of accordion two"
+        },
+        content1: {
+            description: "Defines for content of accordion one"
+        },
+        content2: {
+            description: "Defines for content of accordion two"
+        },
+    }
 } as Meta;
 
 const Template: StoryFn<disclosureProps> = (args: disclosureProps) => <Disclose {...args} />;

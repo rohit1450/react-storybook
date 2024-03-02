@@ -37,9 +37,10 @@ const Progress = ({
           }}
         >
           <div
-            className={`absolute top-0 left-0 h-full rounded-2xl bg-${progressColor}`}
+            className={`absolute top-0 left-0 h-full rounded-2xl ${progressColor ?? "bg-Primary"}`}
             style={{
               width: `${percentage}%`,
+              backgroundColor: `${progressColor}`
             }}
           >
             <span
@@ -73,8 +74,8 @@ const Progress = ({
             style={{ height: `${height}` }}
           >
             <div
-              className={`absolute top-0 bottom-0 left-0 rounded-lg bg-${color}`}
-              style={{ width: `${percentage}%` }}
+              className={`absolute top-0 bottom-0 left-0 rounded-lg ${color ?? "bg-Primary"}`}
+              style={{ width: `${percentage}%` , backgroundColor: color }}
             ></div>
             <div className="relative text-green-500 font-medium text-sm">{`${percentage}%`}</div>
           </div>

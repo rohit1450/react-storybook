@@ -5,6 +5,41 @@ export default {
   title: "Components/ui/Chart",
   component: Chart,
   tags: ["autodocs"],
+  argTypes: {
+    chartType: {
+      description: "Describe type of the chart",
+    },
+    height: {
+      description: "Defines height of the chart",
+    },
+    width: {
+      description: "Defines width of the chart",
+    },
+    customPosition: {
+      description: "Position of title of the chart",
+    },
+    customText: {
+      description: "Title of the chart",
+    },
+    min: {
+      description: "Min value of axis scale to start from",
+    },
+    max: {
+      description: "Max value of axis scale to start from",
+    },
+    axis: {
+      description: "Defines axis of the chart X or Y",
+    },
+    onClick: {
+      description: "Click event for charts by chartjs",
+    },
+    labels: {
+      description: "An array of string contains labels for chart",
+    },
+    datasets: {
+      description: "An array of object contains data for chart",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<ChartProps> = (args: ChartProps) => <Chart {...args} />;
