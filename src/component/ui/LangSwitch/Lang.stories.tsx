@@ -1,6 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import Lang, { LangProps } from './Lang';
-
+import Lang from './Lang';
 
 export default {
     title: 'Components/ui/Lang',
@@ -8,7 +7,7 @@ export default {
     tags: ['autodocs'],
 } as Meta;
 
-const Template: StoryFn<LangProps> = (args: LangProps) => <Lang {...args} />;
+const Template: StoryFn = (args:any) => <Lang {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -89,6 +89,8 @@ const Navbar: React.FC<NavProps> = ({
                 <div className="container flex flex-col sm:flex-row justify-between">
                     <div className="text-white flex items-center space-x-2">
                         <button
+                            type="button"
+                            title="button"
                             onClick={toggleOverlay}
                             className="inline-flex items-center text-gray rounded-lg z-50 sm:hidden">
                             <Bars3Icon className={`w-6 h-6 ${isOn ? 'text-white' : 'text-black'}`} />
@@ -113,7 +115,7 @@ const Navbar: React.FC<NavProps> = ({
 
                                 <li>
                                     <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
-                                        <span className="h-4 w-4">{loginIcon && loginIcon() }</span>
+                                        <span className="h-4 w-4">{loginIcon && loginIcon()}</span>
                                         <span>Login</span>
                                     </a>
                                 </li>
@@ -127,6 +129,8 @@ const Navbar: React.FC<NavProps> = ({
                         </li>
                         <li>
                             <button
+                                type="button"
+                                title="button"
                                 ref={avatarButtonRef}
                                 onClick={toggleMenu}
                                 className="focus:outline-none text-white"
@@ -143,6 +147,8 @@ const Navbar: React.FC<NavProps> = ({
                     </ul>
                     <div className="sm:hidden">
                         <button
+                            type="button"
+                            title="button"
                             onClick={toggleMenu}
                             className="focus:outline-none fixed right-4 top-4 text-white"
                         >
