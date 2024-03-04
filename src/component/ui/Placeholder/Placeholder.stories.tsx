@@ -56,15 +56,36 @@ Default.args = {
   height: 20,
   borderRadius: "10px",
   ComponentAfterLoading: () => (
-    <div className="text-2xl font-serif font-semibold">Custom component will be shown after loading ends</div>
+    <div className="text-2xl font-serif font-semibold">
+      Custom component will be shown after loading ends
+    </div>
   ),
 };
 
 export const CustomWrapper: StoryFn<placeholderProps> = Template.bind({});
 CustomWrapper.args = {
   ...Default.args,
-  type: "custom",
+  type: "custom wrapper",
   customWrapper: Box,
+};
+
+export const CustomPlaceholder: StoryFn<placeholderProps> = Template.bind({});
+CustomPlaceholder.args = {
+  ...Default.args,
+  type: "custom placeholder",
+  ComponentAfterLoading: () => (
+    <div>
+      <h1 className="text-2xl font-bold">Lorem ipsum dolor sit amet.</h1>
+      <p className="text-base mt-2">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo et
+        dolores enim adipisci consectetur error cupiditate nihil commodi.
+        Ducimus quasi numquam id nisi reiciendis voluptate maxime temporibus
+        perferendis rerum expedita. Libero omnis itaque obcaecati, dolore veniam
+        porro et facilis ad ex. Rem impedit expedita eveniet consequatur iure?
+        Nisi, rem ullam!
+      </p>
+    </div>
+  ),
 };
 
 function Box({ children }: PropsWithChildren<unknown>) {

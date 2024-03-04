@@ -3,12 +3,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { PropsWithChildren } from "react";
 
 export interface placeholderProps {
-  type: string;
-  count: number;
+  type: "basic" | "custom wrapper" | "custom placeholder";
+  count?: number;
   loading: boolean;
-  height: number;
-  width: number;
-  baseColor: string;
+  height?: number;
+  width?: number;
+  baseColor?: string;
   highlightColor?: string;
   enableAnimation?: true | false;
   duration?: number;
@@ -31,7 +31,7 @@ const Placeholder = ({
   direction,
   borderRadius,
   customWrapper,
-  ComponentAfterLoading
+  ComponentAfterLoading,
 }: placeholderProps) => {
   if (type === "basic") {
     return loading ? (
@@ -50,7 +50,7 @@ const Placeholder = ({
     );
   }
 
-  if (type === "custom") {
+  if (type === "custom wrapper") {
     return loading ? (
       <SkeletonTheme
         highlightColor={highlightColor}
@@ -60,11 +60,20 @@ const Placeholder = ({
         direction={direction}
         borderRadius={borderRadius}
       >
-        <Skeleton count={count} height={height} width={width} wrapper={customWrapper} />
+        <Skeleton
+          count={count}
+          height={height}
+          width={width}
+          wrapper={customWrapper}
+        />
       </SkeletonTheme>
     ) : (
-      "loading ended"
+      <ComponentAfterLoading />
     );
+  }
+
+  if (type === "custom placeholder") {
+    return loading ? "as" : <ComponentAfterLoading />;
   }
 };
 
