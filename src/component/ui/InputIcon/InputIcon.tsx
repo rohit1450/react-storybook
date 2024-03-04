@@ -6,7 +6,6 @@ export interface InputIconProps {
   value?: string;
   hasIcon: boolean;
   icon?: React.ElementType;
-  defaultBorder: boolean;
   animate: boolean;
   animateLabel?: string;
   disable: boolean;
@@ -19,7 +18,6 @@ const InputIcon = ({
   placeholder,
   icon: IconOne,
   hasIcon,
-  defaultBorder,
   animate,
   animateLabel,
   disable,
@@ -31,12 +29,13 @@ const InputIcon = ({
         placeholder={placeholder}
         cols={50}
         rows={5}
-        className={`p-1 outline-none ${defaultBorder ? "border-2 rounded-md" : "border-b-2 border-black"}`}
+        className="focus:outline-none p-2 rounded-md border border-gray shadow-lg hover:border-blue-prime"
       >
         {value}
       </textarea>
     );
   }
+
   return (
     <>
       {animate ? (
@@ -45,7 +44,7 @@ const InputIcon = ({
             type="text"
             id="username"
             required
-            className={`w-full h-10 px-4 text-sm peer bg-gray-100 outline-none ${defaultBorder ? "border-2 rounded-md" : "border-b-2 border-black"}`}
+            className={`w-full h-10 px-4 text-sm focus:outline-none p-2 rounded-md border border-gray shadow-lg hover:border-blue-prime`}
           />
           <label
             htmlFor="username"
@@ -67,7 +66,8 @@ const InputIcon = ({
               value={value}
               placeholder={placeholder}
               disabled={disable}
-              className={`w-full outline-none p-1 ${defaultBorder ? "border-2 rounded-md" : "border-b-2 border-black"} ${disable && "bg-disable rounded"} ${hasIcon && "ps-10"}`}
+              className={`focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime
+              ${hasIcon && "ps-10 pt-1"}`}
             />
           </div>
         </div>

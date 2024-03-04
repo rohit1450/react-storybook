@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import Overlay, { OverlayProps } from './Overlay';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
@@ -32,17 +31,10 @@ export default {
 } as Meta;
 
 const Template: StoryFn<OverlayProps> = (args: OverlayProps) => {
-    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-
-    const toggleOverlay = () => {
-        setIsOverlayOpen(!isOverlayOpen);
-    };
 
     return (
         <Overlay
             {...args}
-            isOverlayOpen={isOverlayOpen}
-            toggleOverlay={toggleOverlay}
         />
     );
 };
