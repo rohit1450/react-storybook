@@ -11,10 +11,10 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
-import { SyntheticEvent, useRef } from "react";
+import { useRef } from "react";
 import "@storybook/addon-console";
 
-import { Pie, Doughnut, Bar, Line, getElementAtEvent } from "react-chartjs-2";
+import { Pie, Doughnut, Bar, Line } from "react-chartjs-2";
 
 ChartJS.register(
   ArcElement,
@@ -49,6 +49,7 @@ export interface ChartProps {
   max?: number;
   axis?: string;
   onClick?: (event: MouseEvent) => void;
+  handleClick: () => void;
 }
 
 const Chart = ({
@@ -62,6 +63,7 @@ const Chart = ({
   min,
   max,
   axis,
+  handleClick
 }: ChartProps) => {
   const chartRef = useRef(null);
   const pieRef = useRef(null);
@@ -87,11 +89,6 @@ const Chart = ({
     },
     indexAxis: axis,
   };
-
-  const handleClick = (event:SyntheticEvent) => {
-    console.log(chartType);
-    getElementAtEvent(barRef.current,event)
-  }
 
   if (chartType === "pie") {
     return (

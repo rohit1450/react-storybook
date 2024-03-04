@@ -65,6 +65,7 @@ PieChart.args = {
   ],
   customPosition: "top",
   customText: "House holding",
+  handleClick
 };
 
 export const Doughnut: StoryFn<ChartProps> = Template.bind({});
@@ -144,3 +145,7 @@ LineChart.args = {
   max: 100,
   axis: "x",
 };
+
+function handleClick(){
+  console.log("chart type");
+}
