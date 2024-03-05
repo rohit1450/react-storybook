@@ -3,7 +3,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { PropsWithChildren } from "react";
 
 export interface placeholderProps {
-  type: "basic" | "custom wrapper" | "custom placeholder";
+  type: "basic" | "custom wrapper";
   count?: number;
   loading: boolean;
   height?: number;
@@ -70,10 +70,6 @@ const Placeholder = ({
     ) : (
       <ComponentAfterLoading />
     );
-  }
-
-  if (type === "custom placeholder") {
-    return loading ? "as" : <ComponentAfterLoading />;
   }
 };
 

@@ -48,10 +48,8 @@ export const Default: StoryFn<InputIconProps> = Template.bind({});
 Default.args = {
   type: "text",
   placeholder: "Enter text ...",
-  value: "",
   hasIcon: true,
   icon: IconOne,
-  defaultBorder: true,
   animate: false,
   disable: false,
 };
@@ -72,6 +70,7 @@ TopInput.args = {
   ...Default.args,
   animate: true,
   animateLabel: "Email",
+  type: "email",
 };
 
 export const TextArea: StoryFn<InputIconProps> = Template.bind({});
@@ -82,5 +81,5 @@ TextArea.args = {
 };
 
 function IconOne() {
-  return <MagnifyingGlassIcon className="h-5 w-5" />;
+  return <MagnifyingGlassIcon className="h-4 w-4" />;
 }

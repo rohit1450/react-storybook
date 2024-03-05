@@ -1,8 +1,12 @@
-import { useState } from "react";
-import { ArrowRightCircleIcon } from "@heroicons/react/20/solid";
-import { ArrowLeftCircleIcon } from "@heroicons/react/16/solid";
+import { useState, useRef } from "react";
+import Slider from "react-slick";
+import { CardProps } from "./Carousel.stories";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export interface CarouselProps {
+  type: "image" | "custom";
+  dots?: boolean;
   size: string;
   height?: string;
   width?: string;
@@ -15,9 +19,22 @@ export interface CarouselProps {
   };
   fullWidth?: boolean;
   arrowPoistion: "top" | "middle" | "bottom";
+  CardStructure: (props: CardProps) => JSX.Element;
+  cardText: {
+    heading: string;
+    content: string;
+  }[];
+  NextArrow: (props: any) => JSX.Element;
+  PrevArrow: (props: any) => JSX.Element;
+  slidesToScroll: number;
+  slidesToShow: number;
+  customPaging: any;
+  arrows: boolean;
+  hasButtons?: boolean;
 }
 
 const Carousel = ({
+  type,
   size,
   images,
   dotColor,
@@ -26,9 +43,71 @@ const Carousel = ({
   width,
   fullWidth,
   hasDot,
-  arrowPoistion
+  arrowPoistion,
+  cardText,
+  CardStructure,
+  NextArrow,
+  PrevArrow,
+  slidesToShow,
+  slidesToScroll,
+  customPaging,
+  dots,
+  arrows = true,
+  hasButtons = false,
 }: CarouselProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  let sliderRef = useRef<HTMLInputElement | null>(null);
+
+  const next = () => {
+    sliderRef.slickNext();
+  };
+  const previous = () => {
+    sliderRef.slickPrev();
+  };
+
+  let settings = {
+    dots: dots,
+    infinite: true,
+    speed: 1000,
+    slidesToShow,
+    slidesToScroll,
+    initialSlide: 0,
+    dotsClass: "slick-dots",
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    arrows: arrows,
+    customPaging: customPaging,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+          fade: true,
+          autoplay: false,
+        },
+      },
+    ],
+  };
 
   const customHeightWidth = () => {
     if (fullWidth) {
@@ -78,22 +157,63 @@ const Carousel = ({
   let leftArrowPosition = "";
   let rightArrowPosition = "";
 
+  switch (arrowPoistion) {
+    case "top":
+      leftArrowPosition = "absolute top-1 left-0";
+      rightArrowPosition = "absolute top-1 right-0";
+      break;
+    case "middle":
+      leftArrowPosition = "absolute top-1/2 left-0 transform -translate-y-1/2";
+      rightArrowPosition =
+        "absolute top-1/2 right-0 transform -translate-y-1/2";
+      break;
+    case "bottom":
+      leftArrowPosition = "absolute bottom-1 left-0";
+      rightArrowPosition = "absolute bottom-1 right-0";
+      break;
+  }
 
-    switch(arrowPoistion){
-      case "top":
-        leftArrowPosition = "absolute top-1 left-0";
-        rightArrowPosition = "absolute top-1 right-0";
-        break;
-      case "middle":
-        leftArrowPosition = "absolute top-1/2 left-0 transform -translate-y-1/2";
-        rightArrowPosition = "absolute top-1/2 right-0 transform -translate-y-1/2";
-        break;
-      case "bottom":
-        leftArrowPosition = "absolute bottom-1 left-0";
-        rightArrowPosition = "absolute bottom-1 right-0";
-          break;
-    }
-
+  if (type === "custom") {
+    return (
+      <>
+        <div className="slider-container px-4 relative">
+          <Slider
+            ref={(slider) => {
+              sliderRef = slider;
+            }}
+            {...settings}
+          >
+            {cardText.map((card, index) => {
+              return (
+                <CardStructure
+                  key={index + 1}
+                  heading={card.heading}
+                  content={card.content}
+                  img={images[index]}
+                />
+              );
+            })}
+          </Slider>
+          {hasButtons && (
+            <div className="flex gap-2">
+              <button
+                className="button px-2 py-1 rounded bg-Primary"
+                onClick={previous}
+              >
+                Previous
+              </button>
+              <button
+                className="button px-2 py-1 rounded bg-Primary"
+                onClick={next}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className={`carousel shadow-2xl`} style={customHeightWidth()}>
@@ -125,13 +245,21 @@ const Carousel = ({
           className={`${leftArrowPosition} ${arrowPoistion ?? "absolute top-1/2 left-0 transform -translate-y-1/2"} text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
           onClick={prevImage}
         >
-          {arrowIcon === undefined ? <ArrowLeftCircleIcon /> : <arrowIcon.left />}
+          {arrowIcon === undefined ? (
+            <ArrowLeftCircleIcon />
+          ) : (
+            <arrowIcon.left />
+          )}
         </div>
         <div
           className={`${rightArrowPosition} ${arrowPoistion ?? "absolute top-1/2 right-0 transform -translate-y-1/2"} text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
           onClick={nextImage}
         >
-          {arrowIcon === undefined ? <ArrowRightCircleIcon /> : <arrowIcon.right />}
+          {arrowIcon === undefined ? (
+            <ArrowRightCircleIcon />
+          ) : (
+            <arrowIcon.right />
+          )}
         </div>
       </div>
     </div>
