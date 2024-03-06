@@ -46,6 +46,7 @@
     "react-toastify": "^10.0.4",
     "react-tooltip": "^5.26.2",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.7",
     "tailwind-merge": "^2.2.1",
     "tinycolor2": "^1.6.0"
   },

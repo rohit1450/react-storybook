@@ -1,191 +1,157 @@
-import Carousel, { CarouselProps } from "./Carousel";
 import { Meta, StoryFn } from "@storybook/react";
-import { ArrowRightCircleIcon } from "@heroicons/react/20/solid";
-import { ArrowLeftCircleIcon } from "@heroicons/react/16/solid";
-import React from "react";
+import Carousel, { CarouselProps } from "./Carousel";
 
 export default {
   title: "Components/ui/Carousel",
   component: Carousel,
   tags: ["autodocs"],
   argTypes: {
-    images: {
-      description: "An array of images for carousel",
+    autoplay: {
+      description: "Auto play carousel",
     },
-    dotColor: {
-      description: "Color of active dot corresponding to image in the carousel",
+    slidesPerView: {
+      description: "Number of slides visible per view in the carousel",
     },
-    hasDot: {
-      description: "Specify need of dots onto the carousel",
+    spaceBetween: {
+      description: "Space between each slide in the carousel",
     },
-    arrowIcon: {
-      description: "An object consist of icons for carousel",
+    navigation: {
+      description: "Whether to show navigation arrows",
     },
-    size: {
-      description: "Defines size of carousel",
+    loop: {
+      description: "Whether to enable loop",
     },
-    fullWidth: {
-      description: "Boolean value for full width of carousel",
+    containerClassName: {
+      description: "Class name for the container of the carousel",
     },
-    height: {
-      description: "Custom height for carousel",
+    content: {
+      description: "Array of objects representing the content of each slide",
     },
-    width: {
-      description: "Custom width for carousel",
+    breakpoints: {
+      description: "Object defining breakpoints for responsive design",
+    },
+    customArrow: {
+      description: "Whether to use custom navigation arrows",
+    },
+    arrows: {
+      description: "Object containing custom arrow components",
+    },
+    direction: {
+      description: "Direction of the carousel (vertical or horizontal)",
+    },
+    defaultPagination: {
+      description: "Whether to use default pagination bullets",
+    },
+    customDots: {
+      description: "Function to define custom pagination bullets",
     },
   },
 } as Meta;
 
 export type CardProps = {
-  heading: string;
-  content: string;
-  img: string;
+  image: string;
+  text: string;
 };
 
-export type ArrowProps = {
-  className: string;
-  style: React.CSSProperties;
-  onClick: any;
-};
-
-const images = [
-  "https://images.unsplash.com/photo-1503662549813-28954e75f215?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1505533542167-8c89838bb19e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1517315003714-a071486bd9ea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1503662549813-28954e75f215?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1505533542167-8c89838bb19e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1517315003714-a071486bd9ea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+const content = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1503662549813-28954e75f215?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1505533542167-8c89838bb19e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1517315003714-a071486bd9ea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1503662549813-28954e75f215?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1505533542167-8c89838bb19e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1517315003714-a071486bd9ea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+  },
 ];
 
 const Template: StoryFn<CarouselProps> = (args: CarouselProps) => (
-  <Carousel {...args} images={images} />
+  <Carousel {...args} />
 );
 
-export const Small: StoryFn<CarouselProps> = Template.bind({});
-Small.args = {
-  type: "image",
-  size: "small",
-  dotColor: "red",
-  arrowIcon: {
-    left: IconOne,
-    right: IconTwe,
+export const Default: StoryFn<CarouselProps> = Template.bind({});
+Default.args = {
+  content,
+  autoplay: false,
+  slidesPerView: 1,
+  spaceBetween: 0,
+  navigation: true,
+  loop: true,
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      pagination: false,
+    },
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 24,
+      pagination: false,
+    },
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 24,
+      pagination: false,
+    },
+    1024: {
+      slidesPerView: 1,
+      spaceBetween: 32,
+      slidesPerGroup: 1,
+    },
+    1336: {
+      slidesPerView: 1,
+      spaceBetween: 32,
+    },
   },
-  fullWidth: false,
-  hasDot: true,
-  arrowPoistion: "middle",
-};
-
-export const Medium: StoryFn<CarouselProps> = Template.bind({});
-Medium.args = {
-  ...Small.args,
-  size: "medium",
-};
-
-export const Large: StoryFn<CarouselProps> = Template.bind({});
-Large.args = {
-  ...Small.args,
-  size: "large",
-};
-
-export const CarouselContent: StoryFn<CarouselProps> = Template.bind({});
-CarouselContent.args = {
-  type: "custom",
+  containerClassName: "my-swiper h-[350px]",
   CardStructure: (props: CardProps) => (
-    <div className="border rounded pb-5 m-2">
+    <div className="relative h-full w-full">
       <img
-        src={props.img}
-        alt={props.heading}
-        className="w-full h-48 rounded-t"
+        src={props.image}
+        alt={props.text}
+        className="h-full w-full object-cover"
       />
-      <h5 className="text-2xl font-semibold px-4">{props.heading}</h5>
-      <p className="px-4 text-sm">{props.content}</p>
+      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs lg:text-lg font-semibold">
+        {props.text}
+      </p>
     </div>
   ),
-  cardText: [
-    {
-      heading: "Heading 1",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. ",
-    },
-    {
-      heading: "Heading 2",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. ",
-    },
-    {
-      heading: "Heading 3",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. ",
-    },
-    {
-      heading: "Heading 4",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. ",
-    },
-    {
-      heading: "Heading 5",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. ",
-    },
-    {
-      heading: "Heading 6",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. Quibusdam a blanditiis repellat harum porro maxime, et sed vero. vero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, quia. ",
-    },
-  ],
-  NextArrow,
-  PrevArrow,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  customPaging: CustomPaging,
-  dots: true,
-  hasButtons: false,
+  defaultPagination: true,
+  customArrow: false,
+  arrows: {
+    leftArrow: () => (
+      <button className="arrow-left arrow bg-Primary text-sm text-white rounded px-2 py-1">
+        Prev
+      </button>
+    ),
+    rightArrow: () => (
+      <button className="arrow-right arrow bg-Primary text-sm text-white rounded px-2 py-1">
+        next
+      </button>
+    ),
+  },
+  customDots: (index: number) => {
+    return "<span className='custom-dots'>" + (index + 1) + "</span>";
+  },
 };
-
-function NextArrow(props: ArrowProps) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} rounded-full`}
-      style={{ ...style, display: "block", background: "black" }}
-      onClick={onClick}
-    />
-  );
-}
-
-function PrevArrow(props: ArrowProps) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} rounded-full`}
-      style={{
-        ...style,
-        display: "block",
-        backgroundColor: "black",
-      }}
-      onClick={onClick}
-    />
-  );
-}
-
-function IconOne() {
-  return <ArrowLeftCircleIcon />;
-}
-
-function IconTwe() {
-  return <ArrowRightCircleIcon />;
-}
-
-function CustomPaging(i: number) {
-  return (
-    <div
-      style={{
-        width: "30px",
-        color: "blue",
-        border: "1px blue solid",
-      }}
-    >
-      {i + 1}
-    </div>
-  );
-}
