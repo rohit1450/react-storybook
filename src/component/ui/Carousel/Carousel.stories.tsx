@@ -93,11 +93,12 @@ const Template: StoryFn<CarouselProps> = (args: CarouselProps) => (
 export const Default: StoryFn<CarouselProps> = Template.bind({});
 Default.args = {
   content,
-  autoplay: false,
+  autoplay: true,
   slidesPerView: 1,
   spaceBetween: 0,
   navigation: true,
   loop: true,
+  requirePagination: true,
   breakpoints: {
     320: {
       slidesPerView: 1,

@@ -5,6 +5,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+type Breakpoints = {
+  [key: number]: {
+    slidesPerView: number;
+    spaceBetween: number;
+    pagination?: boolean;
+    slidesPerGroup?: number;
+  };
+};
+
 export interface CarouselProps {
   CardStructure: (props: CardProps) => JSX.Element;
   slidesPerView: number;
@@ -13,7 +22,7 @@ export interface CarouselProps {
   loop: boolean;
   containerClassName: string;
   content: { image: string; text: string }[];
-  breakpoints: any;
+  breakpoints: Breakpoints;
   customArrow: boolean;
   arrows: {
     leftArrow: () => JSX.Element;
@@ -23,6 +32,7 @@ export interface CarouselProps {
   autoplay: boolean;
   defaultPagination: boolean;
   customDots: (index: number, className: string) => string;
+  requirePagination: boolean;
 }
 
 const Carousel = ({
@@ -39,6 +49,7 @@ const Carousel = ({
   direction = "horizontal",
   autoplay = false,
   defaultPagination = true,
+  requirePagination,
   customDots,
 }: CarouselProps) => {
   const options = {
@@ -64,7 +75,13 @@ const Carousel = ({
       <Swiper
         {...options}
         autoplay={autoplay}
-        pagination={defaultPagination ? pagination2 : pagination1}
+        pagination={
+          requirePagination
+            ? defaultPagination
+              ? pagination2
+              : pagination1
+            : false
+        }
         modules={[Pagination, Navigation, Autoplay]}
         className={containerClassName}
       >
