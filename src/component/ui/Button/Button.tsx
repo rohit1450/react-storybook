@@ -8,8 +8,7 @@ export interface ButtonProps {
   disabled?: boolean;
   className: string;
   onClick: React.MouseEventHandler;
-  loading: boolean;
-  checkIcon: any;
+  isLoading: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,8 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   buttonType,
   disabled,
   className,
-  loading,
-  checkIcon,
+  isLoading,
 }) => {
   const primaryClass = `bg-blue-dark text-${color} hover:bg-blue-dark/[0.90]`;
   const secondaryClass =
@@ -42,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
         disabled={disabled}
         onClick={onClick}
       >
-        {Icon ? loading ? checkIcon() : <Icon /> : null}
+        {Icon ? isLoading ? null : <Icon /> : null}
         <div>{label}</div>
       </button>
     </div>

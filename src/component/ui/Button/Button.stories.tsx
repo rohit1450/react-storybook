@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import Button, { ButtonProps } from "./Button";
 import { action } from "@storybook/addon-actions";
-import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 
 export default {
   title: "Components/ui/Button",
@@ -70,8 +69,7 @@ Loading.args = {
   label: "Button",
   color: "white",
   icon: Loader,
-  loading: true,
-  checkIcon: () => <CheckBadgeIcon className="h-4 w-4" />,
+  isLoading: true,
 };
 
 function IconOne() {
