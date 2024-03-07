@@ -76,13 +76,12 @@ const ImageUploader = ({
         className={`container sm:w-2/4 rounded-xl p-4 mx-auto bg-${containerColor}`}
       >
         <div className="border-white border-dashed border-2 rounded-xl p-4">
-          <div className="flex flex-col items-center">
-            <div
-              {...getRootProps({ className: "dropzone" })}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <input {...getInputProps()} />
-            </div>
+          <div
+            {...getRootProps({ className: "dropzone" })}
+            onClick={(e) => e.stopPropagation()}
+            className="flex flex-col items-center"
+          >
+            <input {...getInputProps()} />
             <h5 className="md:text-xl md:font-bold text-white">
               Drag & Drop to Upload File
             </h5>
