@@ -2,34 +2,58 @@ import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export interface ImageuploaderProps {
-  acceptFormat: string[];
+  type: string;
+  acceptFormat: {};
   maxFiles: number;
   multiple: boolean;
   disabled: boolean;
-  addIcon: () => JSX.Element;
-  removeIcon: () => JSX.Element;
-  containerColor: string;
+  noDrag: boolean;
+  PreviewStructure: (props: PreviewStructureProps) => JSX.Element;
+  DropboxStructure: (props: DropboxStructureProps) => JSX.Element;
+  AvatarContainer: (props: AvatarContainerProps) => JSX.Element;
 }
 
-interface FileWithPreview extends File {
+export interface AvatarContainerProps {
+  open: () => void;
+  files: FileWithPreview[];
+}
+
+export interface FileWithPreview extends File {
   preview: string;
 }
 
+export interface PreviewStructureProps {
+  file: FileWithPreview;
+  name: string;
+  preview: string;
+  onClick: () => void;
+}
+
+export type DropboxStructureProps = {
+  getRootProps: () => void;
+  getInputProps: () => void;
+  open: () => void;
+  thumbs: JSX.Element[];
+};
+
 const ImageUploader = ({
+  type,
   acceptFormat,
   maxFiles = 1,
   multiple,
   disabled = false,
-  addIcon,
-  removeIcon,
-  containerColor = "Primary",
+  PreviewStructure,
+  DropboxStructure,
+  AvatarContainer,
+  noDrag,
 }: ImageuploaderProps) => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const { getRootProps, getInputProps, open } = useDropzone({
     accept: {
-      "image/png": acceptFormat,
+      ...acceptFormat,
     },
     multiple,
+    noDrag,
     disabled,
     onDrop: (acceptedFiles) => {
       if (files.length + acceptedFiles.length <= maxFiles) {
@@ -49,19 +73,14 @@ const ImageUploader = ({
     URL.revokeObjectURL(file.preview);
   };
 
-  const thumbs = files.map((file) => (
-    <div className="relative h-auto w-56" key={file.name}>
-      <div>
-        <img
-          src={file.preview}
-          alt={file.name}
-          className="h-full w-full rounded-xl drop-shadow-md"
-        />
-      </div>
-      <button className="absolute -top-2 -right-1" onClick={removeFile(file)}>
-        {removeIcon()}
-      </button>
-    </div>
+  const thumbs = files.map((file, index: number) => (
+    <PreviewStructure
+      key={index}
+      file={file}
+      onClick={removeFile(file)}
+      name={file.name}
+      preview={file.preview}
+    />
   ));
 
   useEffect(() => {
@@ -70,34 +89,17 @@ const ImageUploader = ({
     };
   }, [files]);
 
+  if (type === "avatar") {
+    return <AvatarContainer files={files} open={open} />;
+  }
+
   return (
-    <>
-      <section
-        className={`container sm:w-2/4 rounded-xl p-4 mx-auto bg-${containerColor}`}
-      >
-        <div className="border-white border-dashed border-2 rounded-xl p-4">
-          <div
-            {...getRootProps({ className: "dropzone" })}
-            onClick={(e) => e.stopPropagation()}
-            className="flex flex-col items-center"
-          >
-            <input {...getInputProps()} />
-            <h5 className="md:text-xl md:font-bold text-white">
-              Drag & Drop to Upload File
-            </h5>
-            <h5 className="md:text-xl md:font-bold text-white">OR</h5>
-            <div className="cursor-pointer" onClick={open}>
-              {addIcon()}
-            </div>
-          </div>
-        </div>
-      </section>
-      <div className="mx-auto w-full lg:w-4/5 mt-10">
-        <div className="flex flex-wrap justify-center gap-3 md:gap-5">
-          {thumbs}
-        </div>
-      </div>
-    </>
+    <DropboxStructure
+      getRootProps={getRootProps}
+      getInputProps={getInputProps}
+      open={open}
+      thumbs={thumbs}
+    />
   );
 };
 
