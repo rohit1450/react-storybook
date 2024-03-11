@@ -3,7 +3,7 @@ import Navbar, { NavProps } from './Navbar';
 import { BugAntIcon } from "@heroicons/react/20/solid";
 import { useState } from 'react';
 import { UserIcon } from '@heroicons/react/16/solid';
-import { UserPlusIcon } from '@heroicons/react/16/solid';
+
 
 export default {
     title: 'Components/ui/Navbar',
@@ -28,7 +28,7 @@ export default {
         menuClass: { description: "Class name for custom styling of the menu" },
         smallScreenMenuClass: { description: "Class name for custom styling of the menu on small screens" },
     }
-    
+
 } as Meta;
 
 const Template: StoryFn<NavProps> = (args: NavProps) => {
@@ -75,6 +75,6 @@ function Login() {
 
 function Signup() {
     return (
-        <UserPlusIcon />
+        <div></div>
     )
 }

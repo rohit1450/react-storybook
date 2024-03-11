@@ -1,6 +1,7 @@
 
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
+import { Bars3Icon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid';
 import React, { useState, useEffect, ReactElement, useRef } from 'react';
+import { IoCloseCircle } from 'react-icons/io5';
 import { BrowserRouter as Router, Routes } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -60,6 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
     useEffect(() => {
         const handleResize = () => {
             setIsTablet(window.innerWidth >= 768);
+            setIsSlim(false);
         };
 
         handleResize();
@@ -110,27 +112,35 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
 
     return (
         <Router>
-            <div className=''>
+            <div className='overflow-x-hidden'>
 
-                {/* {!isOverlayOpen &&
+                {!isOverlayOpen &&
                     <button
                         onClick={toggleOverlay}
-                        className="inline-flex items-center p-2 mt-2 ms-3 text-gray rounded-lg">
-                        <Bars3Icon className='w-10 h-10 text-black' />
+                        className="inline-flex items-center p-2 mt-2 text-gray rounded-lg md:hidden">
+                        <Bars3Icon className='w-6 h-6 text-black' />
                     </button>
-                } */}
+                }
 
                 {(isOverlayOpen || isTablet) && (
                     <div
                         ref={overlayRef}
-                        className={`fixed top-0 left-0 z-40 h-screen transition-transform transition-translate-x-full `}
-                        style={{ width: width }}
+                        className={`fixed top-0 left-0 z-40 h-screen transition-transform transition-translate-x-full`}
+                        style={isSlim === false ? { width: width } : {}}
                     >
                         <div ref={dropdownRef}
-                            className={twMerge(`h-screen overflow-y-auto border border-white border-y-0 border-l-0 bg-Primary block sm:block`, containerClass)}
+                            className={twMerge(`h-screen overflow-y-auto border border-white border-y-0 border-l-0 bg-blue-dark block sm:block`, containerClass)}
 
                         >
                             <div className={twMerge('flex h-16', logoClass)}>
+                                <button
+                                    className=" rounded text-white hidden md:block ps-6"
+                                    onClick={handleSlimToggle}
+                                >
+                                    {isSlim === false ?
+                                        (<IoCloseCircle className='h-6 w-6' />) : (<Bars3Icon className='h-6 w-6' />)
+                                    }
+                                </button>
                                 {imgURL && isSlim === false &&
                                     <img
                                         className='w-20 h-20 '
@@ -139,26 +149,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                         style={{ width: imgWidth, height: imgHeight }}
                                     ></img>
                                 }
-                                <button
-                                    className="inline-block rounded text-white "
-                                    onClick={handleSlimToggle}
-                                >
-                                    {/* {isSlim === false ?
-                                        (<ArrowLeftIcon className='h-6 w-6'/>) : (<ArrowRightIcon className='h-6 w-6'/>)
-                                    } */}
-                                </button>
+
                             </div>
 
                             <ul className={`space-y-2 font-medium p-4`} >
                                 {pages.map((page, index) => {
                                     return (
-                                        <li key={index} className={twMerge(`hover:bg-blue-light p-2 rounded-md ${index === isActive && 'bg-blue-light'}`, parentListClass)} onClick={() => handleActive(index)}>
+                                        <li key={index} className={twMerge(`hover:bg-navy p-2 rounded-md ${index === isActive && 'bg-navy'}`, parentListClass)} onClick={() => handleActive(index)}>
                                             <div className='flex flex-col'>
                                                 {page.sub ? (
                                                     <div className='w-full flex flex-row justify-start items-center space-x-2' onClick={handleDown}>
-                                                        <div className='w-full flex space-x-2'>
+                                                        <div className='w-full flex space-x-3'>
 
-                                                            <div className='pt-2 text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                            <div className='text-white' style={{ width: iconSize, height: iconSize }}>
                                                                 {page.icon}
                                                             </div>
                                                             {isSlim === false && (
@@ -174,9 +177,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                                         )}
                                                     </div>
                                                 ) : (
-                                                    <Link to={page.link} className={`${index === isActive && 'bg-blue-light'}`}>
-                                                        <div className='w-full flex flex-row justify-start space-x-2'>
-                                                            <div className='pt-2 text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                    <Link to={page.link}>
+                                                        <div className='w-full flex flex-row justify-start space-x-3'>
+                                                            <div className=' text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                                 {page.icon}
                                                             </div>
                                                             {isSlim === false &&
@@ -193,7 +196,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                                             <ul className='mt-4'>
                                                                 {page.sub.map((subLink, subIndex) => {
                                                                     return (
-                                                                        <li key={subIndex} className={twMerge(`flex space-x-2 hover:bg-Primary p-2 pl-6 rounded-md  justify-start items-center ${subIndex === activeSubIndex && 'bg-Primary'}`, childListClass)} onClick={() => handleActive(subIndex)}>
+                                                                        <li key={subIndex} className={twMerge(`flex space-x-3 hover:bg-Primary p-2 pl-6 rounded-md  justify-start items-center ${subIndex === activeSubIndex && 'bg-Primary'}`, childListClass)} onClick={() => handleActive(subIndex)}>
                                                                             <div className='text-white h-5 w-5 flex justify-center items-center'>{subLink.icon}</div>
                                                                             <Link to={subLink.link} className='text-white'>
                                                                                 <p className='text-white'>{subLink.title}</p>
@@ -210,29 +213,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                 })}
                             </ul>
                         </div>
-                    </div>
+                    </div >
                 )
                 }
-                <div className={twMerge('flex w-full h-full', childClass)}>
+                <div className={twMerge(`flex w-full h-full mt-2 sm:mt-14 ml-[250px] ${isSlim === false && isTablet ? `ml-[${width}]` : 'ml-1 sm:ml-16'}`, childClass)}>
                     {children}
-                    <div >
+                    <div>
                         <Routes>
 
                         </Routes>
                     </div>
                 </div>
-
-                {/* <footer
-                    className={`mt-5 -mb-12 bg-black w-full sticky  sm:absolute sm:bottom-0 ${isOverlayOpen && 'opacity-30 sm:opacity-100'}`}
-                >
-                    <div className='flex justify-center'>
-                        <p className='text-gray py-3'>All rights reserved.</p>
-                    </div>
-                </footer> */}
             </div >
-        </Router>
+        </Router >
     );
 };
 
 export default Sidebar;
-

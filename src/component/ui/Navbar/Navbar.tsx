@@ -34,6 +34,7 @@ const Navbar: React.FC<NavProps> = ({
     src,
     icon,
     loginIcon,
+    signUpIcon,
     maxInitials,
     bgColor,
     padding,
@@ -105,16 +106,16 @@ const Navbar: React.FC<NavProps> = ({
                         <div ref={overlayRef} className="hidden sm:flex">
                             <ul className={twMerge(`${isOn ? 'bg-black' : 'bg-white'} shadow-2xl rounded-md list-none absolute top-16 right-6 flex flex-col p-4`, menuClass)}>
                                 <li>
-                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-left font-bold pb-2`}>
                                         <span className="h-4 w-4">{signUpIcon && signUpIcon()}</span>
                                         <span>
                                             Account
                                         </span>
                                     </a>
                                 </li>
-
+                                <hr />
                                 <li>
-                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2`}>
+                                    <a href="#" className={`${isOn ? 'text-white' : 'text-black'} flex flex-row items-center space-x-2 pt-2`}>
                                         <span className="h-4 w-4">{loginIcon && loginIcon()}</span>
                                         <span>Login</span>
                                     </a>
