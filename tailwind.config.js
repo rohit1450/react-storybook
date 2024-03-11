@@ -27,6 +27,13 @@ export default {
       loader: "rgb(37 99 235)",
       amber: "#ffbf00",
     },
+    screens: {
+      xxs: "400px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+    },
     extend: {
       spacing: {
         100: "20rem",

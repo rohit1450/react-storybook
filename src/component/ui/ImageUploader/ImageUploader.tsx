@@ -8,6 +8,7 @@ export interface ImageuploaderProps {
   multiple: boolean;
   disabled: boolean;
   noDrag: boolean;
+  getFiles: (files: {}[]) => void;
   PreviewStructure: (props: PreviewStructureProps) => JSX.Element;
   DropboxStructure: (props: DropboxStructureProps) => JSX.Element;
   AvatarContainer: (props: AvatarContainerProps) => JSX.Element;
@@ -46,6 +47,7 @@ const ImageUploader = ({
   DropboxStructure,
   AvatarContainer,
   noDrag,
+  getFiles,
 }: ImageuploaderProps) => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -84,6 +86,7 @@ const ImageUploader = ({
   ));
 
   useEffect(() => {
+    getFiles(files);
     return () => {
       files.forEach((file) => URL.revokeObjectURL(file.preview));
     };

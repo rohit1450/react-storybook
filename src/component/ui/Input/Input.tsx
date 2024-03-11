@@ -105,6 +105,8 @@ const Input: React.FC<InputProps> = ({
     }
   };
 
+  console.log(data);
+
   return (
     <div className="sm:w-96 py-16 w-11/12">
       {type === "image" ? (
