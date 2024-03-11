@@ -6,7 +6,42 @@ import { action } from '@storybook/addon-actions';
 export default {
     title: 'components/ui/Card',
     component: Card,
-    tags: ['autodocs']
+    tags: ['autodocs'],
+    argTypes: {
+        size: {
+            description: "Define size of the card"
+        },
+        imageSrc: {
+            description: "Source of the image that needs to be render on card"
+        },
+        about: {
+            description: "Defines heading of the card below image"
+        },
+        description: {
+            description: "Define description of the card"
+        },
+        imgHeight: {
+            description: "Defines height of the image inside card"
+        },
+        imagePosition: {
+            description: "Defines position of the image inside card"
+        },
+        button: {
+            description: "Button props"
+        },
+        isButton: {
+            description: "Boolean value to render button inside card"
+        },
+        imgWidth: {
+            description: "Defines width of the image inside cards"
+        },
+        aboutFontSize: {
+            description: "Defines the font-size of the heading inside card"
+        },
+        descriptionFontSize: {
+            description: "Defines the font-size of the content inside card"
+        },
+    }
 };
 
 const Template: StoryFn<CardProps> = (args: CardProps) => <Card {...args} />;

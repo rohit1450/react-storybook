@@ -6,23 +6,23 @@ import {
   ChevronUpIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
+import "@storybook/addon-console";
 
 interface Person {
   id: number;
   name: string;
   unavailable: boolean;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-export interface ListProps {
+export interface DropdownProps {
   people: Person[];
   multiple?: boolean;
-  icons?: React.ReactNode[];
+  labelIcon?: boolean;
 }
 
-const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
-  const [selected, setSelected] = useState<Person | Person[]>(
-    multiple ? [] : []
-  );
+const Dropdown: React.FC<DropdownProps> = ({ people, multiple, labelIcon }) => {
+  const [selected, setSelected] = useState<Person | Person[]>([]);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -51,21 +51,22 @@ const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
       >
         <div className="relative mt-1">
           <Listbox.Button
-            className="relative p-2 w-full rounded-lg py-2 pl-3 pr-10 text-left shadow-md border border-gray hover:border-blue-prime sm:text-sm"
+            className="flex items-center relative p-2 w-full rounded-lg py-2 pl-3 pr-10 text-left shadow-md border border-gray hover:border-blue-prime sm:text-sm"
             onClick={handleOpen}
             onFocus={() => {
               multiple && setOpen(false);
             }}
           >
+            {labelIcon && !Array.isArray(selected) && selected.icon && <selected.icon />}
             <span className="block">
               {multiple && (selected as Person[]).length > 0
-                ? (selected as Person[]).map((person, i) => (
+                ? (selected as Person[]).map((person) => (
                     <span
                       key={person.id}
-                      className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2"
+                      className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2 py-1"
                     >
                       <span className="flex items-center">
-                        {selected && icons[i]}
+                        {labelIcon && <person.icon />}
                         {person.name}
                         <button
                           onClick={(e) => {
@@ -112,11 +113,12 @@ const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
                 >
                   {({ selected }) => (
                     <>
-                      <span
-                        className={`block truncate ${selected ? "font-medium" : "font-normal"}`}
+                      <div
+                        className={`flex items-center truncate ${selected ? "font-medium" : "font-normal"}`}
                       >
-                        {person.name}
-                      </span>
+                        <div>{labelIcon && person.icon && <person.icon />}</div>
+                        <div>{person.name}</div>
+                      </div>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -134,4 +136,4 @@ const List: React.FC<ListProps> = ({ people, multiple, icons }) => {
   );
 };
 
-export default List;
+export default Dropdown;

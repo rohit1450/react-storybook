@@ -1,8 +1,6 @@
 export interface LoaderProps {
   size?: string;
   color?: string;
-  measure: number | string;
-  width: number | string;
 }
 
 const Loader = ({ size, color }: LoaderProps) => {

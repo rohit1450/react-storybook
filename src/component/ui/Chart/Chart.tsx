@@ -10,12 +10,11 @@ import {
   Filler,
   PointElement,
   LineElement,
-  scales,
 } from "chart.js";
 import { useRef } from "react";
 import "@storybook/addon-console";
 
-import { Pie, Doughnut, Bar, Line, getElementAtEvent } from "react-chartjs-2";
+import { Pie, Doughnut, Bar, Line } from "react-chartjs-2";
 
 ChartJS.register(
   ArcElement,
@@ -50,6 +49,7 @@ export interface ChartProps {
   max?: number;
   axis?: string;
   onClick?: (event: MouseEvent) => void;
+  handleClick: () => void;
 }
 
 const Chart = ({
@@ -63,23 +63,12 @@ const Chart = ({
   min,
   max,
   axis,
+  handleClick
 }: ChartProps) => {
   const chartRef = useRef(null);
-
-  const handleData = (event: Event) => {
-    const requiredIndex: number | undefined = getElementAtEvent(
-      chartRef.current,
-      event
-    )[0]?.index;
-    if (requiredIndex !== undefined) {
-      console.log(
-        `country 2 year: ${labels[requiredIndex]} => ${datasets[1].data[requiredIndex]}%`
-      );
-      console.log(
-        `country 1 year: ${labels[requiredIndex]} => ${datasets[0].data[requiredIndex]}%`
-      );
-    }
-  };
+  const pieRef = useRef(null);
+  const barRef = useRef(null);
+  const doughnutRef = useRef(null);
 
   const customOption: object = {
     maintainAspectRatio: false,
@@ -99,12 +88,6 @@ const Chart = ({
       },
     },
     indexAxis: axis,
-    scales: {
-      y: {
-        min,
-        max,
-      },
-    },
   };
 
   if (chartType === "pie") {
@@ -114,6 +97,8 @@ const Chart = ({
         height={height}
         width={width}
         options={customOption}
+        ref={pieRef}
+        onClick={handleClick}
       />
     );
   }
@@ -125,6 +110,8 @@ const Chart = ({
         height={height}
         width={width}
         options={customOption}
+        ref={doughnutRef}
+        onClick={handleClick}
       />
     );
   }
@@ -135,7 +122,14 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={customOption}
+        options={{...customOption,   scales: {
+          y: {
+            min,
+            max,
+          },
+        },}}
+        ref={barRef}
+        onClick={handleClick}
       />
     );
   }
@@ -146,9 +140,14 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={customOption}
+        options={{...customOption,   scales: {
+          y: {
+            min,
+            max,
+          },
+        },}}
         ref={chartRef}
-        onClick={handleData}
+        onClick={handleClick}
       />
     );
   }

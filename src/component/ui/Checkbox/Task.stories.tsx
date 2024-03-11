@@ -12,6 +12,17 @@ const meta: Meta<typeof Task> = {
     title: 'Components/ui/Checkbox',
     component: Task,
     tags: ['autodocs'],
+    argTypes: {
+        isChecked: {
+            description: "Boolean value to check or uncheck checkbox"
+        },
+        onChange: {
+            description: "onchange event for input"
+        },
+        disabled: {
+            description: "Boolean value to disable checkbox"
+        },
+    }
 };
 export default meta;
 

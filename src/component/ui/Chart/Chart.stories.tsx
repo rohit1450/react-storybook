@@ -5,6 +5,41 @@ export default {
   title: "Components/ui/Chart",
   component: Chart,
   tags: ["autodocs"],
+  argTypes: {
+    chartType: {
+      description: "Describe type of the chart",
+    },
+    height: {
+      description: "Defines height of the chart",
+    },
+    width: {
+      description: "Defines width of the chart",
+    },
+    customPosition: {
+      description: "Position of title of the chart",
+    },
+    customText: {
+      description: "Title of the chart",
+    },
+    min: {
+      description: "Min value of axis scale to start from",
+    },
+    max: {
+      description: "Max value of axis scale to start from",
+    },
+    axis: {
+      description: "Defines axis of the chart X or Y",
+    },
+    onClick: {
+      description: "Click event for charts by chartjs",
+    },
+    labels: {
+      description: "An array of string contains labels for chart",
+    },
+    datasets: {
+      description: "An array of object contains data for chart",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<ChartProps> = (args: ChartProps) => <Chart {...args} />;
@@ -30,6 +65,7 @@ PieChart.args = {
   ],
   customPosition: "top",
   customText: "House holding",
+  handleClick
 };
 
 export const Doughnut: StoryFn<ChartProps> = Template.bind({});
@@ -52,13 +88,6 @@ Doughnut.args = {
   ],
   customPosition: "top",
   customText: "Colors Data",
-  // option: {
-  //   ...PieChart.args.option,
-  //   plugins: {
-  //     ...PieChart.args?.option?.plugins,
-  //     title: { ...PieChart.args?.option?.plugins.title, text: "doughnut" },
-  //   },
-  // },
 };
 
 export const BarChart: StoryFn<ChartProps> = Template.bind({});
@@ -85,20 +114,6 @@ BarChart.args = {
   customPosition: "top",
   customText: "Colors Data",
   axis: "x",
-  // option: {
-  //   ...PieChart.args.option,
-  //   plugins: {
-  //     ...PieChart.args?.option?.plugins,
-  //     title: { ...PieChart.args?.option?.plugins?.title, text: "Bar chart" },
-  //   },
-  //   indexAxis: "x",
-  //   scales: {
-  //     y: {
-  //       min: 0,
-  //       max: 100,
-  //     },
-  //   },
-  // },
 };
 
 export const LineChart: StoryFn<ChartProps> = Template.bind({});
@@ -129,18 +144,8 @@ LineChart.args = {
   min: 0,
   max: 100,
   axis: "x",
-  // option: {
-  //   ...PieChart.args.option,
-  //   plugins: {
-  //     ...PieChart.args?.option?.plugins,
-  //     title: { ...PieChart.args?.option?.plugins.title, text: "Line chart" },
-  //   },
-  //   indexAxis: "x",
-  //   scales: {
-  //     y: {
-  //       min: 0,
-  //       max: 100,
-  //     },
-  //   },
-  // },
 };
+
+function handleClick(){
+  console.log("chart type");
+}

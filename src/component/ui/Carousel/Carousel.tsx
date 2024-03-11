@@ -1,117 +1,104 @@
-import { useState, ReactNode } from "react";
-import { ArrowRightCircleIcon } from "@heroicons/react/20/solid";
-import { ArrowLeftCircleIcon } from "@heroicons/react/16/solid";
+import { CardProps } from "./Carousel.stories";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+type Breakpoints = {
+  [key: number]: {
+    slidesPerView: number;
+    spaceBetween: number;
+    pagination?: boolean;
+    slidesPerGroup?: number;
+  };
+};
 
 export interface CarouselProps {
-  size: string;
-  height?: string;
-  width?: string;
-  images: string[];
-  dotColor?: string;
-  hasDot: boolean;
-  arrowIcon?: {
-    left: ReactNode;
-    right: ReactNode;
+  CardStructure: (props: CardProps) => JSX.Element;
+  slidesPerView: number;
+  spaceBetween: number;
+  navigation: boolean;
+  loop: boolean;
+  containerClassName: string;
+  content: { image: string; text: string }[];
+  breakpoints: Breakpoints;
+  customArrow: boolean;
+  arrows: {
+    leftArrow: () => JSX.Element;
+    rightArrow: () => JSX.Element;
   };
-  fullWidth?: boolean;
+  direction: "vertical" | "horizontal";
+  autoplay: boolean;
+  defaultPagination: boolean;
+  customDots: (index: number, className: string) => string;
+  requirePagination: boolean;
 }
 
 const Carousel = ({
-  size,
-  images,
-  dotColor,
-  arrowIcon,
-  height,
-  width,
-  fullWidth,
-  hasDot,
+  content,
+  CardStructure,
+  slidesPerView = 1,
+  spaceBetween = 0,
+  loop = true,
+  navigation,
+  containerClassName,
+  breakpoints,
+  customArrow = false,
+  arrows,
+  direction = "horizontal",
+  autoplay = false,
+  defaultPagination = true,
+  requirePagination,
+  customDots,
 }: CarouselProps) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const customHeightWidth = () => {
-    if (fullWidth) {
-      return { height: "100%", width: "100%" };
-    }
-    if (size === "small") {
-      return height === undefined || width === undefined
-        ? { height: "10rem", width: "15rem" }
-        : { height, width };
-    } else if (size === "medium") {
-      return height === undefined || width === undefined
-        ? { height: "14rem", width: "25rem" }
-        : { height, width };
-    } else if (size === "large") {
-      return height === undefined || width === undefined
-        ? { height: "20rem", width: "36rem" }
-        : { height, width };
-    }
+  const options = {
+    direction,
+    slidesPerView,
+    spaceBetween,
+    loop,
+    breakpoints,
+    navigation: navigation
+      ? true
+      : { nextEl: ".arrow-right", prevEl: ".arrow-left" },
   };
-
-  const smallArrow = size === "small" && `h-12 w-12`;
-  const mediumArrow = size === "medium" && `h-14 w-14`;
-  const largeArrow = size === "large" && `h-16 w-16`;
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
+  const pagination1 = {
+    clickable: true,
+    renderBullet: customDots,
   };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const noDots = () => {
-    return hasDot ? {} : { display: "none" };
-  };
-
-  const dotColorFn = (index: number) => {
-    return index === currentImageIndex
-      ? { backgroundColor: dotColor }
-      : { backgroundColor: "black" };
+  const pagination2 = {
+    clickable: true,
   };
 
   return (
-    <div className={`carousel shadow-2xl`} style={customHeightWidth()}>
-      <div className="relative">
-        <div className="overflow-hidden rounded-lg">
-          <img
-            src={images[currentImageIndex]}
-            alt={`Image ${currentImageIndex + 1}`}
-            className={`object-cover`}
-            style={customHeightWidth()}
-          />
+    <div>
+      <Swiper
+        {...options}
+        autoplay={autoplay}
+        pagination={
+          requirePagination
+            ? defaultPagination
+              ? pagination2
+              : pagination1
+            : false
+        }
+        modules={[Pagination, Navigation, Autoplay]}
+        className={containerClassName}
+      >
+        {content.map((card) => {
+          return (
+            <SwiperSlide>
+              <CardStructure text={card.text} image={card.image} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      {customArrow && (
+        <div className="flex gap-2 mt-2">
+          {arrows.leftArrow()}
+          {arrows.rightArrow()}
         </div>
-        <div
-          className="absolute bottom-4 left-0 right-0 flex justify-center"
-          style={noDots()}
-        >
-          {images.map((_, index) => (
-            <span
-              key={index}
-              className={`${size === "small" ? "w-1 h-1" : "w-2 h-2"} mx-1 rounded-full hover:cursor-pointer ${
-                index === currentImageIndex ? `bg-${dotColor}` : "bg-black"
-              }`}
-              style={dotColorFn(index)}
-              onClick={() => setCurrentImageIndex(index)}
-            ></span>
-          ))}
-        </div>
-        <div
-          className={`absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500  hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
-          onClick={prevImage}
-        >
-          {arrowIcon === undefined ? <ArrowLeftCircleIcon /> : arrowIcon.left}
-        </div>
-        <div
-          className={`absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-full transition duration-500 hover:cursor-pointer ${smallArrow || mediumArrow || largeArrow}`}
-          onClick={nextImage}
-        >
-          {arrowIcon === undefined ? <ArrowRightCircleIcon /> : arrowIcon.right}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

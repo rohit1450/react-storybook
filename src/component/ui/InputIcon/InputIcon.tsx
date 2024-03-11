@@ -1,12 +1,10 @@
-import React from "react";
+import React, { BaseSyntheticEvent, useState } from "react";
 
 export interface InputIconProps {
-  type: "text";
+  type: "text" | "email";
   placeholder?: string;
-  value?: string;
   hasIcon: boolean;
   icon?: React.ElementType;
-  defaultBorder: boolean;
   animate: boolean;
   animateLabel?: string;
   disable: boolean;
@@ -15,37 +13,71 @@ export interface InputIconProps {
 
 const InputIcon = ({
   type,
-  value,
   placeholder,
   icon: IconOne,
   hasIcon,
-  defaultBorder,
   animate,
   animateLabel,
   disable,
   textarea,
 }: InputIconProps) => {
+  const [text, setText] = useState("");
+
+  const handleChange = (event: BaseSyntheticEvent) => {
+    const value: any = event.target.value;
+
+    setText(value);
+
+    const regex: RegExp = /^[a-zA-Z]+$/;
+
+    if (type === "text") {
+      if (regex.test(value) || isNaN(Number(value))) {
+        event.target.style.borderColor = "green";
+      } else if (value === "") {
+        event.target.style.borderColor = "";
+      } else {
+        event.target.style.borderColor = "red";
+      }
+    }
+
+    const containsEmail =
+      /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/.test(value);
+
+    if (type === "email") {
+      if (containsEmail) {
+        event.target.style.borderColor = "green";
+      } else if (value === "") {
+        event.target.style.borderColor = "";
+      } else {
+        event.target.style.borderColor = "red";
+      }
+    }
+  };
+
   if (textarea) {
     return (
       <textarea
         placeholder={placeholder}
         cols={50}
         rows={5}
-        className={`p-1 outline-none ${defaultBorder ? "border-2 rounded-md" : "border-b-2 border-black"}`}
-      >
-        {value}
-      </textarea>
+        className="focus:outline-none p-2 rounded-md border border-gray shadow-lg hover:border-blue-prime"
+        value={text}
+        onChange={handleChange}
+      ></textarea>
     );
   }
+
   return (
     <>
       {animate ? (
-        <div className="w-56 relative group mt-10">
+        <div className="sm:w-96 w-3/4 relative group mt-10">
           <input
             type="text"
             id="username"
             required
-            className={`w-full h-10 px-4 text-sm peer bg-gray-100 outline-none ${defaultBorder ? "border-2 rounded-md" : "border-b-2 border-black"}`}
+            className={`w-full h-10 px-4 text-sm focus:outline-none p-2 rounded-md border border-gray shadow-lg hover:border-blue-prime`}
+            value={text}
+            onChange={handleChange}
           />
           <label
             htmlFor="username"
@@ -55,21 +87,22 @@ const InputIcon = ({
           </label>
         </div>
       ) : (
-        <div className="flex flex-wrap space-x-2">
+        <div className="flex flex-wrap space-x-2 sm:w-96 w-11/12 relative">
           {hasIcon && (
-            <div className="px-3 pt-2 w-10 rounded-md  absolute left-5">
+            <div className="rounded-md absolute left-4 top-[9px]">
               {IconOne && <IconOne />}
             </div>
           )}
-          <div>
-            <input
-              type={type}
-              value={value}
-              placeholder={placeholder}
-              disabled={disable}
-              className={`w-full outline-none p-1 ${defaultBorder ? "border-2 rounded-md" : "border-b-2 border-black"} ${disable && "bg-disable rounded"} ${hasIcon && "ps-10"}`}
-            />
-          </div>
+
+          <input
+            type={type}
+            placeholder={placeholder}
+            disabled={disable}
+            className={`focus:outline-none p-1 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime
+              ${hasIcon && "ps-8 pt-1"} ${!hasIcon && "ps-2"}`}
+            value={text}
+            onChange={handleChange}
+          />
         </div>
       )}
     </>

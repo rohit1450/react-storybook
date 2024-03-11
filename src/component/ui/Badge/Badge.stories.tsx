@@ -10,6 +10,20 @@ export default {
         className: '',
     },
     tags: ["autodocs"],
+    argTypes: {
+        label: {
+            description: "Defines label text of the badge"
+        },
+        type: {
+            description: "Defines type of the badge"
+        },
+        count: {
+            description: "Defines text above badge"
+        },
+        className: {
+            description: "Custom class for tailwind merge"
+        }
+    }
 } as Meta;
 
 const Template: StoryFn<BadgeProps> = (args: BadgeProps) => <Badge {...args} />;
