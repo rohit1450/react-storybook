@@ -174,7 +174,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                                                         )}
                                                     </div>
                                                 ) : (
-                                                    <Link to={page.link}>
+                                                    <Link to={page.link} className={`${index === isActive && 'bg-blue-light'}`}>
                                                         <div className='w-full flex flex-row justify-start space-x-2'>
                                                             <div className='pt-2 text-white' style={{ width: iconSize, height: iconSize, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                                 {page.icon}
