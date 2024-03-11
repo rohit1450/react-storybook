@@ -56,14 +56,16 @@ Default.args = {
   height: 20,
   borderRadius: "10px",
   ComponentAfterLoading: () => (
-    <div className="text-2xl font-serif font-semibold">Custom component will be shown after loading ends</div>
+    <div className="text-2xl font-serif font-semibold">
+      Custom component will be shown after loading ends
+    </div>
   ),
 };
 
 export const CustomWrapper: StoryFn<placeholderProps> = Template.bind({});
 CustomWrapper.args = {
   ...Default.args,
-  type: "custom",
+  type: "custom wrapper",
   customWrapper: Box,
 };
 
