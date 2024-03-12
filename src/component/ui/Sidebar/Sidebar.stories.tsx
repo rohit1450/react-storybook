@@ -13,7 +13,6 @@ const meta: Meta<typeof Sidebar> = {
 export default meta;
 const Template: StoryFn<SidebarProps> = (args: SidebarProps) => {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-
     const toggleOverlay = () => {
         setIsOverlayOpen(!isOverlayOpen);
     };
@@ -23,6 +22,7 @@ const Template: StoryFn<SidebarProps> = (args: SidebarProps) => {
             {...args}
             isOverlayOpen={isOverlayOpen}
             toggleOverlay={toggleOverlay}
+            isActive={args.isActive}
         />
     );
 }

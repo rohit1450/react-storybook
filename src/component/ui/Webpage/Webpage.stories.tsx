@@ -1,14 +1,20 @@
 
 import { StoryFn, Meta } from '@storybook/react';
 import Webpage, { webProps } from './Webpage';
-import { BookOpenIcon, DevicePhoneMobileIcon, ServerIcon, Squares2X2Icon, UserGroupIcon, UserIcon } from '@heroicons/react/20/solid';
+import { BookOpenIcon, Cog6ToothIcon, DevicePhoneMobileIcon, TableCellsIcon, UserGroupIcon, UserIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
+import Card from '../Card/Card';
 
 
 export default {
     title: 'Components/ui/Webpage',
     component: Webpage,
     tags: ['autodocs'],
+    parameters: {
+        themes: {
+            themeOverride: 'light',
+        },
+    },
 } as Meta;
 
 const Template: StoryFn<webProps> = (args) => {
@@ -21,9 +27,27 @@ const Template: StoryFn<webProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    heading: 'Dashboard Page',
-    content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aenean id neque auctor tellus mattis accumsan.  Curabitur vestibulum mauris sit amet velit fermentum onsequat.Vivamus vehicula eu felis vitae dictum.Donec at quam tortor.Morbi malesuada ante a arcu euismod, auctor dapibus purus maximus.Donec dapibus lorem nec quam fringilla rutrum.Suspendisse venenatis arcu sit amet massa volutpat bibendum.Sed a pretium urna.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris et dolor ultricies, porttitor felis vitae, auctor dolor.In sed elit euismod, dapibus nunc in, eleifend purus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Maecenas orci lorem, iaculis sed mauris nec, convallis ullamcorper leo.Quisque a est leo.Nunc tempus purus pellentesque feugiat consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aenean id neque auctor tellus mattis accumsan.Curabitur vestibulum mauris sit amet velit fermentum consequat.Vivamus vehicula eu felis vitae dictum.Donec at quam tortor.Morbi malesuada ante a arcu euismod, auctor dapibus purus maximus.Donec dapibus lorem nec quam fringilla rutrum.Suspendisse venenatis arcu sit amet massa volutpat bibendum.Sed a pretium urna.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris et dolor ultricies, porttitor felis vitae, auctor dolor.In sed elit euismod, dapibus nunc in, eleifend purus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Maecenas orci lorem, iaculis sed mauris nec, convallis ullamcorper leo.Quisque a est leo.Nunc tempus purus pellentesque feugiat consequatQuisque a est leo.Nunc tempus purus pellentesque feugiat consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aenean id neque auctor tellus mattis accumsan.Curabitur vestibulum mauris sit amet velit fermentum consequat.Vivamus vehicula eu felis vitae dictum.Donec at quam tortor.Morbi malesuada ante a arcu euismod, auctor dapibus purus maximus.Donec dapibus lorem nec quam fringilla rutrum.Suspendisse venenatis arcu sit amet massa volutpat bibendum.Sed a pretium urna.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris et dolor ultricies, porttitor felis vitae, auctor dolor.In sed elit euismod, dapibus nunc in, eleifend purus.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Maecenas orci lorem, iaculis sed mauris nec, convallis ullamcorper leo.Quisque a est leo.Nunc tempus purus pellentesque feugiat consequat.",
+    Component: [
+        <Card
+            size="medium"
+            imageSrc="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-james-wheeler-414612.jpg&fm=jpg"
+            about="Where does it come from?"
+            description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+            aboutFontSize="1.2rem"
+            descriptionFontSize="0.9rem"
+            imgHeight="16rem"
+            imagePosition="top"
+            imgWidth="200%"
+            button={{
+                buttonType: 'primary',
+                color: 'white',
+                label: 'Button',
+                className: 'bg-purple',
+            }}
+            isButton={false}
+        />,
+    ],
+    para: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.',
     nav: {
         title: '',
         name: 'Arush',
@@ -43,6 +67,7 @@ Default.args = {
         isOverlayOpen: false,
     },
     sideBar: {
+        isActive: 1,
         width: "250px",
         imgURL: "",
         imgWidth: "80px",
@@ -54,7 +79,7 @@ Default.args = {
             {
                 title: 'Dashboard',
                 link: '/dashboard',
-                icon: <Squares2X2Icon />,
+                icon: <TableCellsIcon />,
             },
             {
                 title: 'About us',
@@ -77,7 +102,7 @@ Default.args = {
             {
                 title: 'Services',
                 link: '/services',
-                icon: <ServerIcon />
+                icon: <Cog6ToothIcon />
             },
             {
                 title: 'Contact us',
@@ -89,6 +114,17 @@ Default.args = {
         toggleOverlay: () => { },
     },
 };
+
+export const Dark = Template.bind({});
+
+Dark.args = {
+    ...Default.args,
+},
+    Dark.parameters = {
+        themes: {
+            themeOverride: 'dark'
+        }
+    }
 
 
 

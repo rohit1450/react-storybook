@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { ReactElement, useEffect, useState } from "react"
 import Sidebar, { SidebarProps } from "../Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import Navbar, { NavProps } from "../Navbar/Navbar";
@@ -8,21 +8,31 @@ export interface webProps {
     nav: NavProps;
     heading: string;
     content: string;
+    para: string;
     loginIcon?: () => JSX.Element;
     signUpIcon?: () => JSX.Element;
     iconSize: string;
     width: string;
     onToggle: () => void;
     isOn: boolean;
+    children?: ReactElement[];
+    Component?: ReactElement[];
     toggleOverlay: () => void;
 }
 
-const Webpage: React.FC<webProps> = ({ sideBar, loginIcon, signUpIcon, nav, iconSize = '22px', isOn, onToggle }) => {
+const Webpage: React.FC<webProps> = ({ Component, sideBar, loginIcon, signUpIcon, nav, iconSize = '22px', isOn, onToggle, para }) => {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
     const toggleOverlay = () => {
         setIsOverlayOpen(!isOverlayOpen);
     };
+    useEffect(() => {
+        if (isOverlayOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+    }, [isOverlayOpen]);
 
     const { imgURL, imgWidth, imgHeight, textWidth, pages, width, children } = sideBar;
     const { title, name, round, size, src, maxInitials, bgColor, padding, menuClass, smallScreenMenuClass } = nav;
@@ -35,7 +45,6 @@ const Webpage: React.FC<webProps> = ({ sideBar, loginIcon, signUpIcon, nav, icon
             document.body.classList.remove('bg-gray-dark')
         )
     }, [isOn])
-
     return (
 
         <>
@@ -75,7 +84,7 @@ const Webpage: React.FC<webProps> = ({ sideBar, loginIcon, signUpIcon, nav, icon
                     parentListClass={`${isOn === true && 'hover:bg-gray-dark'}`}
                     childListClass={`${isOn === true && 'hover:bg-black'}`}
                 >
-                    <div>
+                    <div className={`${isOn === true ? 'text-white' : 'text-black'}`}>
                         {children}
 
                         <div>
@@ -84,12 +93,16 @@ const Webpage: React.FC<webProps> = ({ sideBar, loginIcon, signUpIcon, nav, icon
                                     <Route
                                         key={index}
                                         path={page.link}
-                                        element={<p className={`text-black`}>{`Hello from ${page.title}`}</p>}
+                                        element={
+                                            <>
+                                                <div>{page.title}</div>
+                                                <div>{Component}</div>
+                                            </>
+                                        }
                                     />
                                 ))}
                             </Routes>
                         </div>
-
                     </div>
                 </Sidebar >
             </div >

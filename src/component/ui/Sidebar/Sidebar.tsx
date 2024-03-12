@@ -25,6 +25,7 @@ export interface SidebarProps {
     imgURL?: string,
     imgHeight?: string,
     imgWidth?: string,
+    isActive?: number | undefined;
     isOverlayOpen?: boolean;
     toggleOverlay: () => void;
     children?: ReactElement;
@@ -35,7 +36,7 @@ export interface SidebarProps {
     childListClass?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parentListClass, childClass, logoClass, containerClass, toggleOverlay, pages, width, iconSize, textWidth, imgURL, imgHeight, imgWidth, children }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isActive: propIsActive, isOverlayOpen, childListClass, parentListClass, childClass, logoClass, containerClass, toggleOverlay, pages, width, iconSize, textWidth, imgURL, imgHeight, imgWidth, children }) => {
 
     const overlayRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -46,8 +47,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
     const [activeSubIndex, setActiveSubIndex] = useState<number | undefined>(-1);
 
     const handleActive = (index: number, subIndex?: number) => {
-        setActive(index === isActive ? isActive : index);
-        setActiveSubIndex(subIndex === activeSubIndex ? isActive : subIndex);
+        setActive(index === propIsActive ? propIsActive : index);
+        setActiveSubIndex(subIndex === activeSubIndex ? propIsActive : subIndex);
     };
 
     const handleDown = () => {
@@ -216,7 +217,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOverlayOpen, childListClass, parent
                     </div >
                 )
                 }
-                <div className={twMerge(`flex w-full h-full mt-2 sm:mt-14 ml-[250px] ${isSlim === false && isTablet ? `ml-[${width}]` : 'ml-1 sm:ml-16'}`, childClass)}>
+                <div className={twMerge(`flex w-full h-full mt-2 sm:mt-14 ml-[250px]  ${isSlim === false && isTablet ? `ml-[${width}] pr-[250px]` : 'ml-1 sm:ml-16 pr-2 sm:pr-[70px]'}`, childClass)}>
                     {children}
                     <div>
                         <Routes>
