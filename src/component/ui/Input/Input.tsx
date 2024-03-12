@@ -42,11 +42,13 @@ export interface InputProps {
   closeOnScroll: boolean;
   showYearDropdown: boolean;
   yearDropdownItemNumber: number;
-  withPortal: boolean;
   rangeClass: string;
   rangeOneClass: string;
   rangeTwoClass: string;
   pickerIcon: () => JSX.Element;
+  minDate: string;
+  maxDate: string;
+  getDate: (date: Date) => void;
 }
 
 const getImageStyle = (
@@ -77,14 +79,16 @@ const Input: React.FC<InputProps> = ({
   closeOnScroll,
   showYearDropdown,
   yearDropdownItemNumber,
-  withPortal,
   rangeClass,
   rangeOneClass,
   rangeTwoClass,
   pickerIcon,
+  minDate,
+  maxDate,
+  getDate,
 }) => {
   const [data, setData] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
   const [startDates, setStartDates] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -146,28 +150,34 @@ const Input: React.FC<InputProps> = ({
 
   if (type === "datePicker") {
     const setting = {
+      selected: startDate,
+      onChange: (date: Date) => {
+        getDate(date);
+        setStartDate(date);
+      },
       showTimeSelect,
-      timeFormat,
+      timeFormat: timeFormat ?? "HH:mm",
       timeIntervals: 15,
-      timeCaption,
-      dateFormat,
-      className,
-      showIcon,
-      icon: pickerIcon(),
-      placeholderText,
-      isClearable,
-      closeOnScroll,
+      timeCaption: timeCaption ?? "time",
+      dateFormat: dateFormat ?? "MMMM d, yyyy",
+      className: twMerge(
+        "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime",
+        className
+      ),
+      showIcon: showIcon ?? true,
+      icon: pickerIcon() ?? null,
+      placeholderText: placeholderText ?? "select date",
+      isClearable: isClearable ?? false,
+      closeOnScroll: closeOnScroll ?? false,
       showYearDropdown,
       yearDropdownItemNumber,
-      withPortal,
+      minDate: minDate ?? null,
+      maxDate: maxDate ?? null,
     };
+
     return (
       <div className={containerClassName}>
-        <DatePicker
-          selected={startDate}
-          onChange={(date: Date) => setStartDate(date)}
-          {...setting}
-        />
+        <DatePicker {...setting} locale="es" />
       </div>
     );
   }
@@ -175,12 +185,15 @@ const Input: React.FC<InputProps> = ({
   if (type === "dateRange") {
     const settingOne = {
       selected: startDates,
-      onChange: (date: Date) => setStartDates(date),
+      onChange: (date: Date) => {
+        setStartDates(date);
+      },
       selectsStart: true,
       startDate: startDates,
       endDate: endDate,
       className: rangeOneClass,
       dateFormat: "MMMM d, yyyy",
+      placeholderText: "please select start date",
     };
 
     const settingTwo = {
@@ -192,6 +205,7 @@ const Input: React.FC<InputProps> = ({
       minDate: startDates,
       className: rangeTwoClass,
       dateFormat: "MMMM d, yyyy",
+      placeholderText: "please select end date",
     };
 
     return (

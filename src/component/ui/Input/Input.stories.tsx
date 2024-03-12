@@ -137,11 +137,15 @@ ImageType.args = {
   width: "48",
 };
 
-export const DatePicker: StoryFn<InputProps> = Template.bind({});
+export const DatePicker: StoryFn<InputProps> = (args) => {
+  const getDate = (date: Date) => {
+    console.log(date);
+  };
+  return <Input {...args} getDate={getDate} />;
+};
 DatePicker.args = {
   type: "datePicker",
-  className:
-    "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime",
+  className: "",
   showTimeSelect: false,
   dateFormat: "MMMM d, yyyy h:mm aa",
   timeFormat: "HH:mm",
@@ -151,9 +155,10 @@ DatePicker.args = {
   isClearable: false,
   containerClassName: "m-5",
   closeOnScroll: false,
-  yearDropdownItemNumber: 2,
+  yearDropdownItemNumber: 10,
   showYearDropdown: true,
-  withPortal: false,
+  minDate: "Mar 12 2024",
+  maxDate: "Mar 20 2024 ",
 };
 
 export const DateRange: StoryFn<InputProps> = Template.bind({});
@@ -203,6 +208,7 @@ function eyeIcon({
     />
   );
 }
+
 function offeyeIcon({
   title,
   color,
