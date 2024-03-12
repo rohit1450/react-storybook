@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { CSSProperties } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export interface InputProps {
   type:
@@ -12,7 +14,9 @@ export interface InputProps {
     | "time"
     | "datetime-local"
     | "file"
-    | "image";
+    | "image"
+    | "datePicker"
+    | "dateRange";
   placeholder?: string;
   className?: string;
   src?: string;
@@ -27,6 +31,22 @@ export interface InputProps {
   iconOffeye?: React.ElementType;
   label?: string;
   labelName?: string;
+  showTimeSelect: boolean;
+  timeCaption: string;
+  dateFormat: string;
+  timeFormat: string;
+  showIcon: boolean;
+  placeholderText: string;
+  isClearable: boolean;
+  containerClassName: string;
+  closeOnScroll: boolean;
+  showYearDropdown: boolean;
+  yearDropdownItemNumber: number;
+  withPortal: boolean;
+  rangeClass: string;
+  rangeOneClass: string;
+  rangeTwoClass: string;
+  pickerIcon: () => JSX.Element;
 }
 
 const getImageStyle = (
@@ -46,8 +66,27 @@ const Input: React.FC<InputProps> = ({
   src,
   height,
   width,
+  showTimeSelect,
+  timeCaption,
+  dateFormat,
+  timeFormat,
+  showIcon,
+  placeholderText,
+  isClearable,
+  containerClassName,
+  closeOnScroll,
+  showYearDropdown,
+  yearDropdownItemNumber,
+  withPortal,
+  rangeClass,
+  rangeOneClass,
+  rangeTwoClass,
+  pickerIcon,
 }) => {
   const [data, setData] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [startDates, setStartDates] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value: any = event.target.value;
@@ -105,7 +144,69 @@ const Input: React.FC<InputProps> = ({
     }
   };
 
-  console.log(data);
+  if (type === "datePicker") {
+    const setting = {
+      showTimeSelect,
+      timeFormat,
+      timeIntervals: 15,
+      timeCaption,
+      dateFormat,
+      className,
+      showIcon,
+      icon: pickerIcon(),
+      placeholderText,
+      isClearable,
+      closeOnScroll,
+      showYearDropdown,
+      yearDropdownItemNumber,
+      withPortal,
+    };
+    return (
+      <div className={containerClassName}>
+        <DatePicker
+          selected={startDate}
+          onChange={(date: Date) => setStartDate(date)}
+          {...setting}
+        />
+      </div>
+    );
+  }
+
+  if (type === "dateRange") {
+    const settingOne = {
+      selected: startDates,
+      onChange: (date: Date) => setStartDates(date),
+      selectsStart: true,
+      startDate: startDates,
+      endDate: endDate,
+      className: rangeOneClass,
+      dateFormat: "MMMM d, yyyy",
+    };
+
+    const settingTwo = {
+      selected: endDate,
+      onChange: (date: Date) => setEndDate(date),
+      selectsEnd: true,
+      startDate: startDates,
+      endDate: endDate,
+      minDate: startDates,
+      className: rangeTwoClass,
+      dateFormat: "MMMM d, yyyy",
+    };
+
+    return (
+      <>
+        <div className={rangeClass}>
+          <div>
+            <DatePicker {...settingOne} />
+          </div>
+          <div>
+            <DatePicker {...settingTwo} />
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="sm:w-96 py-16 w-11/12">

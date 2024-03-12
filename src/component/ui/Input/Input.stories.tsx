@@ -4,6 +4,7 @@ import {
   InformationCircleIcon,
   EyeIcon,
   EyeSlashIcon,
+  CalculatorIcon,
 } from "@heroicons/react/24/outline";
 
 export default {
@@ -134,6 +135,35 @@ ImageType.args = {
   src: "https://www.w3schools.com/html/img_submit.gif",
   height: "48",
   width: "48",
+};
+
+export const DatePicker: StoryFn<InputProps> = Template.bind({});
+DatePicker.args = {
+  type: "datePicker",
+  className:
+    "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime",
+  showTimeSelect: false,
+  dateFormat: "MMMM d, yyyy h:mm aa",
+  timeFormat: "HH:mm",
+  showIcon: true,
+  pickerIcon: () => <CalculatorIcon className="mt-1" />,
+  placeholderText: "select date",
+  isClearable: false,
+  containerClassName: "m-5",
+  closeOnScroll: false,
+  yearDropdownItemNumber: 2,
+  showYearDropdown: true,
+  withPortal: false,
+};
+
+export const DateRange: StoryFn<InputProps> = Template.bind({});
+DateRange.args = {
+  type: "dateRange",
+  rangeClass: "flex gap-10 m-5",
+  rangeOneClass:
+    "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime block",
+  rangeTwoClass:
+    "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime block",
 };
 
 function heroIcon({
