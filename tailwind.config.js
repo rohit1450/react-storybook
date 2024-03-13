@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: 'selector',
   theme: {
     colors: {
       Primary: "#0078d4",
@@ -11,6 +12,7 @@ export default {
       black: "#000000",
       "black-light": "#121413",
       blue: "#2a6a75",
+      navy: '#281dc2',
       "blue-light": "#4299e1",
       "blue-light2": "#a5d4d0",
       "blue-prime": "#1fb7c4",

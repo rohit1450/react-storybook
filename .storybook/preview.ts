@@ -1,10 +1,12 @@
-import type { Preview } from "@storybook/react";
+import { Preview, ReactRenderer } from '@storybook/react';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import 'tailwindcss/tailwind.css'
 import i18n from '../src/i18next'
+import '../src/index.css';
 
 i18n.on("languageChanged", (locale) => {
   let direction = i18n.dir(locale)
-  document.dir= direction;
+  document.dir = direction;
 })
 
 const preview: Preview = {
@@ -17,6 +19,16 @@ const preview: Preview = {
     },
     actions: { argTypesRegex: '^on.*' },
   },
+  decorators: [
+    withThemeByDataAttribute<ReactRenderer>({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+      attributeName: 'data-theme',
+    }),
+  ]
 };
 
 export default preview;
