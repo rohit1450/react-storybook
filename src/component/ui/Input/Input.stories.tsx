@@ -6,6 +6,9 @@ import {
   EyeSlashIcon,
   CalculatorIcon,
 } from "@heroicons/react/24/outline";
+import { registerLocale } from "react-datepicker";
+import el from "date-fns/locale/el";
+registerLocale("el", el);
 
 export default {
   title: "Components/ui/Input",
@@ -147,7 +150,7 @@ DatePicker.args = {
   type: "datePicker",
   className: "",
   showTimeSelect: false,
-  dateFormat: "MMMM d, yyyy h:mm aa",
+  dateFormat: "MMMM d, yyyy",
   timeFormat: "HH:mm",
   showIcon: true,
   pickerIcon: () => <CalculatorIcon className="mt-1" />,
@@ -159,9 +162,20 @@ DatePicker.args = {
   showYearDropdown: true,
   minDate: "Mar 12 2024",
   maxDate: "Mar 20 2024 ",
+  locale: "el",
 };
 
-export const DateRange: StoryFn<InputProps> = Template.bind({});
+export const DateRange: StoryFn<InputProps> = (args) => {
+  const getStartDate = (date: Date) => {
+    console.log(date);
+  };
+  const getEndDate = (date: Date) => {
+    console.log(date);
+  };
+  return (
+    <Input {...args} getStartDate={getStartDate} getEndDate={getEndDate} />
+  );
+};
 DateRange.args = {
   type: "dateRange",
   rangeClass: "flex gap-10 m-5",

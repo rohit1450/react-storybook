@@ -48,7 +48,10 @@ export interface InputProps {
   pickerIcon: () => JSX.Element;
   minDate: string;
   maxDate: string;
-  getDate: (date: Date) => void;
+  getDate: (date: any) => void;
+  getStartDate: (date: any) => void;
+  getEndDate: (date: any) => void;
+  locale: string;
 }
 
 const getImageStyle = (
@@ -70,7 +73,7 @@ const Input: React.FC<InputProps> = ({
   width,
   showTimeSelect,
   timeCaption,
-  dateFormat,
+  dateFormat = "MMMM d, yyyy",
   timeFormat,
   showIcon,
   placeholderText,
@@ -86,6 +89,9 @@ const Input: React.FC<InputProps> = ({
   minDate,
   maxDate,
   getDate,
+  getStartDate,
+  getEndDate,
+  locale,
 }) => {
   const [data, setData] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -152,8 +158,10 @@ const Input: React.FC<InputProps> = ({
     const setting = {
       selected: startDate,
       onChange: (date: Date) => {
-        getDate(date);
-        setStartDate(date);
+        setStartDate(new Date(date.toISOString()));
+        getDate({
+          date: date.toISOString(),
+        });
       },
       showTimeSelect,
       timeFormat: timeFormat ?? "HH:mm",
@@ -173,11 +181,12 @@ const Input: React.FC<InputProps> = ({
       yearDropdownItemNumber,
       minDate: minDate ?? null,
       maxDate: maxDate ?? null,
+      locale: locale ?? "",
     };
 
     return (
       <div className={containerClassName}>
-        <DatePicker {...setting} locale="es" />
+        <DatePicker {...setting} />
       </div>
     );
   }
@@ -187,6 +196,9 @@ const Input: React.FC<InputProps> = ({
       selected: startDates,
       onChange: (date: Date) => {
         setStartDates(date);
+        getStartDate({
+          start: date.toISOString(),
+        });
       },
       selectsStart: true,
       startDate: startDates,
@@ -198,7 +210,12 @@ const Input: React.FC<InputProps> = ({
 
     const settingTwo = {
       selected: endDate,
-      onChange: (date: Date) => setEndDate(date),
+      onChange: (date: Date) => {
+        getEndDate({
+          end: date.toISOString(),
+        });
+        setEndDate(date);
+      },
       selectsEnd: true,
       startDate: startDates,
       endDate: endDate,
