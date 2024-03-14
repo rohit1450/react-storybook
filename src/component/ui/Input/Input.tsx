@@ -169,7 +169,7 @@ const Input: React.FC<InputProps> = ({
       timeCaption: timeCaption ?? "time",
       dateFormat: dateFormat ?? "MMMM d, yyyy",
       className: twMerge(
-        "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime",
+        "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime dark:bg-red",
         className
       ),
       showIcon: showIcon ?? true,
