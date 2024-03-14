@@ -29,6 +29,6 @@
   }
 
   :root[class~="dark"] {
-    /* --color-primary: blue; */
+    --color-primary: blue;
   }
 }
