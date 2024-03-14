@@ -28,7 +28,7 @@ const Pop: React.FC<PopoverProps> = ({
             <Popover.Button
               className={twMerge(
                 `
-                ${open ? "text-white" : "text-white/90"}
+                ${open ? "text-white" : "text-white"}
                 group inline-flex items-center rounded-md bg-red px-3 py-2 text-base font-medium hover:text-white`,
                 className
               )}

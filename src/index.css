@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark {
-  background-color: black;
+@layer base {
+  :root {
+    --color-Primary: #0078d4;
+    --color-success: #28a745;
+    --color-secondary: #6c757d;
+    --color-warning: #ffc107;
+    --color-danger: #dc3545;
+    --color-black: #000000;
+    --color-black-light: #121413;
+    --color-blue: #2a6a75;
+    --color-blue-light: #4299e1;
+    --color-blue-prime: #1fb7c4;
+    --color-blue-dark: #081375;
+    --color-purple: #7e5bef;
+    --color-white: #ffffff;
+    --color-red: #eb424a;
+    --color-gray: #b3b5b5;
+    --color-gray-dark: #7d8282;
+    --color-grey-light: rgba(46, 52, 56, 0.1);
+    --color-table-gray: #c2c2c2;
+    --color-disable: #dddddd;
+    --color-loader-bg: orange;
+    --color-loader: rgb(37, 99, 235);
+    --color-amber: #ffbf00;
+  }
+
+  :root[class~="dark"] {
+    /* --color-primary: blue; */
+  }
 }
