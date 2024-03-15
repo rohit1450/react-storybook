@@ -6,7 +6,6 @@ import {
   ChevronUpIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import "@storybook/addon-console";
 
 interface Person {
   id: number;
@@ -57,7 +56,9 @@ const Dropdown: React.FC<DropdownProps> = ({ people, multiple, labelIcon }) => {
               multiple && setOpen(false);
             }}
           >
-            {labelIcon && !Array.isArray(selected) && selected.icon && <selected.icon />}
+            {labelIcon && !Array.isArray(selected) && selected.icon && (
+              <selected.icon />
+            )}
             <span className="block">
               {multiple && (selected as Person[]).length > 0
                 ? (selected as Person[]).map((person) => (

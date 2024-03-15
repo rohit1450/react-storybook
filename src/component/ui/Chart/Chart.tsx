@@ -12,7 +12,6 @@ import {
   LineElement,
 } from "chart.js";
 import { useRef } from "react";
-import "@storybook/addon-console";
 
 import { Pie, Doughnut, Bar, Line } from "react-chartjs-2";
 
@@ -63,7 +62,7 @@ const Chart = ({
   min,
   max,
   axis,
-  handleClick
+  handleClick,
 }: ChartProps) => {
   const chartRef = useRef(null);
   const pieRef = useRef(null);
@@ -122,12 +121,15 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={{...customOption,   scales: {
-          y: {
-            min,
-            max,
+        options={{
+          ...customOption,
+          scales: {
+            y: {
+              min,
+              max,
+            },
           },
-        },}}
+        }}
         ref={barRef}
         onClick={handleClick}
       />
@@ -140,12 +142,15 @@ const Chart = ({
         data={{ labels, datasets }}
         height={height}
         width={width}
-        options={{...customOption,   scales: {
-          y: {
-            min,
-            max,
+        options={{
+          ...customOption,
+          scales: {
+            y: {
+              min,
+              max,
+            },
           },
-        },}}
+        }}
         ref={chartRef}
         onClick={handleClick}
       />
