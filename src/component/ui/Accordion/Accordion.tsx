@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface accordionProps {
   accordionTitle: string;
@@ -58,7 +59,10 @@ const Accordion = ({
   return (
     <div className="w-full md:w-4/5 mx-auto">
       <h1
-        className={`uppercase font-bold text-center text-sm lg:text-3xl text-${headingColor}`}
+        className={twMerge(
+          `uppercase font-bold text-center text-sm lg:text-3xl text-Primary`,
+          `text-${headingColor}`
+        )}
       >
         {accordionTitle}
       </h1>
@@ -66,7 +70,9 @@ const Accordion = ({
         {faqs.map((faq, i) => (
           <div key={i}>
             <div
-              className={`flex justify-between items-center cursor-pointer border-2 ${active === faq.id ? headerRadius : "rounded-md"} px-4 py-2 ${gap && "mt-1"}`}
+              className={twMerge(
+                `flex justify-between items-center cursor-pointer border-2 ${active === faq.id ? headerRadius : "rounded-md"} px-4 py-2 ${gap && "mt-1"}`
+              )}
               onClick={() => handleToggle(faq)}
             >
               <h5 className={`text-sm md:text-base`}>{faq.header}</h5>

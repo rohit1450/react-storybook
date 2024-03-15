@@ -26,6 +26,7 @@ export default {
       "gray-dark": "var(--color-gray-dark)",
       "grey-light": "var(--color-grey-light)",
       red: "var(--color-red)",
+      texts: "var(--color-texts)",
     },
     screens: {
       xxs: "400px",

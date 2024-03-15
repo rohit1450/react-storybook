@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --color-texts: black;
     --color-Primary: #0078d4;
     --color-success: #28a745;
     --color-secondary: #6c757d;
@@ -29,6 +30,27 @@
   }
 
   :root[class~="dark"] {
-    --color-primary: blue;
+    --color-texts: white;
+    --color-primary: #0a84ff;
+    --color-success: #4caf50;
+    --color-secondary: #8e9294;
+    --color-warning: #ffa000;
+    --color-danger: #e53935;
+    --color-black: #ffffff;
+    --color-black-light: #f2f2f2;
+    --color-blue: #0097a7;
+    --color-blue-light: #64b5f6;
+    --color-blue-prime: #00acc1;
+    --color-blue-dark: #01579b;
+    --color-purple: #9c27b0;
+    --color-red: #ff5252;
+    --color-gray: #757575;
+    --color-gray-dark: #424242;
+    --color-grey-light: rgba(255, 255, 255, 0.1);
+    --color-table-gray: #878787;
+    --color-disable: #333333;
+    --color-loader-bg: #ff9800;
+    --color-loader: #2551eb;
+    --color-amber: #ffbf00;
   }
 }
