@@ -4,7 +4,11 @@ import {
   InformationCircleIcon,
   EyeIcon,
   EyeSlashIcon,
+  CalculatorIcon,
 } from "@heroicons/react/24/outline";
+import { registerLocale } from "react-datepicker";
+import el from "date-fns/locale/el";
+registerLocale("el", el);
 
 export default {
   title: "Components/ui/Input",
@@ -136,6 +140,51 @@ ImageType.args = {
   width: "48",
 };
 
+export const DatePicker: StoryFn<InputProps> = (args) => {
+  const getDate = (date: Date) => {
+    console.log(date);
+  };
+  return <Input {...args} getDate={getDate} />;
+};
+DatePicker.args = {
+  type: "datePicker",
+  className: "",
+  showTimeSelect: false,
+  dateFormat: "MMMM d, yyyy",
+  timeFormat: "HH:mm",
+  showIcon: true,
+  pickerIcon: () => <CalculatorIcon className="mt-1" />,
+  placeholderText: "select date",
+  isClearable: false,
+  containerClassName: "m-5",
+  closeOnScroll: false,
+  yearDropdownItemNumber: 10,
+  showYearDropdown: true,
+  minDate: "Mar 12 2024",
+  maxDate: "Mar 20 2024 ",
+  locale: "el",
+};
+
+export const DateRange: StoryFn<InputProps> = (args) => {
+  const getStartDate = (date: Date) => {
+    console.log(date);
+  };
+  const getEndDate = (date: Date) => {
+    console.log(date);
+  };
+  return (
+    <Input {...args} getStartDate={getStartDate} getEndDate={getEndDate} />
+  );
+};
+DateRange.args = {
+  type: "dateRange",
+  rangeClass: "flex gap-10 m-5",
+  rangeOneClass:
+    "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime block",
+  rangeTwoClass:
+    "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime block",
+};
+
 function heroIcon({
   title,
   color,
@@ -173,6 +222,7 @@ function eyeIcon({
     />
   );
 }
+
 function offeyeIcon({
   title,
   color,

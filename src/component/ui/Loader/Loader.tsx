@@ -10,7 +10,7 @@ const Loader = ({ size, color }: LoaderProps) => {
 
   return (
     <div
-      className={`border-loaderBg ${prop || prop2 || prop3} animate-spin rounded-full`}
+      className={`border-gray bg-loaderBg ${prop || prop2 || prop3} animate-spin rounded-full`}
       style={{ borderTopColor: color }}
     />
   );

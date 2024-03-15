@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { CSSProperties } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export interface InputProps {
   type:
@@ -12,7 +14,9 @@ export interface InputProps {
     | "time"
     | "datetime-local"
     | "file"
-    | "image";
+    | "image"
+    | "datePicker"
+    | "dateRange";
   placeholder?: string;
   className?: string;
   src?: string;
@@ -27,6 +31,27 @@ export interface InputProps {
   iconOffeye?: React.ElementType;
   label?: string;
   labelName?: string;
+  showTimeSelect: boolean;
+  timeCaption: string;
+  dateFormat: string;
+  timeFormat: string;
+  showIcon: boolean;
+  placeholderText: string;
+  isClearable: boolean;
+  containerClassName: string;
+  closeOnScroll: boolean;
+  showYearDropdown: boolean;
+  yearDropdownItemNumber: number;
+  rangeClass: string;
+  rangeOneClass: string;
+  rangeTwoClass: string;
+  pickerIcon: () => JSX.Element;
+  minDate: string;
+  maxDate: string;
+  getDate: (date: any) => void;
+  getStartDate: (date: any) => void;
+  getEndDate: (date: any) => void;
+  locale: string;
 }
 
 const getImageStyle = (
@@ -46,8 +71,32 @@ const Input: React.FC<InputProps> = ({
   src,
   height,
   width,
+  showTimeSelect,
+  timeCaption,
+  dateFormat = "MMMM d, yyyy",
+  timeFormat,
+  showIcon,
+  placeholderText,
+  isClearable,
+  containerClassName,
+  closeOnScroll,
+  showYearDropdown,
+  yearDropdownItemNumber,
+  rangeClass,
+  rangeOneClass,
+  rangeTwoClass,
+  pickerIcon,
+  minDate,
+  maxDate,
+  getDate,
+  getStartDate,
+  getEndDate,
+  locale,
 }) => {
   const [data, setData] = useState("");
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [startDates, setStartDates] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value: any = event.target.value;
@@ -104,6 +153,91 @@ const Input: React.FC<InputProps> = ({
       }
     }
   };
+
+  if (type === "datePicker") {
+    const setting = {
+      selected: startDate,
+      onChange: (date: Date) => {
+        setStartDate(new Date(date.toISOString()));
+        getDate({
+          date: date.toISOString(),
+        });
+      },
+      showTimeSelect,
+      timeFormat: timeFormat ?? "HH:mm",
+      timeIntervals: 15,
+      timeCaption: timeCaption ?? "time",
+      dateFormat: dateFormat ?? "MMMM d, yyyy",
+      className: twMerge(
+        "focus:outline-none p-2 rounded-md w-full border border-gray shadow-lg hover:border-blue-prime dark:bg-red",
+        className
+      ),
+      showIcon: showIcon ?? true,
+      icon: pickerIcon() ?? null,
+      placeholderText: placeholderText ?? "select date",
+      isClearable: isClearable ?? false,
+      closeOnScroll: closeOnScroll ?? false,
+      showYearDropdown,
+      yearDropdownItemNumber,
+      minDate: minDate ?? null,
+      maxDate: maxDate ?? null,
+      locale: locale ?? "",
+    };
+
+    return (
+      <div className={containerClassName}>
+        <DatePicker {...setting} />
+      </div>
+    );
+  }
+
+  if (type === "dateRange") {
+    const settingOne = {
+      selected: startDates,
+      onChange: (date: Date) => {
+        setStartDates(date);
+        getStartDate({
+          start: date.toISOString(),
+        });
+      },
+      selectsStart: true,
+      startDate: startDates,
+      endDate: endDate,
+      className: rangeOneClass,
+      dateFormat: "MMMM d, yyyy",
+      placeholderText: "please select start date",
+    };
+
+    const settingTwo = {
+      selected: endDate,
+      onChange: (date: Date) => {
+        getEndDate({
+          end: date.toISOString(),
+        });
+        setEndDate(date);
+      },
+      selectsEnd: true,
+      startDate: startDates,
+      endDate: endDate,
+      minDate: startDates,
+      className: rangeTwoClass,
+      dateFormat: "MMMM d, yyyy",
+      placeholderText: "please select end date",
+    };
+
+    return (
+      <>
+        <div className={rangeClass}>
+          <div>
+            <DatePicker {...settingOne} />
+          </div>
+          <div>
+            <DatePicker {...settingTwo} />
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="sm:w-96 py-16 w-11/12">
