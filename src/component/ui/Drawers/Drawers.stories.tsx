@@ -55,6 +55,6 @@ Default.args = {
     </div>
   ),
   direction: "right",
-  drawerClassName: "custom-drawer",
+  drawerClassName: "custom-drawer !w-[250px] sm:!w-[400px]",
   size: 400,
 };

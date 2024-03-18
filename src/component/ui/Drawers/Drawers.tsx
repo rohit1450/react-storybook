@@ -34,6 +34,7 @@ const Drawers = ({
         color="white"
         onClick={toggleDrawer}
         className=""
+        isLoading={false}
       />
       <Drawer
         open={isOpen}
@@ -44,6 +45,7 @@ const Drawers = ({
         duration={duration}
         overlayOpacity={overlayOpacity}
         overlayColor={overlayColor}
+        lockBackgroundScroll={true}
       >
         <DrawerBody />
       </Drawer>

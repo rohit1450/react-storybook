@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
+import { twMerge } from "tailwind-merge";
 export interface stepProcessProps {
   steps: string[];
   activeColor: string;
@@ -7,7 +8,6 @@ export interface stepProcessProps {
   hasIcons: boolean;
   icons: React.ReactNode[];
   lineThickness?: string;
-  vertical: boolean;
   measure?: string;
   detailComponents: {
     heading: string;
@@ -21,15 +21,14 @@ export interface stepProcessProps {
 const StepProcess = ({
   steps,
   activeColor,
+  lineColor,
   hasIcons,
   icons,
   lineThickness,
-  vertical,
   measure,
   detailComponents,
   headingSize,
   contentSize,
-  stepSize,
 }: stepProcessProps) => {
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -43,20 +42,22 @@ const StepProcess = ({
 
   return (
     <>
-      <div className={`${vertical && "flex gap-10 justify-center"}`}>
+      <div>
         <div className="flex justify-center">
           <div
-            className={`flex ${vertical && "flex-col"} gap-2 items-center justify-between`}
+            className={`flex flex-col md:flex-row gap-2 items-center justify-between`}
           >
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`flex ${vertical && "flex-col"} items-center gap-2`}
+                className={`flex flex-col md:flex-row items-center gap-2`}
               >
                 <div
-                  className={`rounded-full flex items-center justify-center text-white cursor-pointer`}
+                  className={twMerge(
+                    "rounded-full flex items-center justify-center text-white cursor-pointer",
+                    `${index === currentStep ? `${activeColor ?? "bg-Primary"}` : "bg-gray"}`
+                  )}
                   style={{
-                    backgroundColor: `${index === currentStep ? activeColor : "lightGrey"}`,
                     height: measure ?? "2rem",
                     width: measure ?? "2rem",
                   }}
@@ -74,37 +75,32 @@ const StepProcess = ({
                     index + 1
                   )}
                 </div>
-                <div
-                  className="font-semibold"
-                  style={{ fontSize: stepSize ?? "16px" }}
-                >
+                <div className="font-semibold text-sm md:text-base whitespace-nowrap">
                   {step}
                 </div>
                 {index !== steps.length - 1 && (
                   <>
-                    {vertical ? (
-                      <div
-                        className="h-20 bg-black"
-                        style={{ width: `${lineThickness ?? "2px"}` }}
-                      ></div>
-                    ) : (
-                      <div
-                        className={`w-56 ml-2`}
-                        style={{
-                          backgroundColor: `${index < currentStep ? "red" : "black"}`,
-                          height: `${lineThickness ?? "2px"}`,
-                        }}
-                      ></div>
-                    )}
+                    <div
+                      className="h-20 bg-black md:hidden"
+                      style={{ width: `${lineThickness ?? "2px"}` }}
+                    ></div>
+
+                    <div
+                      className={twMerge(
+                        "w-40 lg:w-56 ml-2 hidden md:block",
+                        `${index <= currentStep ? lineColor : "bg-black"}`
+                      )}
+                      style={{
+                        height: `${lineThickness ?? "2px"}`,
+                      }}
+                    ></div>
                   </>
                 )}
               </div>
             ))}
           </div>
         </div>
-        <div
-          className={`w-1/2 ${vertical && "w-1/3"} text-center ${!vertical && "mx-auto"} mt-5`}
-        >
+        <div className={`w-11/12 md:w-1/2 mx-auto text-center mt-5`}>
           <h1
             className="font-semibold"
             style={{ fontSize: headingSize ?? "1.5rem" }}
@@ -120,7 +116,7 @@ const StepProcess = ({
         {currentStep === steps.length - 1 ? (
           <>
             <div className="text-base font-semibold">
-              All steps are completed - everything else is done
+              All steps are completed
             </div>
             <div
               className="text-white bg-black font-semibold text-xs py-1 w-12 text-center rounded-xl cursor-pointer"
