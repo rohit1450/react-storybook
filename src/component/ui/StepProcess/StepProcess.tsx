@@ -50,7 +50,7 @@ const StepProcess = ({
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`flex flex-col md:flex-row items-center gap-2`}
+                className={`flex flex-col md:flex-row items-center gap-2 text-texts`}
               >
                 <div
                   className={twMerge(
@@ -100,7 +100,7 @@ const StepProcess = ({
             ))}
           </div>
         </div>
-        <div className={`w-11/12 md:w-1/2 mx-auto text-center mt-5`}>
+        <div className={`w-11/12 md:w-1/2 mx-auto text-center mt-5 text-texts`}>
           <h1
             className="font-semibold"
             style={{ fontSize: headingSize ?? "1.5rem" }}
@@ -130,14 +130,14 @@ const StepProcess = ({
             <button
               onClick={goToPreviousStep}
               disabled={currentStep === 0}
-              className="text-white bg-black font-semibold text-xs py-1 px-4 rounded-xl"
+              className="text-white bg-Primary font-semibold text-xs py-1 px-4 rounded-xl"
             >
               Previous
             </button>
             <button
               onClick={goToNextStep}
               disabled={currentStep === steps.length - 1}
-              className="text-white bg-black font-semibold text-xs py-1 px-4 rounded-xl"
+              className="text-white bg-Primary font-semibold text-xs py-1 px-4 rounded-xl"
             >
               Next
             </button>

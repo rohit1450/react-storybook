@@ -57,7 +57,7 @@ const Accordion = ({
   };
 
   return (
-    <div className="w-full md:w-4/5 mx-auto">
+    <div className="w-full md:w-4/5 mx-auto text-texts">
       <h1
         className={twMerge(
           `uppercase font-bold text-center text-sm lg:text-3xl text-Primary`,

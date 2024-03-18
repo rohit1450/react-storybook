@@ -64,6 +64,7 @@ Default.args = {
     label: "Button",
     className: "bg-purple",
     onClick: action("on-click"),
+    isLoading: false,
   },
   isButton: false,
 };

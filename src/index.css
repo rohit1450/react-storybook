@@ -27,6 +27,7 @@
     --color-loader-bg: orange;
     --color-loader: rgb(37, 99, 235);
     --color-amber: #ffbf00;
+    --color-loading: #b3b5b5;
   }
 
   :root[class~="dark"] {
@@ -52,5 +53,6 @@
     --color-loader-bg: #ff9800;
     --color-loader: #2551eb;
     --color-amber: #ffbf00;
+    --color-loading: white;
   }
 }
