@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import Drawers, { DrawersProps } from "./Drawers";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/20/solid";
 
 export default {
   title: "Components/ui/Drawers",
@@ -57,4 +58,5 @@ Default.args = {
   direction: "right",
   drawerClassName: "custom-drawer !w-[250px] sm:!w-[400px]",
   size: 400,
+  open: () => <AdjustmentsHorizontalIcon className="h-5 w-5 cursor-pointer" />,
 };

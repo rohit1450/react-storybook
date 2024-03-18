@@ -98,6 +98,7 @@ const Chart = ({
         options={customOption}
         ref={pieRef}
         onClick={handleClick}
+        style={{ color: "red" }}
       />
     );
   }
