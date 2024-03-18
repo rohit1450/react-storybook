@@ -77,11 +77,10 @@ const Template: StoryFn<stepProcessProps> = (args: stepProcessProps) => (
 export const Default: StoryFn<stepProcessProps> = Template.bind({});
 Default.args = {
   steps: ["Start payment", "Process Payment", "Finished"],
-  activeColor: "blue",
-  lineColor: "blue",
+  activeColor: "bg-Primary",
+  lineColor: "bg-Primary",
   hasIcons: false,
   lineThickness: "1px",
-  vertical: false,
   measure: "2rem",
   detailComponents,
   headingSize: "1.1rem",

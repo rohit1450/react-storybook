@@ -125,7 +125,7 @@ Default.args = {
       spaceBetween: 32,
     },
   },
-  containerClassName: "my-swiper h-[350px]",
+  containerClassName: "my-swiper h-[200px] md:h-[350px]",
   CardStructure: (props: CardProps) => (
     <div className="relative h-full w-full">
       <img
@@ -133,7 +133,7 @@ Default.args = {
         alt={props.text}
         className="h-full w-full object-cover"
       />
-      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs lg:text-lg font-semibold">
+      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-texts text-xs lg:text-lg font-semibold">
         {props.text}
       </p>
     </div>

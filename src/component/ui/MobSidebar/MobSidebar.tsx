@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Lang from "../LangSwitch/Lang";
-import './mobsiderbar.css'
+import Drawers from "../Drawers/Drawers";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/20/solid";
 
 export interface MobSidebarProps {
   isOpen: boolean;
@@ -18,8 +19,8 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
   const [condition, setCondition] = useState(false);
 
   useEffect(() => {
-    const LangDir = localStorage.getItem('language');
-    if (LangDir === 'ar') {
+    const LangDir = localStorage.getItem("language");
+    if (LangDir === "ar") {
       setCondition(true);
     } else {
       setCondition(false);
@@ -27,15 +28,19 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
   }, []);
 
   const handleClickOutside = (event: any) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isOpen) {
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target) &&
+      isOpen
+    ) {
       toggleMenu();
     }
   };
 
   useEffect(() => {
-    window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener("mousedown", handleClickOutside);
     return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
 
@@ -43,46 +48,43 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
     setIsOpen(false);
   };
 
+  const DrawerBody = () => (
+    <div className="p-5">
+      <h5 className="text-xl font-semibold">List of items</h5>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+      </ul>
+    </div>
+  );
+
   return (
-    <div className="container h-screen bg-disable">
+    <div className="w-full h-screen bg-disable">
       <nav>
         <div className="sticky top-7 w-full px-5 py-4 flex justify-between items-center bg-Primary">
           <div className="flex items-center">
-            <a href="/" className="text-white text-2xl font-bold">Logo</a>
+            <a href="/" className="text-white text-2xl font-bold">
+              Logo
+            </a>
           </div>
           <div className="flex gap-5">
-            <div className={`absolute top-4 ${condition ? 'left-20' : 'right-20'}`}>
+            <div
+              className={`absolute top-4 ${condition ? "left-20" : "right-20"}`}
+            >
               <Lang />
             </div>
-            <button
-              type="button"
-              onClick={toggleMenu}
-              title="Toggle Menu"
-              aria-label="Toggle Menu"
-            >
-              <svg
-                className="h-6 w-6 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 5h16a1 1 0 010 2H4a1 1 0 010-2zm0 5h16a1 1 0 010 2H4a1 1 0 010-2z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div onClick={handleClose} ref={sidebarRef} className={`flex flex-col bg-white p-4 rounded fixed z-20 top-4 right-4 w-1/3 h-screen ${isOpen ? 'open' : 'close hidden'}`}>
-          <div className="rounded-md text-black h-screen">
-            <div className="my-1 py-1">
-              <a className="text-lg hover:text-red" href="#">Home</a>
-            </div>
-            <div className="my-1 py-1">
-              <a className="text-lg hover:text-red" href="#">About</a>
-            </div>
-            <div className="my-1 py-1">
-              <a className="text-lg hover:text-red" href="#">Contact</a>
-            </div>
+            <Drawers
+              direction="right"
+              drawerClassName="custom-drawer !w-[250px] sm:!w-[400px]"
+              size={400}
+              DrawerBody={DrawerBody}
+              open={() => (
+                <AdjustmentsHorizontalIcon className="h-5 w-5 cursor-pointer" />
+              )}
+            />
           </div>
         </div>
       </nav>

@@ -65,7 +65,7 @@ Default.args = {
   panelClass: "",
   arrowClass: "",
   PopContent: () => (
-    <div className="px-7 py-5 mb-5">
+    <div className="px-7 py-5 mb-5 text-texts">
       {solutions.map((soln, index) => {
         return (
           <div key={index} className="mt-5 cursor-pointer">

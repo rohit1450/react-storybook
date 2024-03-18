@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import Button from "../Button/Button";
 
 export interface DrawersProps {
   DrawerBody: () => JSX.Element;
@@ -11,6 +10,7 @@ export interface DrawersProps {
   duration?: number;
   overlayOpacity?: number;
   overlayColor?: string;
+  open: () => JSX.Element;
 }
 
 const Drawers = ({
@@ -21,6 +21,7 @@ const Drawers = ({
   duration,
   overlayOpacity,
   overlayColor,
+  open,
 }: DrawersProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
@@ -28,13 +29,7 @@ const Drawers = ({
   };
   return (
     <>
-      <Button
-        label="show"
-        buttonType="primary"
-        color="white"
-        onClick={toggleDrawer}
-        className=""
-      />
+      <span onClick={toggleDrawer}>{open()}</span>
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
@@ -44,6 +39,7 @@ const Drawers = ({
         duration={duration}
         overlayOpacity={overlayOpacity}
         overlayColor={overlayColor}
+        lockBackgroundScroll={true}
       >
         <DrawerBody />
       </Drawer>

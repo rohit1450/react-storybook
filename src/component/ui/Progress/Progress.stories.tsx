@@ -45,7 +45,7 @@ export const Normal: StoryFn<progressBarProps> = Template.bind({});
 Normal.args = {
   text: "task in progress",
   type: "normal",
-  color: "red",
+  color: "bg-success",
   percentage: 25,
   height: "1rem",
   hasLabel: true,
@@ -55,6 +55,6 @@ export const TopProgress: StoryFn<progressBarProps> = Template.bind({});
 TopProgress.args = {
   ...Normal.args,
   type: "top progress",
-  topColor: "red",
-  progressColor: "red",
+  topColor: "success",
+  progressColor: "bg-Primary",
 };
