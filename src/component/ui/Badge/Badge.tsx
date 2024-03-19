@@ -26,11 +26,11 @@ const Badge: React.FC<BadgeProps> = ({ label, type, className, count }) => {
     }
   };
   return (
-    <div className={`relative inline-block bg-gray text-sm p-1 m-1 rounded-lg`}>
+    <div className={`relative inline-block bg-gray text-sm p-2 m-1 rounded-lg`}>
       <span className="text-texts">{label}</span>
       <span
         className={twMerge(
-          `absolute -top-4 -right-4 px-2 -py-1 ${getStyles()} rounded-full`,
+          `absolute -top-3 -right-3 px-2 -py-1 ${getStyles()} rounded-full`,
           className
         )}
       >

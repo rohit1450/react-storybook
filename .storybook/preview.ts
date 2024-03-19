@@ -2,7 +2,6 @@ import type { Preview } from "@storybook/react";
 import "tailwindcss/tailwind.css";
 import i18n from "../src/i18next";
 import "../src/index.css";
-// import { Renderer } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 
 i18n.on("languageChanged", (locale) => {

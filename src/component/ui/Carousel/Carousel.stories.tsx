@@ -57,32 +57,32 @@ const content = [
   {
     image:
       "https://images.unsplash.com/photo-1503662549813-28954e75f215?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum,",
   },
   {
     image:
       "https://images.unsplash.com/photo-1505533542167-8c89838bb19e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum,",
   },
   {
     image:
       "https://images.unsplash.com/photo-1517315003714-a071486bd9ea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum,",
   },
   {
     image:
       "https://images.unsplash.com/photo-1503662549813-28954e75f215?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum,",
   },
   {
     image:
       "https://images.unsplash.com/photo-1505533542167-8c89838bb19e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum,",
   },
   {
     image:
       "https://images.unsplash.com/photo-1517315003714-a071486bd9ea?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel!",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam error laboriosam quis obcaecati harum aspernatur cumque sapiente ipsum esse vel! Lorem ipsum,",
   },
 ];
 
@@ -125,7 +125,7 @@ Default.args = {
       spaceBetween: 32,
     },
   },
-  containerClassName: "my-swiper h-[200px] md:h-[350px]",
+  containerClassName: "my-swiper h-40 sm:h-96",
   CardStructure: (props: CardProps) => (
     <div className="relative h-full w-full">
       <img
@@ -133,7 +133,7 @@ Default.args = {
         alt={props.text}
         className="h-full w-full object-cover"
       />
-      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-texts text-xs lg:text-lg font-semibold">
+      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs lg:text-lg font-semibold">
         {props.text}
       </p>
     </div>

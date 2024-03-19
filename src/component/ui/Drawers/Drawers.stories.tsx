@@ -32,8 +32,9 @@ export default {
       control: "color",
     },
     DrawerBody: {
-      description: "Compoenent inside drawer that needs to be rendered",
+      description: "Component inside drawer that needs to be rendered",
     },
+    open: { description: "button or icon to open drawer" },
   },
 } as Meta;
 
@@ -45,13 +46,14 @@ export const Default: StoryFn<DrawersProps> = Template.bind({});
 Default.args = {
   DrawerBody: () => (
     <div className="p-5">
-      <h5 className="text-xl font-semibold">List of items</h5>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
+      <h5 className="text-xl font-semibold">SpaceONE Design System</h5>
+      <ul className="space-y-3 mt-5">
+        <li>Home</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+        <li>Careers</li>
+        <li>Blog</li>
+        <li>Services</li>
       </ul>
     </div>
   ),

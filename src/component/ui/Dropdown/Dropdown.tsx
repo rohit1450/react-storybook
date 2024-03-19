@@ -64,7 +64,7 @@ const Dropdown: React.FC<DropdownProps> = ({ people, multiple, labelIcon }) => {
                 ? (selected as Person[]).map((person) => (
                     <span
                       key={person.id}
-                      className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light2 py-1"
+                      className="inline-block mr-2 mb-1 rounded-lg ps-2 pr-1 bg-blue-light py-1"
                     >
                       <span className="flex items-center">
                         {labelIcon && <person.icon />}
@@ -107,7 +107,7 @@ const Dropdown: React.FC<DropdownProps> = ({ people, multiple, labelIcon }) => {
                 <Listbox.Option
                   key={personIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-blue-light2 text-blue-dark" : ""}`
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-blue-light text-blue-dark" : ""}`
                   }
                   value={person}
                   disabled={person.unavailable}
