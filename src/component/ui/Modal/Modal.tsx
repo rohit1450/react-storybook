@@ -17,15 +17,21 @@ const Modal: React.FC<ModalProps> = ({
   handleOpen,
   handleClose,
   initialIsOpen,
-  buttonName,
   ModalContent,
 }) => {
-  const { buttonType, color, label } = button;
+  const { buttonType, color, label, isLoading, disabled, className } = button;
   return (
     <>
       <div className="py-16 flex items-center justify-center">
         <div onClick={handleOpen}>
-          <Button buttonType={buttonType} color={color} label={label} />
+          <Button
+            buttonType={buttonType}
+            color={color}
+            label={label}
+            isLoading={isLoading}
+            disabled={disabled}
+            className={className}
+          />
         </div>
       </div>
 

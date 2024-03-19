@@ -46,8 +46,8 @@ export interface InputProps {
   rangeOneClass: string;
   rangeTwoClass: string;
   pickerIcon: () => JSX.Element;
-  minDate: string;
-  maxDate: string;
+  minDate?: Date;
+  maxDate?: Date;
   getDate: (date: any) => void;
   getStartDate: (date: any) => void;
   getEndDate: (date: any) => void;
@@ -179,8 +179,8 @@ const Input: React.FC<InputProps> = ({
       closeOnScroll: closeOnScroll ?? false,
       showYearDropdown,
       yearDropdownItemNumber,
-      minDate: minDate ?? null,
-      maxDate: maxDate ?? null,
+      minDate: minDate ?? undefined,
+      maxDate: maxDate ?? undefined,
       locale: locale ?? "",
     };
 

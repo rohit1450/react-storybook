@@ -27,7 +27,6 @@ Default.args = {
         <div className="cursor-pointer px-2 py-2">Home</div>
         <ChevronRightIcon className="h-5 w-5 rotate-90 sm:rotate-0" />
         {pathSegments.map((segment: string, index: number) => {
-          const url = `/${pathSegments.slice(0, index + 1).join("/")}`;
           return (
             <Fragment key={index}>
               <div key={index} className="cursor-pointer px-2 py-2">

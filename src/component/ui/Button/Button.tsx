@@ -7,7 +7,7 @@ export interface ButtonProps {
   icon?: React.FC<React.SVGProps<SVGSVGElement>>;
   disabled?: boolean;
   className: string;
-  onClick: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler;
   isLoading: boolean;
 }
 

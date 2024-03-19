@@ -7,7 +7,7 @@ import {
   CalculatorIcon,
 } from "@heroicons/react/24/outline";
 import { registerLocale } from "react-datepicker";
-import el from "date-fns/locale/el";
+import { el } from "date-fns/locale/el";
 registerLocale("el", el);
 
 export default {
@@ -160,8 +160,8 @@ DatePicker.args = {
   closeOnScroll: false,
   yearDropdownItemNumber: 10,
   showYearDropdown: true,
-  minDate: "Mar 12 2024",
-  maxDate: "Mar 20 2024 ",
+  maxDate: new Date("2024-03-20"),
+  minDate: new Date("2024-03-20"),
   locale: "el",
 };
 

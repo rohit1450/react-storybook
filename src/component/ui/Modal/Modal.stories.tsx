@@ -70,9 +70,12 @@ Default.args = {
     );
   },
   button: {
-    buttonType: "loading",
+    buttonType: "primary",
     color: "white",
     label: "Open dialoge",
+    isLoading: false,
+    disabled: false,
+    className: "",
   },
   initialIsOpen: false,
   buttonName: "OK",

@@ -11,7 +11,6 @@ export interface MobSidebarProps {
 
 export const MobSidebar: React.FC<MobSidebarProps> = ({
   isOpen,
-  setIsOpen,
   toggleMenu,
 }) => {
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -43,10 +42,6 @@ export const MobSidebar: React.FC<MobSidebarProps> = ({
       window.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
   const DrawerBody = () => (
     <div className="p-5">
