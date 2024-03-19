@@ -1,5 +1,5 @@
 {
-  "name": "drop",
+  "name": "drophp",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -66,6 +66,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "auto": "^11.1.1",
     "autoprefixer": "^10.4.17",
     "chromatic": "^10.7.1",
     "eslint": "^8.55.0",
